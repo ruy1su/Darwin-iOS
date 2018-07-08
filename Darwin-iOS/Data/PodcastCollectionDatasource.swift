@@ -26,16 +26,24 @@ class PodcastCollectionDatasource: NSObject {
 	}
 	
 	func load() {
-		guard let file = Bundle.main.path(forResource: "CannedSongs", ofType: "plist") else {
-			assertionFailure("bundle failure - couldnt load CannedSongs.plist - check it's added to target")
-			return
-		}
-		
-		if let dictionary = NSDictionary(contentsOfFile: file) as? [String: Any] {
-			dataStack.load(dictionary: dictionary) { [weak self] success in
-				self?.managedCollection.reloadData()
+		guard let homeUrl = URL(string: "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/api_home") else { return }
+		URLSession.shared.dataTask(with: homeUrl) { (data, response
+			, error) in
+			
+			guard let data = data else { return }
+			do {
+				let decoder = JSONDecoder()
+				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
+				print(apiHomeData)
+				DispatchQueue.main.async {
+					self.dataStack.load2(podcasts: apiHomeData) { [weak self] success in
+						self?.managedCollection.reloadData()
+					}
+				}
+			} catch let err {
+				print("Error, Couldnt load api data", err)
 			}
-		}
+			}.resume()
 	}
 }
 
@@ -44,7 +52,7 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource, UICollectionV
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		let fakerepeats = 5
-		return dataStack.allPods.count * fakerepeats
+		return dataStack.allPods.count*fakerepeats
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -8,12 +8,20 @@
 
 import UIKit
 
-struct Podcast {
+struct Podcast:Codable {
 	
 	// MARK: - Properties
-	let title: String
+	let coverArtURL: URL?
+	let title: String?
 	var duration: TimeInterval = 0
-	let artist: String
+	let artist: String?
 	var mediaURL: URL?
-	var coverArtURL: URL?
+	private enum CodingKeys: String, CodingKey {
+		case title
+		case duration
+		case artist
+		case mediaURL = "mediaUrl"
+		case coverArtURL = "coverArtURL"
+	}
 }
+

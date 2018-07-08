@@ -36,4 +36,21 @@ class DataStack: NSObject {
 			completion(false)
 		}
 	}
+	
+	func load2(podcasts: [Podcast], completion: (Bool) -> Void){
+//		if let podcasts = podcasts as? [Podcast] {
+		for podcast in podcasts {
+			let builder = PodcastBuilder()
+				.with(title: podcast.title)
+				.with(artist: podcast.artist)
+				.with(duration: podcast.duration)
+				.with(mediaURL: podcast.mediaURL?.absoluteString)
+				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
+			if let podcast = builder.build() {
+				allPods.append(podcast)
+			}
+			completion(true)
+			print(podcast, "-----------------------------------")
+		}
+	}
 }

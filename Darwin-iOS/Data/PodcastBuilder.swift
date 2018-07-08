@@ -23,7 +23,7 @@ class PodcastBuilder: NSObject {
 				return nil
 		}
 		
-		return Podcast(title: title, duration: duration, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
+		return Podcast(coverArtURL: coverArtURL, title: title, duration: duration, artist: artist, mediaURL: mediaURL)
 	}
 	
 	func with(title: String?) -> Self {
