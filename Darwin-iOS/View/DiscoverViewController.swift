@@ -30,6 +30,12 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		// Setting a cache threshold
+		let memoryCapacity = 500 * 1024 * 1024
+		let diskCapacity = 500 * 1024 * 1024
+		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+	    URLCache.shared = urlCache
+		
 		datasource = PodcastCollectionDatasource(collectionView: collectionView)
 		datasource.load()
 		collectionView.delegate = self
@@ -38,7 +44,7 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destination = segue.destination as? FloatingPlayerViewController {
 			floatingPlayer = destination
-			floatingPlayer?.delegate = self as? FloatingPlayerDelegate
+			floatingPlayer?.delegate = self
 		}
 	}
 	
@@ -48,6 +54,25 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 	}
 
 	
+}
+
+// MARK: - MiniPlayerDelegate
+extension DiscoverViewController: FloatingPlayerDelegate {
+
+	func expandPodcast(podcast: Podcast) {
+		guard let expandingPlayer = storyboard?.instantiateViewController(withIdentifier: "ExpandingPlayerViewController") as? ExpandingPlayerViewController else {
+			assertionFailure("No view controller ID ExpandingPlayerViewController in storyboard")
+			return
+		}
+
+		expandingPlayer.backingImage = view.makeSnapshot()
+		expandingPlayer.currentPodcast = podcast
+		expandingPlayer.sourceView = floatingPlayer
+		if let tabBar = tabBarController?.tabBar {
+			expandingPlayer.tabBarImage = tabBar.makeSnapshot()
+		}
+		present(expandingPlayer, animated: false)
+	}
 }
 
 // MARK: - UICollectionViewDelegate

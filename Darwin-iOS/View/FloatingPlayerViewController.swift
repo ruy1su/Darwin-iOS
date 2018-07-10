@@ -60,4 +60,15 @@ extension FloatingPlayerViewController {
 	}
 }
 
+extension FloatingPlayerViewController: ExpandingPlayerSourceProtocol {
+	var originatingFrameInWindow: CGRect {
+		let windowRect = view.convert(view.frame, to: nil)
+		return windowRect
+	}
+	
+	var originatingCoverImageView: UIImageView {
+		return thumbImage
+	}
+}
+
 

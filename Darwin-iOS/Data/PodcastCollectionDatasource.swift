@@ -51,7 +51,7 @@ class PodcastCollectionDatasource: NSObject {
 extension PodcastCollectionDatasource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		let fakerepeats = 5
+		let fakerepeats = 3
 		return dataStack.allPods.count*fakerepeats
 	}
 	
