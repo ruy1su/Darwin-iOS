@@ -11,14 +11,14 @@ import UIKit
 struct Podcast:Codable {
 	
 	// MARK: - Properties
-	let coverArtURL: URL?
 	let title: String?
-	var duration: TimeInterval = 0
+	var pid: Int?
 	let artist: String?
 	var mediaURL: URL?
+	let coverArtURL: URL?
 	private enum CodingKeys: String, CodingKey {
 		case title
-		case duration
+		case pid
 		case artist
 		case mediaURL = "mediaUrl"
 		case coverArtURL = "coverArtURL"

@@ -19,12 +19,12 @@ class PodcastCell: UICollectionViewCell {
 
 
 class DiscoverViewController: UIViewController, PodcastSubscriber {
-	var currentPodcast: Podcast?
 
 	// MARK: - Properties
 	var datasource: PodcastCollectionDatasource!
 	var floatingPlayer: FloatingPlayerViewController?
-	var currentSong: Podcast?
+	var episodeListViewController: EpisodeListViewController?
+	var currentPodcast: Podcast?
 	@IBOutlet weak var collectionView: UICollectionView!
 
 	override func viewDidLoad() {
@@ -46,6 +46,10 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 			floatingPlayer = destination
 			floatingPlayer?.delegate = self
 		}
+		if let indexPath = (collectionView?.indexPathsForSelectedItems as [NSIndexPath]?)?.last {
+			let controller = segue.destination as! EpisodeListViewController
+			controller.currentPodcast = datasource.dataStack.allPods[indexPath.row]
+		}
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -53,10 +57,9 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 		// Dispose of any resources that can be recreated.
 	}
 
-	
 }
 
-// MARK: - MiniPlayerDelegate
+// MARK: - FloatingPlayerDelegate
 extension DiscoverViewController: FloatingPlayerDelegate {
 
 	func expandPodcast(podcast: Podcast) {
@@ -81,5 +84,6 @@ extension DiscoverViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		currentPodcast = datasource.podcast(at: indexPath.row)
 		floatingPlayer?.configure(podcast: currentPodcast)
+//		performSegue(withIdentifier: "collection_to_table", sender: indexPath)
 	}
 }

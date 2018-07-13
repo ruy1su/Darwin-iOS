@@ -44,11 +44,12 @@ extension EpisodePlayViewController {
 
 // MARK: - Podcast Extension
 extension Podcast {
-	
+
 	var presentationTime: String {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "mm:ss"
-		let date = Date(timeIntervalSince1970: duration)
-		return formatter.string(from: date)
+//		let formatter = DateFormatter()
+//		formatter.dateFormat = "mm:ss"
+//		let date = Date(timeIntervalSince1970: duration)
+//		return formatter.string(from: date)
+		return "0"
 	}
 }

@@ -27,8 +27,6 @@ class FloatingPlayerViewController: UIViewController, PodcastSubscriber {
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		configure(podcast: nil)
 	}
 }
 

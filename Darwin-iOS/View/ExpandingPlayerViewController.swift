@@ -16,7 +16,7 @@ protocol ExpandingPlayerSourceProtocol: class {
 class ExpandingPlayerViewController: UIViewController, PodcastSubscriber {
 	
 	// MARK: - Properties
-	let primaryDuration = 0.2
+	let primaryDuration = 0.28
 	let backingImageEdgeInset: CGFloat = 15.0
 	let cardCornerRadius: CGFloat = 10
 	var currentPodcast: Podcast?

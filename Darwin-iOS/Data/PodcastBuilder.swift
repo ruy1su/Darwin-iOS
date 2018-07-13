@@ -12,7 +12,7 @@ class PodcastBuilder: NSObject {
 	
 	// MARK: - Properties
 	private var title: String?
-	private var duration: TimeInterval = 0
+	private var pid: Int?
 	private var artist: String?
 	private var mediaURL: URL?
 	private var coverArtURL: URL?
@@ -23,7 +23,7 @@ class PodcastBuilder: NSObject {
 				return nil
 		}
 		
-		return Podcast(coverArtURL: coverArtURL, title: title, duration: duration, artist: artist, mediaURL: mediaURL)
+		return Podcast(title: title, pid: pid, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
 	}
 	
 	func with(title: String?) -> Self {
@@ -31,8 +31,8 @@ class PodcastBuilder: NSObject {
 		return self
 	}
 	
-	func with(duration: TimeInterval?) -> Self {
-		self.duration = duration ?? 0
+	func with(pid: Int?) -> Self {
+		self.pid = pid
 		return self
 	}
 	

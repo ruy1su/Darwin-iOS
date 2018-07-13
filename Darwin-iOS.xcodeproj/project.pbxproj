@@ -25,6 +25,7 @@
 		A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13320F3FAE100F00F43 /* SnapShot.swift */; };
 		A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */; };
 		A5E0B13820F42EF600F00F43 /* EpisodePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */; };
+		A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		A5E0B13320F3FAE100F00F43 /* SnapShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapShot.swift; sourceTree = "<group>"; };
 		A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingPlayerViewController.swift; sourceTree = "<group>"; };
 		A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePlayViewController.swift; sourceTree = "<group>"; };
+		A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
+				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */,
 				A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */,
 				A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */,
@@ -329,6 +332,7 @@
 				A5E0B13820F42EF600F00F43 /* EpisodePlayViewController.swift in Sources */,
 				A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */,
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
+				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */,
 				A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */,
 				A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */,

@@ -24,7 +24,7 @@ class DataStack: NSObject {
 				let builder = PodcastBuilder()
 					.with(title: podcastDictionary["title"] as? String)
 					.with(artist: podcastDictionary["artist"] as? String)
-					.with(duration: podcastDictionary["duration"] as? TimeInterval)
+					.with(pid: podcastDictionary["pid"] as? Int)
 					.with(mediaURL: podcastDictionary["mediaURL"] as? String)
 					.with(coverArtURL: podcastDictionary["coverArtURL"] as? String)
 				if let podcast = builder.build() {
@@ -43,7 +43,7 @@ class DataStack: NSObject {
 			let builder = PodcastBuilder()
 				.with(title: podcast.title)
 				.with(artist: podcast.artist)
-				.with(duration: podcast.duration)
+				.with(pid: podcast.pid)
 				.with(mediaURL: podcast.mediaURL?.absoluteString)
 				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
 			if let podcast = builder.build() {
