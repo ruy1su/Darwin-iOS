@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */; };
+		A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */; };
+		A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */; };
 		A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */; };
 		A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */; };
 		A5E0B0E320F1856600F00F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E0B0E120F1856600F00F43 /* Main.storyboard */; };
@@ -16,7 +19,7 @@
 		A5E0B0F620F1856600F00F43 /* Darwin_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0F520F1856600F00F43 /* Darwin_iOSTests.swift */; };
 		A5E0B10120F1856600F00F43 /* Darwin_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B10020F1856600F00F43 /* Darwin_iOSUITests.swift */; };
 		A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B10F20F1995700F00F43 /* Podcast.swift */; };
-		A5E0B11320F19D7E00F00F43 /* PodcastSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11220F19D7E00F00F43 /* PodcastSubscriber.swift */; };
+		A5E0B11320F19D7E00F00F43 /* MediaSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11220F19D7E00F00F43 /* MediaSubscriber.swift */; };
 		A5E0B11620F1A0FB00F00F43 /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11520F1A0FB00F00F43 /* DataStack.swift */; };
 		A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11720F1A12500F00F43 /* PodcastBuilder.swift */; };
 		A5E0B11A20F1A39F00F00F43 /* PodcastCollectionDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11920F1A39F00F00F43 /* PodcastCollectionDatasource.swift */; };
@@ -26,6 +29,8 @@
 		A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */; };
 		A5E0B13820F42EF600F00F43 /* EpisodePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */; };
 		A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */; };
+		A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13B20F83A4900F00F43 /* Episode.swift */; };
+		A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDataStack.swift; sourceTree = "<group>"; };
+		A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeBuilder.swift; sourceTree = "<group>"; };
+		A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewDataSource.swift; sourceTree = "<group>"; };
 		A5E0B0DA20F1856600F00F43 /* Darwin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Darwin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +69,7 @@
 		A5E0B10020F1856600F00F43 /* Darwin_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Darwin_iOSUITests.swift; sourceTree = "<group>"; };
 		A5E0B10220F1856600F00F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5E0B10F20F1995700F00F43 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
-		A5E0B11220F19D7E00F00F43 /* PodcastSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSubscriber.swift; sourceTree = "<group>"; };
+		A5E0B11220F19D7E00F00F43 /* MediaSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSubscriber.swift; sourceTree = "<group>"; };
 		A5E0B11520F1A0FB00F00F43 /* DataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStack.swift; sourceTree = "<group>"; };
 		A5E0B11720F1A12500F00F43 /* PodcastBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBuilder.swift; sourceTree = "<group>"; };
 		A5E0B11920F1A39F00F00F43 /* PodcastCollectionDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCollectionDatasource.swift; sourceTree = "<group>"; };
@@ -71,6 +79,8 @@
 		A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingPlayerViewController.swift; sourceTree = "<group>"; };
 		A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePlayViewController.swift; sourceTree = "<group>"; };
 		A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewController.swift; sourceTree = "<group>"; };
+		A5E0B13B20F83A4900F00F43 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +108,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A53A2AD020FA9513002DEA45 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
+				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
+				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		A5E0B0D120F1856600F00F43 = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				A5E0B10F20F1995700F00F43 /* Podcast.swift */,
-				A5E0B11220F19D7E00F00F43 /* PodcastSubscriber.swift */,
+				A5E0B13B20F83A4900F00F43 /* Episode.swift */,
+				A5E0B11220F19D7E00F00F43 /* MediaSubscriber.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,11 +186,10 @@
 		A5E0B11120F19AC900F00F43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
-				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */,
 				A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */,
 				A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */,
+				A53A2AD020FA9513002DEA45 /* Discover */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +200,9 @@
 				A5E0B11520F1A0FB00F00F43 /* DataStack.swift */,
 				A5E0B11720F1A12500F00F43 /* PodcastBuilder.swift */,
 				A5E0B11920F1A39F00F00F43 /* PodcastCollectionDatasource.swift */,
+				A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */,
+				A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */,
+				A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -325,18 +348,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */,
+				A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
 				A5E0B11620F1A0FB00F00F43 /* DataStack.swift in Sources */,
+				A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */,
 				A5E0B11A20F1A39F00F00F43 /* PodcastCollectionDatasource.swift in Sources */,
 				A5E0B13820F42EF600F00F43 /* EpisodePlayViewController.swift in Sources */,
 				A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */,
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
+				A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */,
 				A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */,
 				A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */,
+				A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */,
 				A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */,
-				A5E0B11320F19D7E00F00F43 /* PodcastSubscriber.swift in Sources */,
+				A5E0B11320F19D7E00F00F43 /* MediaSubscriber.swift in Sources */,
+				A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */,
 				A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,13 +13,14 @@ protocol ExpandingPlayerSourceProtocol: class {
 	var originatingCoverImageView: UIImageView { get }
 }
 
-class ExpandingPlayerViewController: UIViewController, PodcastSubscriber {
+class ExpandingPlayerViewController: UIViewController, PodcastSubscriber, EpisodeSubscriber {
 	
 	// MARK: - Properties
 	let primaryDuration = 0.28
 	let backingImageEdgeInset: CGFloat = 15.0
 	let cardCornerRadius: CGFloat = 10
 	var currentPodcast: Podcast?
+	var currentEpisode: Episode?
 	weak var sourceView: ExpandingPlayerSourceProtocol!
 	
 	//scroller
@@ -101,6 +102,9 @@ class ExpandingPlayerViewController: UIViewController, PodcastSubscriber {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destination = segue.destination as? PodcastSubscriber {
 			destination.currentPodcast = currentPodcast
+		}
+		if let destination = segue.destination as? EpisodeSubscriber {
+			destination.currentEpisode = currentEpisode
 		}
 	}
 }

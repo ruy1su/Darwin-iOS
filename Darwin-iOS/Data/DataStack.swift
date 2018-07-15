@@ -38,7 +38,6 @@ class DataStack: NSObject {
 	}
 	
 	func load2(podcasts: [Podcast], completion: (Bool) -> Void){
-//		if let podcasts = podcasts as? [Podcast] {
 		for podcast in podcasts {
 			let builder = PodcastBuilder()
 				.with(title: podcast.title)

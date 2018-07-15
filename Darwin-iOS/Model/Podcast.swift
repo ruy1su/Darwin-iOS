@@ -12,15 +12,15 @@ struct Podcast:Codable {
 	
 	// MARK: - Properties
 	let title: String?
-	var pid: Int?
+	let pid: Int?
 	let artist: String?
-	var mediaURL: URL?
+	let mediaURL: URL?
 	let coverArtURL: URL?
 	private enum CodingKeys: String, CodingKey {
 		case title
 		case pid
 		case artist
-		case mediaURL = "mediaUrl"
+		case mediaURL = "mediaURL"
 		case coverArtURL = "coverArtURL"
 	}
 }

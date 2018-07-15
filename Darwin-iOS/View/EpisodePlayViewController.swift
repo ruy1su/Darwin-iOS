@@ -8,18 +8,19 @@
 
 import UIKit
 
-class EpisodePlayViewController: UIViewController, PodcastSubscriber {
-	
+class EpisodePlayViewController: UIViewController, EpisodeSubscriber {
 	// MARK: - IBOutlets
 	@IBOutlet weak var episodeTitle: UILabel!
 	@IBOutlet weak var episodeArtist: UILabel!
 	@IBOutlet weak var episodeDuration: UILabel!
 	// MARK: - Properties
-	var currentPodcast: Podcast? {
+
+	var currentEpisode: Episode?{
 		didSet {
 			configureFields()
 		}
 	}
+	
 	
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
@@ -36,14 +37,14 @@ extension EpisodePlayViewController {
 			return
 		}
 		
-		episodeTitle.text = currentPodcast?.title
-		episodeArtist.text = currentPodcast?.artist
-		episodeDuration.text = "Duration \(currentPodcast?.presentationTime ?? "")"
+		episodeTitle.text = currentEpisode?.title
+		episodeArtist.text = currentEpisode?.artist
+		episodeDuration.text = "Duration \(currentEpisode?.presentationTime ?? "")"
 	}
 }
 
 // MARK: - Podcast Extension
-extension Podcast {
+extension Episode {
 
 	var presentationTime: String {
 //		let formatter = DateFormatter()

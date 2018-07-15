@@ -14,6 +14,11 @@ class PodcastCollectionDatasource: NSObject {
 	var managedCollection: UICollectionView
 	
 	init(collectionView: UICollectionView) {
+		let memoryCapacity = 500 * 1024 * 1024
+		let diskCapacity = 500 * 1024 * 1024
+		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+		URLCache.shared = urlCache
+		
 		dataStack = DataStack()
 		managedCollection = collectionView
 		super.init()
@@ -34,7 +39,7 @@ class PodcastCollectionDatasource: NSObject {
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
-				print(apiHomeData)
+				print(apiHomeData, "+++++++++\n")
 				DispatchQueue.main.async {
 					self.dataStack.load2(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
@@ -51,8 +56,7 @@ class PodcastCollectionDatasource: NSObject {
 extension PodcastCollectionDatasource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		let fakerepeats = 2
-		return dataStack.allPods.count*fakerepeats
+		return dataStack.allPods.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

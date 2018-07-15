@@ -9,18 +9,18 @@
 import UIKit
 
 protocol FloatingPlayerDelegate: class {
-	func expandPodcast(podcast: Podcast)
+	func expandPodcast(podcast: Podcast, episode: Episode)
 }
 
-class FloatingPlayerViewController: UIViewController, PodcastSubscriber {
-	
+class FloatingPlayerViewController: UIViewController, PodcastSubscriber, EpisodeSubscriber {
 	// MARK: - Properties
 	var currentPodcast: Podcast?
+	var currentEpisode: Episode?
 	weak var delegate: FloatingPlayerDelegate?
 	
 	// MARK: - IBOutlets
 	@IBOutlet weak var thumbImage: UIImageView!
-	@IBOutlet weak var podcastTitle: UILabel!
+	@IBOutlet weak var episodeTitle: UILabel!
 	@IBOutlet weak var playButton: UIButton!
 	@IBOutlet weak var ffButton: UIButton!
 	
@@ -33,16 +33,17 @@ class FloatingPlayerViewController: UIViewController, PodcastSubscriber {
 // MARK: - Internal
 extension FloatingPlayerViewController {
 	
-	func configure(podcast: Podcast?) {
-		if let podcast = podcast {
-			podcastTitle.text = podcast.title
+	func configure(episode: Episode?, podcast: Podcast?) {
+		if let podcast = podcast, let episode = episode {
+			episodeTitle.text = episode.title
 			podcast.loadPodcastImage { [weak self] (image) -> (Void) in
 				self?.thumbImage.image = image
 			}
 		} else {
-			podcastTitle.text = nil
+			episodeTitle.text = nil
 			thumbImage.image = nil
 		}
+		currentEpisode = episode
 		currentPodcast = podcast
 	}
 }
@@ -54,7 +55,10 @@ extension FloatingPlayerViewController {
 		guard let podcast = currentPodcast else {
 			return
 		}
-		delegate?.expandPodcast(podcast: podcast)
+		guard let episode = currentEpisode else {
+			return
+		}
+		delegate?.expandPodcast(podcast: podcast, episode: episode)
 	}
 }
 

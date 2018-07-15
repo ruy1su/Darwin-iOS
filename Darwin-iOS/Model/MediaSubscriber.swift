@@ -11,3 +11,8 @@ import Foundation
 protocol PodcastSubscriber: class {
 	var currentPodcast: Podcast? { get set }
 }
+
+protocol EpisodeSubscriber: class {
+	var currentEpisode: Episode? { get set }
+}
+

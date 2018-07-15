@@ -31,11 +31,7 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		// Setting a cache threshold
-		let memoryCapacity = 500 * 1024 * 1024
-		let diskCapacity = 500 * 1024 * 1024
-		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
-	    URLCache.shared = urlCache
-		
+
 		datasource = PodcastCollectionDatasource(collectionView: collectionView)
 		datasource.load()
 		collectionView.delegate = self
@@ -62,7 +58,7 @@ class DiscoverViewController: UIViewController, PodcastSubscriber {
 // MARK: - FloatingPlayerDelegate
 extension DiscoverViewController: FloatingPlayerDelegate {
 
-	func expandPodcast(podcast: Podcast) {
+	func expandPodcast(podcast: Podcast, episode: Episode) {
 		guard let expandingPlayer = storyboard?.instantiateViewController(withIdentifier: "ExpandingPlayerViewController") as? ExpandingPlayerViewController else {
 			assertionFailure("No view controller ID ExpandingPlayerViewController in storyboard")
 			return
@@ -82,8 +78,7 @@ extension DiscoverViewController: FloatingPlayerDelegate {
 extension DiscoverViewController: UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		currentPodcast = datasource.podcast(at: indexPath.row)
-		floatingPlayer?.configure(podcast: currentPodcast)
-//		performSegue(withIdentifier: "collection_to_table", sender: indexPath)
+//		currentPodcast = datasource.podcast(at: indexPath.row)
+//		floatingPlayer?.configure(podcast: currentPodcast)
 	}
 }
