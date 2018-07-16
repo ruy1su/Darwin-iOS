@@ -13,7 +13,7 @@ protocol ExpandingPlayerSourceProtocol: class {
 	var originatingCoverImageView: UIImageView { get }
 }
 
-class ExpandingPlayerViewController: UIViewController, PodcastSubscriber, EpisodeSubscriber {
+class ExpandingPlayerViewController: UIViewController, TrackSubscriber {
 	
 	// MARK: - Properties
 	let primaryDuration = 0.28
@@ -100,10 +100,8 @@ class ExpandingPlayerViewController: UIViewController, PodcastSubscriber, Episod
 	
 	// MARK: - Navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let destination = segue.destination as? PodcastSubscriber {
-			destination.currentPodcast = currentPodcast
-		}
-		if let destination = segue.destination as? EpisodeSubscriber {
+
+		if let destination = segue.destination as? TrackSubscriber {
 			destination.currentEpisode = currentEpisode
 		}
 	}

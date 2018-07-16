@@ -8,21 +8,27 @@
 
 import UIKit
 
+@objc
+protocol PodcastSelectionObserver: class {
+	func selected(_ podcast: DataStack, on: IndexPath)
+}
+
 class PodcastCollectionDatasource: NSObject {
 	
 	var dataStack: DataStack
 	var managedCollection: UICollectionView
 	
 	init(collectionView: UICollectionView) {
-		let memoryCapacity = 500 * 1024 * 1024
-		let diskCapacity = 500 * 1024 * 1024
-		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
-		URLCache.shared = urlCache
 		
 		dataStack = DataStack()
 		managedCollection = collectionView
 		super.init()
 		managedCollection.dataSource = self
+	}
+	
+	private var selectionObservers = NSHashTable<PodcastSelectionObserver>.weakObjects()
+	func registerSelectionObserver(observer: PodcastSelectionObserver) {
+		selectionObservers.add(observer)
 	}
 	
 	func podcast(at index: Int) -> Podcast {
@@ -53,7 +59,7 @@ class PodcastCollectionDatasource: NSObject {
 }
 
 // MARK: - UICollectionViewDataSource
-extension PodcastCollectionDatasource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return dataStack.allPods.count
@@ -82,6 +88,11 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource, UICollectionV
 			cell.coverArt.image = image
 		}
 		return cell
+	}
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		for observer:PodcastSelectionObserver in self.selectionObservers.allObjects {
+			observer.selected(dataStack, on: indexPath)
+		}
 	}
 	
 	

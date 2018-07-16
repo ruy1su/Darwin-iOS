@@ -19,6 +19,7 @@ class EpisodeBuilder: NSObject {
 	private var podcast: String?
 	private var mediaURL: URL?
 	private var releaseDate: String?
+	private var coverArtURL: URL?
 	
 	func build() -> Episode? {
 		guard let title = title,
@@ -26,7 +27,7 @@ class EpisodeBuilder: NSObject {
 				return nil
 		}
 		
-		return Episode(pid: pid, podcast:podcast, title: title, releaseDate: releaseDate, info: info, eid: eid, artist: artist, mediaURL: mediaURL)
+		return Episode(pid: pid, podcast:podcast, title: title, releaseDate: releaseDate, info: info, eid: eid, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
 	}
 	
 	func with(title: String?) -> Self {
@@ -63,7 +64,7 @@ class EpisodeBuilder: NSObject {
 		return self
 	}
 
-	func will(podcast: String?) -> Self{
+	func with(podcast: String?) -> Self{
 		self.podcast = podcast
 		return self
 	}
@@ -73,6 +74,14 @@ class EpisodeBuilder: NSObject {
 //		return self
 //	}
 //
+	func with(coverArtURL url: String?) -> Self {
+		guard let urlstring = url else {
+			return self
+		}
+		
+		self.coverArtURL = URL(string: urlstring)
+		return self
+	}
 	func with(releaseDate: String?) -> Self{
 		self.releaseDate = releaseDate
 		return self

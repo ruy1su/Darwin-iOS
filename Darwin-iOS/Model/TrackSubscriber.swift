@@ -8,11 +8,9 @@
 
 import Foundation
 
-protocol PodcastSubscriber: class {
+protocol TrackSubscriber: class {
 	var currentPodcast: Podcast? { get set }
-}
-
-protocol EpisodeSubscriber: class {
 	var currentEpisode: Episode? { get set }
+	
 }
 

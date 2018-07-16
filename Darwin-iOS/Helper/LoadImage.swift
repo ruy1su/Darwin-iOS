@@ -23,3 +23,19 @@ extension Podcast {
 		}
 	}
 }
+
+extension Episode {
+	func loadEpisodeImage(completion: @escaping ((UIImage?) -> (Void))) {
+		guard let imageURL = coverArtURL,
+			let file = try? Data(contentsOf: imageURL) else {
+				return
+		}
+		
+		DispatchQueue.global(qos: .background).async {
+			let image = UIImage(data: file)
+			DispatchQueue.main.async {
+				completion(image)
+			}
+		}
+	}
+}

@@ -9,14 +9,19 @@
 import UIKit
 
 protocol FloatingPlayerDelegate: class {
-	func expandPodcast(podcast: Podcast, episode: Episode)
+	func expandEpisode(episode: Episode)
 }
 
-class FloatingPlayerViewController: UIViewController, PodcastSubscriber, EpisodeSubscriber {
+class FloatingPlayerViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder{
 	// MARK: - Properties
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
 	weak var delegate: FloatingPlayerDelegate?
+	var hearThisPlayer: HearThisPlayerType? {
+		didSet{
+			hearThisPlayer?.registerObserver(observer: self)
+		}
+	}
 	
 	// MARK: - IBOutlets
 	@IBOutlet weak var thumbImage: UIImageView!
@@ -31,8 +36,25 @@ class FloatingPlayerViewController: UIViewController, PodcastSubscriber, Episode
 }
 
 // MARK: - Internal
-extension FloatingPlayerViewController {
+extension FloatingPlayerViewController: HearThisPlayerObserver {
+	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode) {
+		episodeTitle.text = track.title
+		currentEpisode = track
+		track.loadEpisodeImage { [weak self] (image) -> (Void) in
+				self?.thumbImage.image = image
+		}
+	}
 	
+	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {
+		episodeTitle.text = track.title
+		currentEpisode = track
+
+	}
+	
+	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode) {
+	}
+	
+	// Function for Standby
 	func configure(episode: Episode?, podcast: Podcast?) {
 		if let podcast = podcast, let episode = episode {
 			episodeTitle.text = episode.title
@@ -52,13 +74,10 @@ extension FloatingPlayerViewController {
 extension FloatingPlayerViewController {
 	
 	@IBAction func tapGesture(_ sender: Any) {
-		guard let podcast = currentPodcast else {
-			return
-		}
 		guard let episode = currentEpisode else {
 			return
 		}
-		delegate?.expandPodcast(podcast: podcast, episode: episode)
+		delegate?.expandEpisode(episode: episode)
 	}
 }
 

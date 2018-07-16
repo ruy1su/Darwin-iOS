@@ -8,7 +8,9 @@
 
 import UIKit
 
-class EpisodePlayViewController: UIViewController, EpisodeSubscriber {
+class EpisodePlayViewController: UIViewController, TrackSubscriber {
+	var currentPodcast: Podcast?
+	
 	// MARK: - IBOutlets
 	@IBOutlet weak var episodeTitle: UILabel!
 	@IBOutlet weak var episodeArtist: UILabel!

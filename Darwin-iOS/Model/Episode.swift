@@ -20,7 +20,8 @@ struct Episode:Codable {
 	var eid: Int?
 	let artist: String?
 	var mediaURL: URL?
-	
+	var coverArtURL: URL?
+
 	private enum CodingKeys: String, CodingKey {
 		case title
 		case eid
@@ -30,5 +31,6 @@ struct Episode:Codable {
 		case info = "info"
 		case mediaURL = "mediaURL"
 		case releaseDate = "release_date"
+		case coverArtURL = "coverArtURL"
 	}
 }

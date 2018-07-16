@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc
+protocol EpisodeSelectionObserver: class {
+	func selected(_ episode: EpisodeDataStack, on: IndexPath)
+}
+
+
 class EpisodeTableViewDataSource: NSObject {
 	
 	var dataStack: EpisodeDataStack
@@ -21,6 +27,12 @@ class EpisodeTableViewDataSource: NSObject {
 		super.init()
 		managedTable.dataSource = self
 		managedTable.delegate = self
+	}
+	
+	private var selectionObservers = NSHashTable<EpisodeSelectionObserver>.weakObjects()
+	
+	func registerSelectionObserver(observer: EpisodeSelectionObserver) {
+		selectionObservers.add(observer)
 	}
 	
 	func episode(at index: Int) -> Episode {
@@ -67,6 +79,11 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 		
 		return cell!
 	}
-	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		for observer:EpisodeSelectionObserver in self.selectionObservers.allObjects {
+			observer.selected(dataStack, on: indexPath)
+			print(dataStack.allEps[indexPath.row],"=================")
+		}
+	}
 	
 }

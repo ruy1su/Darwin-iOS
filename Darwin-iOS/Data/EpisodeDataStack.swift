@@ -29,11 +29,17 @@ class EpisodeDataStack: NSObject {
 				.with(info: episode.info)
 				.with(releaseDate: episode.releaseDate)
 				.with(info: episode.info)
+				.with(coverArtURL: episode.coverArtURL?.absoluteString)
+			
 			
 			if let episode = builder.build() {
 				allEps.append(episode)
 			}
 			completion(true)
 		}
+	}
+	
+	func setCoverArt(podcast: Podcast, on: IndexPath) {
+		self.allEps[on.row].coverArtURL = podcast.coverArtURL
 	}
 }

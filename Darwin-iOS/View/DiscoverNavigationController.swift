@@ -1,0 +1,27 @@
+//
+//  DiscoverNavigationController.swift
+//  Darwin-iOS
+//
+//  Created by Zenos on 7/15/18.
+//  Copyright © 2018 Zixia. All rights reserved.
+//
+
+import UIKit
+
+class DarwinNavigationController: UINavigationController, HearThisPlayerHolder {
+	var hearThisPlayer: HearThisPlayerType? {
+		didSet{
+			if let tvc = self.topViewController as? HearThisPlayerHolder{
+				tvc.hearThisPlayer = hearThisPlayer
+			}
+		}
+	}
+	
+	override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+		if let vc = viewController as? EpisodeListViewController {
+			vc.hearThisPlayer = self.hearThisPlayer
+		}
+		super.pushViewController(viewController, animated: animated)
+	}
+	
+}
