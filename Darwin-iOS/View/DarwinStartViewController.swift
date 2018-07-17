@@ -8,20 +8,23 @@
 
 import UIKit
 
-class DarwinStartViewController: UIViewController, HearThisPlayerHolder, TrackSubscriber {
+class DarwinStartViewController: UIViewController, HearThisPlayerHolder {
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
 	
-	var currentPodcast: Podcast?
-	var currentEpisode: Episode?
 	var floatingPlayer: FloatingPlayerViewController?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		// Setting Cache
+		let memoryCapacity = 500 * 1024 * 1024
+		let diskCapacity = 500 * 1024 * 1024
+		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+		URLCache.shared = urlCache
+		
 		for childViewController in self.childViewControllers {
 			if let playerHolder = childViewController as? HearThisPlayerHolder {
 				playerHolder.hearThisPlayer = self.hearThisPlayer
@@ -37,13 +40,12 @@ class DarwinStartViewController: UIViewController, HearThisPlayerHolder, TrackSu
 }
 
 extension DarwinStartViewController: HearThisPlayerObserver{
+	// MARK: - Make Modifications to Player View
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode) {
-
 		self.view.setNeedsUpdateConstraints()
 	}
 	
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode) {
-
 		self.view.setNeedsUpdateConstraints()
 	}
 }

@@ -12,7 +12,6 @@ import AVFoundation
 protocol HearThisPlayerType {
 	func play(_ track: Episode)
 	func stop()
-	func expand(_ track: Episode)
 	mutating func registerObserver(observer: HearThisPlayerObserver)
 	var observers: NSHashTable<AnyObject>! { set get }
 }
@@ -22,12 +21,12 @@ extension HearThisPlayerType {
 	}
 }
 
-
 protocol HearThisPlayerObserver: class {
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)
 }
+
 extension HearThisPlayerObserver {
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode){}
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {}
@@ -46,6 +45,7 @@ class HearThisPlayer: HearThisPlayerType {
 	fileprivate var currentEpisode: Episode?
 	private let notificationCenter: NotificationCenter
 	private let audioSession: AVAudioSession
+	
 	init(notificationCenter: NotificationCenter = NotificationCenter.default, audioSession:AVAudioSession = AVAudioSession.sharedInstance()) {
 		self.notificationCenter = notificationCenter
 		self.audioSession = audioSession
@@ -56,9 +56,6 @@ class HearThisPlayer: HearThisPlayerType {
 			}
 		})
 		notificationCenter.addObserver(self, selector: #selector(HearThisPlayer.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-	}
-	func expand(_ track: Episode){
-		
 	}
 
 	func play(_ track: Episode) {
@@ -114,9 +111,9 @@ extension HearThisPlayer {
 			for observer in self.observers.allObjects {
 				if let observer = observer as? HearThisPlayerObserver {
 					observer.player(self, willStartPlaying: track)
-					print(track.title ?? "ok","???????????????")
 				}
 			}
+			print(track.title ?? "ok","???????????????")
 		}
 	}
 	

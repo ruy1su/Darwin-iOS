@@ -50,7 +50,7 @@ class EpisodeTableViewDataSource: NSObject {
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Episode>.self, from: data)
-				print(apiHomeData, "+++++++++\n")
+				print(apiHomeData, "\n++++++ This is api episode data for selected podcast ++++++\n")
 				DispatchQueue.main.async {
 					self.dataStack.load(episodes: apiHomeData) { [weak self] success in
 						self?.managedTable.reloadData()
@@ -82,7 +82,7 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		for observer:EpisodeSelectionObserver in self.selectionObservers.allObjects {
 			observer.selected(dataStack, on: indexPath)
-			print(dataStack.allEps[indexPath.row],"=================")
+//			print(dataStack.allEps[indexPath.row],"=================")
 		}
 	}
 	

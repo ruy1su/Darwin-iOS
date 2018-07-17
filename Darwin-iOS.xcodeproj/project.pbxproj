@@ -14,6 +14,7 @@
 		A53A2AD420FC1E69002DEA45 /* DarwinTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2AD320FC1E69002DEA45 /* DarwinTabBarController.swift */; };
 		A53A2AD620FC1EF0002DEA45 /* DiscoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */; };
 		A53A2AD920FCA572002DEA45 /* HearThisPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2AD820FCA572002DEA45 /* HearThisPlayer.swift */; };
+		A53A2ADE20FD69A7002DEA45 /* EpisodeListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */; };
 		A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */; };
 		A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */; };
 		A5E0B0E320F1856600F00F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E0B0E120F1856600F00F43 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		A53A2AD320FC1E69002DEA45 /* DarwinTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinTabBarController.swift; sourceTree = "<group>"; };
 		A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverNavigationController.swift; sourceTree = "<group>"; };
 		A53A2AD820FCA572002DEA45 /* HearThisPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearThisPlayer.swift; sourceTree = "<group>"; };
+		A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListHeaderView.swift; sourceTree = "<group>"; };
 		A5E0B0DA20F1856600F00F43 /* Darwin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Darwin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -119,11 +121,23 @@
 		A53A2AD020FA9513002DEA45 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
+				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
 			);
 			path = Discover;
+			sourceTree = "<group>";
+		};
+		A53A2ADA20FD5D34002DEA45 /* Player View */ = {
+			isa = PBXGroup;
+			children = (
+				A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */,
+				A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */,
+				A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */,
+			);
+			path = "Player View";
 			sourceTree = "<group>";
 		};
 		A5E0B0D120F1856600F00F43 = {
@@ -195,13 +209,10 @@
 		A5E0B11120F19AC900F00F43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */,
-				A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */,
-				A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */,
-				A53A2AD020FA9513002DEA45 /* Discover */,
+				A53A2ADA20FD5D34002DEA45 /* Player View */,
 				A53A2AD120FADFA4002DEA45 /* DarwinStartViewController.swift */,
 				A53A2AD320FC1E69002DEA45 /* DarwinTabBarController.swift */,
-				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
+				A53A2AD020FA9513002DEA45 /* Discover */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A53A2AD420FC1E69002DEA45 /* DarwinTabBarController.swift in Sources */,
+				A53A2ADE20FD69A7002DEA45 /* EpisodeListHeaderView.swift in Sources */,
 				A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */,
 				A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */,
 				A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */,

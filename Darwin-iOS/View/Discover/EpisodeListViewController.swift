@@ -18,22 +18,23 @@ class EpisodeListViewController: UIViewController, TrackSubscriber, HearThisPlay
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
+	@IBOutlet weak var episodeListHeaderView: EpisodeListHeaderView!
 	@IBOutlet weak var episodeTableView: UITableView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		print(currentPodcast as Any)
-		print("what")
-
+		print(" ++++++ This is selected podcast ++++++ \n")
 		datasource = EpisodeTableViewDataSource(tableView: episodeTableView, podcast: currentPodcast!)
 		datasource.load()
 		datasource.registerSelectionObserver(observer: self)
+		episodeListHeaderView.podcast = currentPodcast
 	}
 
 	func selected(_ episodeStack: EpisodeDataStack, on: IndexPath) {
 		hearThisPlayer?.stop()
 		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
 		hearThisPlayer?.play(episodeStack.allEps[on.row])
-		print(episodeStack.allEps[on.row], "========", episodeStack.allEps[on.row].coverArtURL ?? "ok")
+		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
 	}
 }

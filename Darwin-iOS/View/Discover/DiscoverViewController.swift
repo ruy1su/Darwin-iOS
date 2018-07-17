@@ -18,11 +18,10 @@ class PodcastCell: UICollectionViewCell {
 }
 
 
-class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, PodcastSelectionObserver {
+class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, PodcastSelectionObserver, HearThisPlayerObserver {
 
 	// MARK: - Properties
 	var datasource: PodcastCollectionDatasource!
-//	var floatingPlayer: FloatingPlayerViewController?
 	var episodeListViewController: EpisodeListViewController?
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
@@ -40,24 +39,12 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-		// Setting a cache threshold
-		let memoryCapacity = 500 * 1024 * 1024
-		let diskCapacity = 500 * 1024 * 1024
-		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
-		URLCache.shared = urlCache
 		datasource = PodcastCollectionDatasource(collectionView: collectionView)
 		datasource.load()
 		datasource.registerSelectionObserver(observer: self)
-		collectionView.delegate = self
-		
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		if let destination = segue.destination as? FloatingPlayerViewController {
-//			floatingPlayer = destination
-//			floatingPlayer?.delegate = self
-//		}
 		if let destiantion =  segue.destination as? HearThisPlayerHolder {
 			destiantion.hearThisPlayer = hearThisPlayer
 		}
@@ -74,34 +61,3 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 
 }
 
-extension DiscoverViewController: HearThisPlayerObserver {
-	
-}
-
-// MARK: - FloatingPlayerDelegate
-extension DiscoverViewController: FloatingPlayerDelegate {
-
-	func expandEpisode(episode: Episode) {
-		guard let expandingPlayer = storyboard?.instantiateViewController(withIdentifier: "ExpandingPlayerViewController") as? ExpandingPlayerViewController else {
-			assertionFailure("No view controller ID ExpandingPlayerViewController in storyboard")
-			return
-		}
-
-		expandingPlayer.backingImage = view.makeSnapshot()
-//		expandingPlayer.currentPodcast = podcast
-//		expandingPlayer.sourceView = floatingPlayer
-		if let tabBar = tabBarController?.tabBar {
-			expandingPlayer.tabBarImage = tabBar.makeSnapshot()
-		}
-		present(expandingPlayer, animated: false)
-	}
-}
-
-// MARK: - UICollectionViewDelegate
-//extension DiscoverViewController: UICollectionViewDelegate {
-//
-//	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//		currentPodcast = datasource.podcast(at: indexPath.row)
-//		floatingPlayer?.configure(podcast: currentPodcast)
-//	}
-//}

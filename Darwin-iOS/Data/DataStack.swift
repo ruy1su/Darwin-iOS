@@ -37,7 +37,7 @@ class DataStack: NSObject {
 		}
 	}
 	
-	func load2(podcasts: [Podcast], completion: (Bool) -> Void){
+	func loadPod(podcasts: [Podcast], completion: (Bool) -> Void){
 		for podcast in podcasts {
 			let builder = PodcastBuilder()
 				.with(title: podcast.title)
@@ -49,7 +49,6 @@ class DataStack: NSObject {
 				allPods.append(podcast)
 			}
 			completion(true)
-			print(podcast, "-----------------------------------")
 		}
 	}
 }

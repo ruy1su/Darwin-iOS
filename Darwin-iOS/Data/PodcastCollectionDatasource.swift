@@ -45,9 +45,9 @@ class PodcastCollectionDatasource: NSObject {
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
-				print(apiHomeData, "+++++++++\n")
+				print(apiHomeData, "\n ++++++ This is api podcast data fetched in backend ++++++\n")
 				DispatchQueue.main.async {
-					self.dataStack.load2(podcasts: apiHomeData) { [weak self] success in
+					self.dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
 					}
 				}
@@ -89,6 +89,7 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 		}
 		return cell
 	}
+	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		for observer:PodcastSelectionObserver in self.selectionObservers.allObjects {
 			observer.selected(dataStack, on: indexPath)
