@@ -68,11 +68,13 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 		return dataStack.allEps.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		// Setting Artist for Episode
+		dataStack.setArtist(podcast: currentPodcast, on: indexPath)
+		// Configure Cells
 		let cell = tableView.dequeueReusableCell(withIdentifier: "epi_cell", for: indexPath) as? EpisodeListTableViewCell
 		let episode: Episode
 		episode = dataStack.allEps[indexPath.row]
-		
-		//displaying values
+		// Displaying values
 		cell?.titleLabel.text = episode.title
 		cell?.artistLabel.text = episode.artist
 		cell?.desLabel.text = episode.info
@@ -82,7 +84,6 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		for observer:EpisodeSelectionObserver in self.selectionObservers.allObjects {
 			observer.selected(dataStack, on: indexPath)
-//			print(dataStack.allEps[indexPath.row],"=================")
 		}
 	}
 	

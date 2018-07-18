@@ -40,7 +40,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="nOv-yZ-1Ja">
+                                <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOv-yZ-1Ja">
                                     <rect key="frame" x="23" y="11" width="68" height="68"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="68" id="bYL-Pj-7Jc"/>
@@ -256,7 +256,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="npB-nf-PhU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Darwin" id="2kd-Cm-Opw"/>
+                    <navigationItem key="navigationItem" title="Darwin" id="2kd-Cm-Opw">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="NZI-WF-irs"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="0HH-rL-Ge7" id="cma-Bd-VXl"/>
                     </connections>
@@ -746,7 +748,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2959" y="-705"/>
+            <point key="canvasLocation" x="-2959" y="-591"/>
         </scene>
         <!--Discover-->
         <scene sceneID="xy6-I5-ano">

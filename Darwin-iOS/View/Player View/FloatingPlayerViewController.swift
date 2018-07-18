@@ -26,7 +26,14 @@ class FloatingPlayerViewController: UIViewController, TrackSubscriber, HearThisP
 	// MARK: - IBOutlets
 	@IBOutlet weak var thumbImage: UIImageView!
 	@IBOutlet weak var episodeTitle: UILabel!
-	@IBOutlet weak var playButton: UIButton!
+	@IBOutlet weak var playButton: UIButton!{
+		didSet{
+			playButton.addTarget(self, action: #selector(FloatingPlayerViewController.playerButtonTapped(sender:)), for: .touchUpInside)
+		}
+	}
+	@objc func playerButtonTapped(sender: Any) {
+		hearThisPlayer?.stop()
+	}
 	@IBOutlet weak var ffButton: UIButton!
 	
 	// MARK: - View Life Cycle
@@ -48,10 +55,13 @@ extension FloatingPlayerViewController: HearThisPlayerObserver {
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {
 		episodeTitle.text = track.title
 		currentEpisode = track
+		playButton.setImage(UIImage(named:"pause"), for: .normal)
 
 	}
 	
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode) {
+		playButton.setImage(UIImage(named:"play"), for: .normal)
+
 	}
 	
 	// Function for Standby

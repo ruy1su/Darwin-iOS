@@ -18,7 +18,7 @@ struct Episode:Codable {
 	let info: String?
 
 	var eid: Int?
-	let artist: String?
+	var artist: String?
 	var mediaURL: URL?
 	var coverArtURL: URL?
 

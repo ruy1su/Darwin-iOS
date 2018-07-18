@@ -42,4 +42,8 @@ class EpisodeDataStack: NSObject {
 	func setCoverArt(podcast: Podcast, on: IndexPath) {
 		self.allEps[on.row].coverArtURL = podcast.coverArtURL
 	}
+	
+	func setArtist(podcast: Podcast, on: IndexPath)  {
+		self.allEps[on.row].artist = podcast.artist
+	}
 }

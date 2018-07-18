@@ -64,7 +64,7 @@ class HearThisPlayer: HearThisPlayerType {
 		DispatchQueue.global(qos: .background).async {
 			[weak self] in
 			guard let `self` = self else { return }
-			let item = AVPlayerItem(url: URL(string: (track.mediaURL?.absoluteString)!)!)
+			let item = AVPlayerItem(url: URL(string: "http://www.archive.org/download/abirdingbronco_1103_librivox/abirdingonabronco_01_merriam_64kb.mp3")!)
 			self.currentEpisode = track
 			self.playItem(item)
 		}
@@ -73,6 +73,13 @@ class HearThisPlayer: HearThisPlayerType {
 	func stop() {
 		player.pause()
 		self.resetPlayer()
+		if player.currentItem != nil {
+			player.replaceCurrentItem(with: nil)
+			if let currentTrack = self.currentEpisode {
+				self.trackdDidStopPlaying(track: currentTrack)
+			}
+			self.currentEpisode = nil
+		}
 	}
 	
 	private
