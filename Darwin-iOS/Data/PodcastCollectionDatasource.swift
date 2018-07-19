@@ -15,6 +15,9 @@ protocol PodcastSelectionObserver: class {
 
 class PodcastCollectionDatasource: NSObject {
 	
+	// Set up Cache
+	private var cache = NSCache<AnyObject, AnyObject>()
+	// Set up Data Stack
 	var dataStack: DataStack
 	var managedCollection: UICollectionView
 	
@@ -50,7 +53,17 @@ class PodcastCollectionDatasource: NSObject {
 					self.dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
 					}
+					DispatchQueue.main.async {
+						for pod in apiHomeData{
+							if let data =  NSData(contentsOf: pod.coverArtURL!){
+								if let image = UIImage(data: data as Data) {
+									self.cache.setObject(image, forKey: pod.coverArtURL! as AnyObject)
+								}
+							}
+						}
+					}
 				}
+				
 			} catch let err {
 				print("Error, Couldnt load api data", err)
 			}
@@ -84,8 +97,14 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 		let ipod = podcast(at: indexPath.row)
 		cell.podcastTitle.text = ipod.title
 		cell.artistName.text = ipod.artist
-		ipod.loadPodcastImage { image in
-			cell.coverArt.image = image
+		
+		// Load image from cache if cached
+		let image = cache.object(forKey: ipod.coverArtURL as AnyObject) as? UIImage
+		cell.coverArt.image = image
+		if image == nil{
+			ipod.loadPodcastImage{ image in
+				cell.coverArt.image = image
+			}
 		}
 		return cell
 	}

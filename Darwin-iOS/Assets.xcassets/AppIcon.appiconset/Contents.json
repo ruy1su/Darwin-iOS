@@ -31,27 +31,23 @@
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "podcast-60x60-4.png",
+      "size" : "40x40",
       "scale" : "3x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "podcast-60x60-5.png",
+      "size" : "60x60",
       "scale" : "2x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "podcast-80x80.png",
+      "size" : "60x60",
       "scale" : "3x"
     },
     {
-      "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "podcast-60x60-7.png",
+      "size" : "20x20",
       "scale" : "1x"
     },
     {
@@ -61,9 +57,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "podcast-60x60-9.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {

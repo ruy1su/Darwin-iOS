@@ -25,6 +25,7 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var episodeListViewController: EpisodeListViewController?
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
+	let searchController = UISearchController(searchResultsController: nil)
 	@IBOutlet weak var collectionView: UICollectionView!
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
@@ -39,6 +40,15 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Initialize Search Controller
+		searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Podcast/Episodes"
+		navigationItem.searchController = searchController
+		definesPresentationContext = true
+		
+		// Configure Datasource
 		datasource = PodcastCollectionDatasource(collectionView: collectionView)
 		datasource.load()
 		datasource.registerSelectionObserver(observer: self)

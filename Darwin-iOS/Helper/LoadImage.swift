@@ -51,7 +51,6 @@ extension Podcast {
 			let file = try? Data(contentsOf: imageURL) else {
 				return
 		}
-		
 		DispatchQueue.global(qos: .background).async {
 			let image = UIImage(data: file)
 			DispatchQueue.main.async {

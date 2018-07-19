@@ -79,6 +79,9 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 		cell?.artistLabel.text = episode.artist
 		cell?.desLabel.text = episode.info
 		
+		cell?.desLabel.numberOfLines = 0
+		cell?.desLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+		
 		return cell!
 	}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

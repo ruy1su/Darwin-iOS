@@ -50,7 +50,7 @@
                                     <rect key="frame" x="114" y="29.5" width="228" height="31"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="gzG-kE-dGD" secondAttribute="height" multiplier="228:31" id="aP6-fM-2SZ"/>
-                                        <constraint firstAttribute="width" constant="228" id="bz7-3j-5dJ"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="228" id="bz7-3j-5dJ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                     <nil key="textColor"/>
@@ -256,16 +256,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="npB-nf-PhU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Darwin" id="2kd-Cm-Opw">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="NZI-WF-irs"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Darwin" id="2kd-Cm-Opw"/>
                     <connections>
                         <outlet property="collectionView" destination="0HH-rL-Ge7" id="cma-Bd-VXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EGb-H3-ItJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-52" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="-430" y="-155"/>
         </scene>
         <!--Episode Play View Controller-->
         <scene sceneID="u0g-j9-A82">
@@ -338,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vud-5T-Uzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2544" y="-162.81859070464768"/>
+            <point key="canvasLocation" x="-2011" y="-1026"/>
         </scene>
         <!--Expanding Player View Controller-->
         <scene sceneID="fSw-zM-7V6">
@@ -477,7 +475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6F-ed-D2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="-2959" y="-1061"/>
         </scene>
         <!--Discover-->
         <scene sceneID="4Um-HC-roU">
@@ -537,9 +535,9 @@
                                                     <rect key="frame" x="15" y="11" width="190" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="IeI-7b-Fnh"/>
-                                                        <constraint firstAttribute="width" constant="190" id="xN3-aE-Nbq"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="xN3-aE-Nbq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -548,7 +546,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="EA7-aO-d6U"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -557,14 +555,14 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="Xcl-fX-Cdd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB8-eY-XW2">
-                                                    <rect key="frame" x="15" y="161" width="36" height="28"/>
+                                                    <rect key="frame" x="15" y="161" width="82" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="Eio-oN-EB9"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="Eio-oN-EB9"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="play"/>
                                                 </button>
@@ -609,7 +607,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" image="music-playlist" id="RJq-9c-ZZL"/>
                     <navigationItem key="navigationItem" id="arT-cO-bhz">
-                        <barButtonItem key="rightBarButtonItem" title="Subscribe" style="plain" id="0IA-RD-AeH"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="organize" id="0IA-RD-AeH"/>
                     </navigationItem>
                     <connections>
                         <outlet property="episodeListHeaderView" destination="vDy-CR-ocD" id="jtK-xJ-BsZ"/>
@@ -618,7 +616,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0s-u2-td2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="784.79999999999995" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="408" y="-155"/>
         </scene>
         <!--Discover-->
         <scene sceneID="YI7-HX-J5N">
@@ -767,7 +765,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYR-bK-gqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-991.20000000000005" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="-1263" y="-155"/>
         </scene>
     </scenes>
     <resources>
