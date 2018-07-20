@@ -50,7 +50,7 @@ class EpisodeTableViewDataSource: NSObject {
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Episode>.self, from: data)
-				print(apiHomeData, "\n++++++ This is api episode data for selected podcast ++++++\n")
+				print(apiHomeData.count, "\n++++++ This is api episode data number for selected podcast ++++++\n")
 				DispatchQueue.main.async {
 					self.dataStack.load(episodes: apiHomeData) { [weak self] success in
 						self?.managedTable.reloadData()

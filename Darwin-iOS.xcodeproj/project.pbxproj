@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A503C59621013AB80056460B /* PodcastCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503C59521013AB80056460B /* PodcastCollectionCell.swift */; };
+		A503C59621013AB80056460B /* DiscoverPodcastCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */; };
 		A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */; };
 		A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */; };
 		A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */; };
@@ -57,7 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A503C59521013AB80056460B /* PodcastCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCollectionCell.swift; sourceTree = "<group>"; };
+		A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPodcastCollectionCell.swift; sourceTree = "<group>"; };
 		A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDataStack.swift; sourceTree = "<group>"; };
 		A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeBuilder.swift; sourceTree = "<group>"; };
 		A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 			children = (
 				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
-				A503C59521013AB80056460B /* PodcastCollectionCell.swift */,
+				A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */,
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
 				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
@@ -374,7 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53A2AD220FADFA4002DEA45 /* DarwinStartViewController.swift in Sources */,
-				A503C59621013AB80056460B /* PodcastCollectionCell.swift in Sources */,
+				A503C59621013AB80056460B /* DiscoverPodcastCollectionCell.swift in Sources */,
 				A53A2AD920FCA572002DEA45 /* HearThisPlayer.swift in Sources */,
 				A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */,
 				A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */,

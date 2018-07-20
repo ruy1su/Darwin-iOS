@@ -12,16 +12,8 @@ protocol SelectedCollectionItemDelegate {
 	func selectedCollectionItem(podcast: DataStack, index: IndexPath)
 }
 
-class PodcsatCollectionCell: UITableViewCell, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver, PodcastSelectionObserver{
+class PodcsatCollectionCell: UITableViewCell, PodcastSelectionObserver{
 	var delegate: SelectedCollectionItemDelegate?
-	
-	var hearThisPlayer: HearThisPlayerType? {
-		didSet{
-			hearThisPlayer?.registerObserver(observer: self)
-		}
-	}
-	var currentPodcast: Podcast?
-	var currentEpisode: Episode?
 	
 	@IBOutlet weak var collectionView: UICollectionView!
 	
@@ -34,7 +26,6 @@ class PodcsatCollectionCell: UITableViewCell, TrackSubscriber, HearThisPlayerHol
 		datasource = PodcastCollectionDatasource(collectionView: collectionView)
 		datasource.load(api: homeAPI)
 		datasource.registerSelectionObserver(observer: self)
-		print("hello")
 		
 	}
 	func selected(_ podcast: DataStack, on: IndexPath) {

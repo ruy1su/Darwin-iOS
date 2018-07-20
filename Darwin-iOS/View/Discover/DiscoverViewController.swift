@@ -31,10 +31,8 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
 	let searchController = UISearchController(searchResultsController: nil)
-	
 
 	@IBOutlet weak var DiscoverTableView: UITableView!
-	
 	
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
@@ -73,12 +71,11 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return 3
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,8 +87,12 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
 			 cell.delegate = self
 			return cell
+		case 2:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
+			return cell
 		default:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
+			cell.delegate = self
 			return cell
 		}
 	}

@@ -12,7 +12,6 @@ import AVFoundation
 protocol HearThisPlayerType {
 	func play(_ track: Episode)
 	func stop()
-	func figurePodcast(_ pod: Podcast)
 	mutating func registerObserver(observer: HearThisPlayerObserver)
 	var observers: NSHashTable<AnyObject>! { set get }
 }
@@ -26,7 +25,6 @@ protocol HearThisPlayerObserver: class {
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)
-	func player(_ player: HearThisPlayerType, display track: Podcast)
 
 }
 
@@ -34,7 +32,6 @@ extension HearThisPlayerObserver {
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode){}
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {}
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)  {}
-	func player(_ player: HearThisPlayerType, display track: Podcast){}
 }
 
 protocol HearThisPlayerHolder : class {
@@ -62,11 +59,6 @@ class HearThisPlayer: HearThisPlayerType {
 		})
 		notificationCenter.addObserver(self, selector: #selector(HearThisPlayer.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 	}
-
-	func figurePodcast(_ pod: Podcast) {
-		self.display(pod)
-	}
-	
 
 	func play(_ track: Episode) {
 		self.resetPlayer()
@@ -118,20 +110,6 @@ class HearThisPlayer: HearThisPlayerType {
 }
 
 extension HearThisPlayer {
-	fileprivate
-	func display(_ track: Podcast)  {
-		DispatchQueue.main.async {
-			[weak self] in
-			guard let `self` = self else { return }
-			
-			for observer in self.observers.allObjects {
-				if let observer = observer as? HearThisPlayerObserver {
-					observer.player(self, display: track)
-				}
-			}
-			print(track.title ?? "ok","???????????????")
-		}
-	}
 	
 	fileprivate
 	func trackWillStartPlaying(_ track:Episode) {
