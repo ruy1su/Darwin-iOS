@@ -20,13 +20,13 @@ class PodcastCollectionDatasource: NSObject {
 	// Set up Data Stack
 	var dataStack: DataStack
 	var managedCollection: UICollectionView
-	
 	init(collectionView: UICollectionView) {
 		
 		dataStack = DataStack()
 		managedCollection = collectionView
 		super.init()
 		managedCollection.dataSource = self
+		managedCollection.delegate = self
 	}
 	
 	private var selectionObservers = NSHashTable<PodcastSelectionObserver>.weakObjects()
@@ -39,8 +39,8 @@ class PodcastCollectionDatasource: NSObject {
 		return dataStack.allPods[realindex]
 	}
 	
-	func load() {
-		guard let homeUrl = URL(string: "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/api_home") else { return }
+	func load(api: String) {
+		guard let homeUrl = URL(string: api) else { return }
 		URLSession.shared.dataTask(with: homeUrl) { (data, response
 			, error) in
 			
@@ -53,12 +53,10 @@ class PodcastCollectionDatasource: NSObject {
 					self.dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
 					}
-					DispatchQueue.main.async {
-						for pod in apiHomeData{
-							if let data =  NSData(contentsOf: pod.coverArtURL!){
-								if let image = UIImage(data: data as Data) {
-									self.cache.setObject(image, forKey: pod.coverArtURL! as AnyObject)
-								}
+					for pod in apiHomeData{
+						if let data =  NSData(contentsOf: pod.coverArtURL!){
+							if let image = UIImage(data: data as Data) {
+								self.cache.setObject(image, forKey: pod.coverArtURL! as AnyObject)
 							}
 						}
 					}
@@ -114,6 +112,4 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 			observer.selected(dataStack, on: indexPath)
 		}
 	}
-	
-	
 }

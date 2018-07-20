@@ -8,9 +8,8 @@
 
 import UIKit
 
-class EpisodeListViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, EpisodeSelectionObserver, HearThisPlayerObserver {
+class EpisodeListViewController: UIViewController, HearThisPlayerHolder, EpisodeSelectionObserver, HearThisPlayerObserver {
 
-	var currentEpisode: Episode?
 	var currentPodcast: Podcast?
 	var datasource: EpisodeTableViewDataSource!
 	var hearThisPlayer: HearThisPlayerType? {

@@ -17,30 +17,33 @@ class PodcastCell: UICollectionViewCell {
 	
 }
 
-
-class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, PodcastSelectionObserver, HearThisPlayerObserver {
+class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver, SelectedCollectionItemDelegate{
+	// MARK: - Implement Delegate for Collection Cell Seletion
+	func selectedCollectionItem(podcast: DataStack, index: IndexPath) {
+		currentPodcast = podcast.allPods[index.row]
+		performSegue(withIdentifier: "collection_to_table", sender: self)
+		currentPodcast = nil
+	}
 
 	// MARK: - Properties
-	var datasource: PodcastCollectionDatasource!
+	var collectionView: UICollectionView?
 	var episodeListViewController: EpisodeListViewController?
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
 	let searchController = UISearchController(searchResultsController: nil)
-	@IBOutlet weak var collectionView: UICollectionView!
+	
+
+	@IBOutlet weak var DiscoverTableView: UITableView!
+	
+	
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
-	func selected(_ podcast: DataStack, on: IndexPath) {
-		currentPodcast = podcast.allPods[on.row]
-		performSegue(withIdentifier: "collection_to_table", sender: self)
-		currentPodcast = nil
-	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		// Initialize Search Controller
 		searchController.searchResultsUpdater = self as? UISearchResultsUpdating
 		searchController.obscuresBackgroundDuringPresentation = false
@@ -48,26 +51,78 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 		navigationItem.searchController = searchController
 		definesPresentationContext = true
 		
+		// Setup the Scope Bar
+		searchController.searchBar.scopeButtonTitles = ["All Podcasts", "Your Collection"]
+		searchController.searchBar.delegate = self as? UISearchBarDelegate
+		
 		// Configure Datasource
-		datasource = PodcastCollectionDatasource(collectionView: collectionView)
-		datasource.load()
-		datasource.registerSelectionObserver(observer: self)
+		DiscoverTableView.dataSource = self
+		DiscoverTableView.delegate = self
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destiantion =  segue.destination as? HearThisPlayerHolder {
 			destiantion.hearThisPlayer = hearThisPlayer
 		}
-		if let indexPath = (collectionView?.indexPathsForSelectedItems as [NSIndexPath]?)?.last {
-			let controller = segue.destination as! EpisodeListViewController
-			controller.currentPodcast = datasource.dataStack.allPods[indexPath.row]
+		if let destiantion =  segue.destination as? EpisodeListViewController {
+			destiantion.currentPodcast = currentPodcast
 		}
+
 	}
-	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
 
+}
+
+extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 2
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		switch indexPath.row {
+		case 0:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			return cell
+		case 1:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
+			 cell.delegate = self
+			return cell
+		default:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			return cell
+		}
+	}
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		switch indexPath.row {
+		case 0:
+			return 150
+		case 1:
+			return 300
+		case 2:
+			return 150
+		default:
+			return UITableViewAutomaticDimension
+		}
+	}
+}
+class Constant {
+	static let totalItem: CGFloat = 20
+	
+	static let column: CGFloat = 3
+	
+	static let minLineSpacing: CGFloat = 1.0
+	static let minItemSpacing: CGFloat = 1.0
+	
+	static let offset: CGFloat = 1.0 // TODO: for each side, define its offset
+	
+	static func getItemWidth(boundWidth: CGFloat) -> CGFloat {
+		
+		let totalWidth = boundWidth - (offset + offset) - ((column - 1) * minItemSpacing)
+		
+		return totalWidth / column
+	}
 }
 
