@@ -16,6 +16,9 @@
 		A53A2AD620FC1EF0002DEA45 /* DiscoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */; };
 		A53A2AD920FCA572002DEA45 /* HearThisPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2AD820FCA572002DEA45 /* HearThisPlayer.swift */; };
 		A53A2ADE20FD69A7002DEA45 /* EpisodeListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */; };
+		A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553208C2102B1530035CDDA /* SearchResultTableViewController.swift */; };
+		A5532090210306B80035CDDA /* SearchResultTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553208F210306B80035CDDA /* SearchResultTableCell.swift */; };
+		A5532092210312800035CDDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532091210312800035CDDA /* Constant.swift */; };
 		A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */; };
 		A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */; };
 		A5E0B0E320F1856600F00F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E0B0E120F1856600F00F43 /* Main.storyboard */; };
@@ -66,6 +69,9 @@
 		A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverNavigationController.swift; sourceTree = "<group>"; };
 		A53A2AD820FCA572002DEA45 /* HearThisPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearThisPlayer.swift; sourceTree = "<group>"; };
 		A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListHeaderView.swift; sourceTree = "<group>"; };
+		A553208C2102B1530035CDDA /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
+		A553208F210306B80035CDDA /* SearchResultTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableCell.swift; sourceTree = "<group>"; };
+		A5532091210312800035CDDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A5E0B0DA20F1856600F00F43 /* Darwin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Darwin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		A53A2AD020FA9513002DEA45 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				A553208E2102B15C0035CDDA /* Search */,
 				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
 				A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */,
@@ -141,6 +148,29 @@
 				A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */,
 			);
 			path = "Player View";
+			sourceTree = "<group>";
+		};
+		A553208A210298680035CDDA /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		A553208B210298860035CDDA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A553208E2102B15C0035CDDA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A553208C2102B1530035CDDA /* SearchResultTableViewController.swift */,
+				A553208F210306B80035CDDA /* SearchResultTableCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		A5E0B0D120F1856600F00F43 = {
@@ -216,6 +246,8 @@
 				A53A2AD120FADFA4002DEA45 /* DarwinStartViewController.swift */,
 				A53A2AD320FC1E69002DEA45 /* DarwinTabBarController.swift */,
 				A53A2AD020FA9513002DEA45 /* Discover */,
+				A553208A210298680035CDDA /* Collection */,
+				A553208B210298860035CDDA /* Settings */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +270,7 @@
 			children = (
 				A5E0B11C20F1AA3F00F00F43 /* LoadImage.swift */,
 				A5E0B13320F3FAE100F00F43 /* SnapShot.swift */,
+				A5532091210312800035CDDA /* Constant.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -380,6 +413,7 @@
 				A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
+				A5532092210312800035CDDA /* Constant.swift in Sources */,
 				A5E0B11620F1A0FB00F00F43 /* DataStack.swift in Sources */,
 				A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */,
 				A5E0B11A20F1A39F00F00F43 /* PodcastCollectionDatasource.swift in Sources */,
@@ -387,11 +421,13 @@
 				A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */,
 				A53A2AD620FC1EF0002DEA45 /* DiscoverNavigationController.swift in Sources */,
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
+				A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A53A2AD420FC1E69002DEA45 /* DarwinTabBarController.swift in Sources */,
 				A53A2ADE20FD69A7002DEA45 /* EpisodeListHeaderView.swift in Sources */,
 				A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */,
 				A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */,
+				A5532090210306B80035CDDA /* SearchResultTableCell.swift in Sources */,
 				A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */,
 				A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */,
 				A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */,

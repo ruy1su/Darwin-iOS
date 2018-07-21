@@ -8,6 +8,15 @@
 
 import UIKit
 
+class PodcastCell: UICollectionViewCell {
+	
+	// MARK: - IBOutlets
+	@IBOutlet weak var coverArt: UIImageView!
+	@IBOutlet weak var podcastTitle: UILabel!
+	@IBOutlet weak var artistName: UILabel!
+	
+}
+
 protocol SelectedCollectionItemDelegate {
 	func selectedCollectionItem(podcast: DataStack, index: IndexPath)
 }

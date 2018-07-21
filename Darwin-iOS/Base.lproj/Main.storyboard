@@ -402,6 +402,61 @@
             </objects>
             <point key="canvasLocation" x="-2011" y="-1026"/>
         </scene>
+        <!--Search Result Table View Controller-->
+        <scene sceneID="TS3-4F-LZz">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchResultTableVC" id="Wj6-qP-HJc" customClass="SearchResultTableViewController" customModule="Darwin_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="n1y-FQ-pDX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="115" id="ZQ2-sy-NYb" customClass="SearchResultTableCell" customModule="Darwin_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="115"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZQ2-sy-NYb" id="RE3-mp-Wir">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2T-R9-GvJ">
+                                            <rect key="frame" x="118" y="47" width="241" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mRc-ao-YLi">
+                                            <rect key="frame" x="16" y="14" width="87" height="87"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="87" id="d4R-W9-8ND"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mRc-ao-YLi" firstAttribute="leading" secondItem="RE3-mp-Wir" secondAttribute="leadingMargin" id="3xi-Ap-j8O"/>
+                                        <constraint firstItem="p2T-R9-GvJ" firstAttribute="trailing" secondItem="RE3-mp-Wir" secondAttribute="trailingMargin" id="YN9-od-wk5"/>
+                                        <constraint firstItem="mRc-ao-YLi" firstAttribute="centerY" secondItem="p2T-R9-GvJ" secondAttribute="centerY" id="ZBe-sa-FOn"/>
+                                        <constraint firstItem="mRc-ao-YLi" firstAttribute="centerY" secondItem="RE3-mp-Wir" secondAttribute="centerY" id="c45-tt-OiA"/>
+                                        <constraint firstItem="p2T-R9-GvJ" firstAttribute="leading" secondItem="mRc-ao-YLi" secondAttribute="trailing" constant="15" id="fjX-ug-BoO"/>
+                                        <constraint firstItem="mRc-ao-YLi" firstAttribute="top" secondItem="RE3-mp-Wir" secondAttribute="topMargin" constant="3" id="jgV-nP-P1X"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="coverArt" destination="mRc-ao-YLi" id="QCd-NI-KFG"/>
+                                    <outlet property="titleLabel" destination="p2T-R9-GvJ" id="i74-q4-BfB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Wj6-qP-HJc" id="3V9-ab-IKl"/>
+                            <outlet property="delegate" destination="Wj6-qP-HJc" id="yzw-bc-GCd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="bXg-86-DE5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lSP-hA-Rxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-898.39999999999998" y="-1026.8365817091455"/>
+        </scene>
         <!--Expanding Player View Controller-->
         <scene sceneID="fSw-zM-7V6">
             <objects>

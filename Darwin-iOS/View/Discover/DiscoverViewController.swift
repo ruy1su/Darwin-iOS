@@ -8,30 +8,8 @@
 
 import UIKit
 
-class PodcastCell: UICollectionViewCell {
-	
-	// MARK: - IBOutlets
-	@IBOutlet weak var coverArt: UIImageView!
-	@IBOutlet weak var podcastTitle: UILabel!
-	@IBOutlet weak var artistName: UILabel!
-	
-}
-
-class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver, SelectedCollectionItemDelegate{
-	// MARK: - Implement Delegate for Collection Cell Seletion
-	func selectedCollectionItem(podcast: DataStack, index: IndexPath) {
-		currentPodcast = podcast.allPods[index.row]
-		performSegue(withIdentifier: "collection_to_table", sender: self)
-		currentPodcast = nil
-	}
-
+class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver{
 	// MARK: - Properties
-	var collectionView: UICollectionView?
-	var episodeListViewController: EpisodeListViewController?
-	var currentPodcast: Podcast?
-	var currentEpisode: Episode?
-	let searchController = UISearchController(searchResultsController: nil)
-
 	@IBOutlet weak var DiscoverTableView: UITableView!
 	
 	var hearThisPlayer: HearThisPlayerType? {
@@ -39,19 +17,27 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
+	
+	var collectionView: UICollectionView?
+	var episodeListViewController: EpisodeListViewController?
+	var currentPodcast: Podcast?
+	var currentEpisode: Episode?
+	var searchController = UISearchController(searchResultsController: SearchResultTableViewController())
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		// Initialize Search Controller
-		searchController.searchResultsUpdater = self as? UISearchResultsUpdating
-		searchController.obscuresBackgroundDuringPresentation = false
+		searchController = UISearchController(searchResultsController: storyboard?.instantiateViewController(withIdentifier: "SearchResultTableVC"))
+		searchController.obscuresBackgroundDuringPresentation = true
+		searchController.searchResultsUpdater = self
 		searchController.searchBar.placeholder = "Search Podcast/Episodes"
 		navigationItem.searchController = searchController
 		definesPresentationContext = true
 		
 		// Setup the Scope Bar
 		searchController.searchBar.scopeButtonTitles = ["All Podcasts", "Your Collection"]
-		searchController.searchBar.delegate = self as? UISearchBarDelegate
+		searchController.searchBar.delegate = self
 		
 		// Configure Datasource
 		DiscoverTableView.dataSource = self
@@ -65,11 +51,58 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 		if let destiantion =  segue.destination as? EpisodeListViewController {
 			destiantion.currentPodcast = currentPodcast
 		}
-
 	}
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	}
+}
+extension DiscoverViewController:SelectedCollectionItemDelegate{
+	// MARK: - Implement Delegate for Collection Cell Seletion
+	func selectedCollectionItem(podcast: DataStack, index: IndexPath) {
+		currentPodcast = podcast.allPods[index.row]
+		performSegue(withIdentifier: "collection_to_table", sender: self)
+		currentPodcast = nil
+	}
+}
+
+extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
+	
+	func updateSearchResults(for searchController: UISearchController) {
+		print("Press Keyboard")
+	}
+
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) { //Ugly Search
+		let dataStack = DataStack()
+		if let search = searchBar.text{
+			guard let homeUrl = URL(string: "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/api_search/\(search)") else { return }
+			URLSession.shared.dataTask(with: homeUrl) { (data, response
+				, error) in
+				guard let data = data else { return }
+				do {
+					let decoder = JSONDecoder()
+					let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
+					print("\n ++++++ Search Sucess@@@@ ++++++\n")
+					DispatchQueue.main.async {
+						dataStack.loadPod(podcasts: apiHomeData) { success in
+							if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController{
+								searchResultsController.array = dataStack.allPods
+//								print(".................")
+								searchResultsController.tableView.reloadData()
+							}
+						}
+					}
+				} catch let err {
+					print("Error, Couldnt load api data", err)
+				}
+				}.resume()
+		}
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController{
+			searchResultsController.array = []
+			searchResultsController.tableView.reloadData()
+		}
 	}
 }
 
@@ -87,12 +120,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
 			 cell.delegate = self
 			return cell
-		case 2:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
-			return cell
 		default:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
-			cell.delegate = self
+			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
 			return cell
 		}
 	}
@@ -107,23 +136,6 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		default:
 			return UITableViewAutomaticDimension
 		}
-	}
-}
-class Constant {
-	static let totalItem: CGFloat = 20
-	
-	static let column: CGFloat = 3
-	
-	static let minLineSpacing: CGFloat = 1.0
-	static let minItemSpacing: CGFloat = 1.0
-	
-	static let offset: CGFloat = 1.0 // TODO: for each side, define its offset
-	
-	static func getItemWidth(boundWidth: CGFloat) -> CGFloat {
-		
-		let totalWidth = boundWidth - (offset + offset) - ((column - 1) * minItemSpacing)
-		
-		return totalWidth / column
 	}
 }
 
