@@ -1,2 +1,7 @@
 # Darwin-iOS
-An open source iOS app for sharing and listening to podcasts
+An Open Source iOS App for Sharing and Listening Podcasts
+
+Build on iOS 11, Swift 4.0.
+
+Some Screenshots:
+![Main Page](https://github.com/ZixiaWeng/Darwin-iOS/blob/master/screenshots/discover.png)
