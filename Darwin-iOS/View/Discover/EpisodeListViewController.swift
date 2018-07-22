@@ -17,13 +17,22 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
+	var flag: Bool = true
+	@IBOutlet weak var height: NSLayoutConstraint!
 	@IBOutlet weak var episodeListHeaderView: EpisodeListHeaderView!
+	@IBOutlet weak var navBar: UINavigationBar!
 	@IBOutlet weak var episodeTableView: UITableView!
 
+	@IBAction func dismiss(_ sender: Any) {
+		self.performSegue(withIdentifier: "unWind", sender: self)
+	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print(currentPodcast as Any)
-		print(" ++++++ This is selected podcast ++++++ \n")
+		if flag{
+			self.navBar.removeFromSuperview()
+			height.constant = 0
+		}
+		print(currentPodcast as Any,"\n ++++++ This is selected podcast ++++++ \n")
 		datasource = EpisodeTableViewDataSource(tableView: episodeTableView, podcast: currentPodcast!)
 		datasource.load()
 		datasource.registerSelectionObserver(observer: self)
@@ -35,6 +44,5 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
 		hearThisPlayer?.play(episodeStack.allEps[on.row])
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
-		self.performSegue(withIdentifier: "unWind", sender: self)
 	}
 }

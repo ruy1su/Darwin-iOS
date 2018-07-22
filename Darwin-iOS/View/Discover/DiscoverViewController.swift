@@ -84,10 +84,9 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 					print("\n ++++++ Search Sucess@@@@ ++++++\n")
 					DispatchQueue.main.async {
 						dataStack.loadPod(podcasts: apiHomeData) { success in
-							if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController{
+							if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController {
 								searchResultsController.array = dataStack.allPods
 								searchResultsController.hearThisPlayer = self.hearThisPlayer
-//								print(".................")
 								searchResultsController.tableView.reloadData()
 							}
 						}
@@ -100,9 +99,9 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-		if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController{
-			searchResultsController.array = []
-			searchResultsController.tableView.reloadData()
+		if let searchResultsController = self.searchController.searchResultsController as?SearchResultTableViewController {
+				searchResultsController.array = []
+				searchResultsController.tableView.reloadData()
 		}
 	}
 }

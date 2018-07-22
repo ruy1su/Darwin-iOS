@@ -16,7 +16,6 @@ class DarwinNavigationController: UINavigationController, HearThisPlayerHolder {
 			}
 		}
 	}
-	
 	override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		if let vc = viewController as? EpisodeListViewController {
 			vc.hearThisPlayer = self.hearThisPlayer
