@@ -86,6 +86,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 						dataStack.loadPod(podcasts: apiHomeData) { success in
 							if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController{
 								searchResultsController.array = dataStack.allPods
+								searchResultsController.hearThisPlayer = self.hearThisPlayer
 //								print(".................")
 								searchResultsController.tableView.reloadData()
 							}

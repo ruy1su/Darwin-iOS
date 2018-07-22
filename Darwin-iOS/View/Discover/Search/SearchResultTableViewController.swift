@@ -8,15 +8,33 @@
 
 import UIKit
 
-class SearchResultTableViewController: UITableViewController{
+class SearchResultTableViewController: UITableViewController, HearThisPlayerObserver{
+	var hearThisPlayer: HearThisPlayerType? {
+		didSet{
+			hearThisPlayer?.registerObserver(observer: self)
+		}
+	}
+	
+	var observers: NSHashTable<AnyObject>!
+	
 	var array = [Podcast]()
 	var isLoading = false
 	var arrayFilter = [String]()
+	var currentPodcast: Podcast?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destination =  segue.destination as? EpisodeListViewController {
+			destination.currentPodcast = currentPodcast
+		}
+		if let destination = segue.destination as? HearThisPlayerHolder{
+			destination.hearThisPlayer = hearThisPlayer
+		}
+	}
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		
@@ -44,5 +62,22 @@ class SearchResultTableViewController: UITableViewController{
 			}
 		}
 		return cell!
+	}
+	@IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+		
+	}
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		currentPodcast = array[indexPath.row]
+		performSegue(withIdentifier: "search_to_table", sender: self)
+//		let EpisodeListVC = storyboard?.instantiateViewController(withIdentifier: "EpisodeListViewController") as! EpisodeListViewController
+//		EpisodeListVC.currentPodcast = currentPodcast
+//		let transition = CATransition()
+//		transition.duration = 0.3
+//		transition.type = kCATransitionPush
+//		transition.subtype = kCATransitionFromRight
+//		view.window!.layer.add(transition, forKey: kCATransition)
+//
+//		// Present navigation
+//		present(EpisodeListVC, animated: false, completion: nil)
 	}
 }

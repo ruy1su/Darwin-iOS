@@ -452,10 +452,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="bXg-86-DE5"/>
+                    <connections>
+                        <segue destination="chH-dc-nhi" kind="show" identifier="search_to_table" id="Zne-Gt-PcM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSP-hA-Rxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-898.39999999999998" y="-1026.8365817091455"/>
+            <point key="canvasLocation" x="-991" y="-1026"/>
         </scene>
         <!--Expanding Player View Controller-->
         <scene sceneID="fSw-zM-7V6">
@@ -605,7 +608,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="-1" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Sg0-9Q-OeK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="vDy-CR-ocD" customClass="EpisodeListHeaderView" customModule="Darwin_iOS" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -731,9 +734,11 @@
                     <connections>
                         <outlet property="episodeListHeaderView" destination="vDy-CR-ocD" id="jtK-xJ-BsZ"/>
                         <outlet property="episodeTableView" destination="Sg0-9Q-OeK" id="rwY-Zl-1iw"/>
+                        <segue destination="Y1f-P1-ryZ" kind="unwind" identifier="unWind" unwindAction="prepareForUnwindWithSegue:" id="nqh-eb-9Fe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0s-u2-td2" sceneMemberID="firstResponder"/>
+                <exit id="Y1f-P1-ryZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="408" y="-155"/>
         </scene>
@@ -895,4 +900,7 @@
         <image name="rewind" width="28" height="28"/>
         <image name="user" width="482" height="482"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Zne-Gt-PcM"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -35,5 +35,6 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
 		hearThisPlayer?.play(episodeStack.allEps[on.row])
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
+		self.performSegue(withIdentifier: "unWind", sender: self)
 	}
 }
