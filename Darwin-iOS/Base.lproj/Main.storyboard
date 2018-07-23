@@ -458,7 +458,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSP-hA-Rxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504.80000000000001" y="-1026.8365817091455"/>
+            <point key="canvasLocation" x="394" y="-1026"/>
         </scene>
         <!--Expanding Player View Controller-->
         <scene sceneID="fSw-zM-7V6">
@@ -612,6 +612,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Jdk-vE-47a"/>
                                 </constraints>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="Episodes" id="qIe-qZ-uNT">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="nA2-O0-E9A">
@@ -760,7 +761,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0s-u2-td2" sceneMemberID="firstResponder"/>
                 <exit id="Y1f-P1-ryZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="295" y="-304"/>
+            <point key="canvasLocation" x="394" y="-154"/>
         </scene>
         <!--Discover-->
         <scene sceneID="YI7-HX-J5N">

@@ -132,10 +132,7 @@
 				A553208E2102B15C0035CDDA /* Search */,
 				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
-				A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */,
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
-				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
-				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -168,9 +165,19 @@
 			isa = PBXGroup;
 			children = (
 				A553208C2102B1530035CDDA /* SearchResultTableViewController.swift */,
-				A553208F210306B80035CDDA /* SearchResultTableCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		A55320952105CD9C0035CDDA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A553208F210306B80035CDDA /* SearchResultTableCell.swift */,
+				A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */,
+				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
+				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A5E0B0D120F1856600F00F43 = {
@@ -197,7 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				A5E0B11B20F1AA2600F00F43 /* Helper */,
-				A5E0B11120F19AC900F00F43 /* View */,
+				A55320952105CD9C0035CDDA /* View */,
+				A5E0B11120F19AC900F00F43 /* Controller */,
 				A5E0B11420F1A07B00F00F43 /* Data */,
 				A5E0B10E20F198A500F00F43 /* Model */,
 				A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */,
@@ -239,7 +247,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A5E0B11120F19AC900F00F43 /* View */ = {
+		A5E0B11120F19AC900F00F43 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A53A2ADA20FD5D34002DEA45 /* Player View */,
@@ -249,7 +257,7 @@
 				A553208A210298680035CDDA /* Collection */,
 				A553208B210298860035CDDA /* Settings */,
 			);
-			path = View;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A5E0B11420F1A07B00F00F43 /* Data */ = {
