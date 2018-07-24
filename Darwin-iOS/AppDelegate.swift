@@ -19,6 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		rvc.hearThisPlayer = HearThisPlayer()
 		return true
 	}
-
+	
 }
 

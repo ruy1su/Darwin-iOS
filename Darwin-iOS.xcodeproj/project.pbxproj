@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31C6F6470D5EC7BD8FDBE4F7 /* Pods_Darwin_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F926444BA534993981757C /* Pods_Darwin_iOSTests.framework */; };
+		372D8083745B58E900A6EA1E /* Pods_Darwin_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBB4153343409CC60EDFE00 /* Pods_Darwin_iOS.framework */; };
+		A01639D471836FF9D633B284 /* Pods_Darwin_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D572C08BD0054ECCD5D6B06 /* Pods_Darwin_iOSUITests.framework */; };
 		A503C59621013AB80056460B /* DiscoverPodcastCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */; };
 		A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */; };
 		A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */; };
@@ -25,6 +28,9 @@
 		A5AE3C7E21069C13002EAD0B /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7B21069C13002EAD0B /* LoginButton.swift */; };
 		A5AE3C7F21069C13002EAD0B /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7C21069C13002EAD0B /* LoginTextField.swift */; };
 		A5AE3C8021069C13002EAD0B /* TwitterLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7D21069C13002EAD0B /* TwitterLoginButton.swift */; };
+		A5AE3C852106B16F002EAD0B /* FacebookAPIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C842106B16F002EAD0B /* FacebookAPIManger.swift */; };
+		A5AE3C872106B370002EAD0B /* FacebookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C862106B36F002EAD0B /* FacebookUser.swift */; };
+		A5AE3C8A2106B3B2002EAD0B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C892106B3B2002EAD0B /* NetworkingManager.swift */; };
 		A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */; };
 		A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */; };
 		A5E0B0E320F1856600F00F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E0B0E120F1856600F00F43 /* Main.storyboard */; };
@@ -66,6 +72,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C502B6B85D513F41CDE75C4 /* Pods-Darwin-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSTests/Pods-Darwin-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		1D572C08BD0054ECCD5D6B06 /* Pods_Darwin_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Darwin_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		280DA5F845BD2971883D399C /* Pods-Darwin-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSTests/Pods-Darwin-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EB5FE86EB9D62F484CE80E9 /* Pods-Darwin-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		5BBB4153343409CC60EDFE00 /* Pods_Darwin_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Darwin_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		715375843DF7EE25076010E6 /* Pods-Darwin-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSUITests/Pods-Darwin-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		82F926444BA534993981757C /* Pods_Darwin_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Darwin_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A503C59521013AB80056460B /* DiscoverPodcastCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPodcastCollectionCell.swift; sourceTree = "<group>"; };
 		A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDataStack.swift; sourceTree = "<group>"; };
 		A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeBuilder.swift; sourceTree = "<group>"; };
@@ -84,6 +97,9 @@
 		A5AE3C7B21069C13002EAD0B /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		A5AE3C7C21069C13002EAD0B /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		A5AE3C7D21069C13002EAD0B /* TwitterLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLoginButton.swift; sourceTree = "<group>"; };
+		A5AE3C842106B16F002EAD0B /* FacebookAPIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAPIManger.swift; sourceTree = "<group>"; };
+		A5AE3C862106B36F002EAD0B /* FacebookUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookUser.swift; sourceTree = "<group>"; };
+		A5AE3C892106B3B2002EAD0B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		A5E0B0DA20F1856600F00F43 /* Darwin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Darwin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +127,8 @@
 		A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewController.swift; sourceTree = "<group>"; };
 		A5E0B13B20F83A4900F00F43 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewCell.swift; sourceTree = "<group>"; };
+		D1E003839D1851F904AFC107 /* Pods-Darwin-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSUITests/Pods-Darwin-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E62141EAF783E40ED925E55B /* Pods-Darwin-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372D8083745B58E900A6EA1E /* Pods_Darwin_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C6F6470D5EC7BD8FDBE4F7 /* Pods_Darwin_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,12 +152,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01639D471836FF9D633B284 /* Pods_Darwin_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		126E72F65473FFFBB8337FF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BBB4153343409CC60EDFE00 /* Pods_Darwin_iOS.framework */,
+				82F926444BA534993981757C /* Pods_Darwin_iOSTests.framework */,
+				1D572C08BD0054ECCD5D6B06 /* Pods_Darwin_iOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B534825B54E50581C852DB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E62141EAF783E40ED925E55B /* Pods-Darwin-iOS.debug.xcconfig */,
+				3EB5FE86EB9D62F484CE80E9 /* Pods-Darwin-iOS.release.xcconfig */,
+				280DA5F845BD2971883D399C /* Pods-Darwin-iOSTests.debug.xcconfig */,
+				0C502B6B85D513F41CDE75C4 /* Pods-Darwin-iOSTests.release.xcconfig */,
+				D1E003839D1851F904AFC107 /* Pods-Darwin-iOSUITests.debug.xcconfig */,
+				715375843DF7EE25076010E6 /* Pods-Darwin-iOSUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A53A2AD020FA9513002DEA45 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +259,23 @@
 			path = "Login View";
 			sourceTree = "<group>";
 		};
+		A5AE3C832106B15A002EAD0B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE3C862106B36F002EAD0B /* FacebookUser.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A5AE3C882106B39B002EAD0B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE3C892106B3B2002EAD0B /* NetworkingManager.swift */,
+				A5AE3C842106B16F002EAD0B /* FacebookAPIManger.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		A5E0B0D120F1856600F00F43 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +283,8 @@
 				A5E0B0F420F1856600F00F43 /* Darwin-iOSTests */,
 				A5E0B0FF20F1856600F00F43 /* Darwin-iOSUITests */,
 				A5E0B0DB20F1856600F00F43 /* Products */,
+				2B534825B54E50581C852DB2 /* Pods */,
+				126E72F65473FFFBB8337FF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,11 +301,11 @@
 		A5E0B0DC20F1856600F00F43 /* Darwin-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A5E0B11B20F1AA2600F00F43 /* Helper */,
+				A5E0B10E20F198A500F00F43 /* Model */,
 				A55320952105CD9C0035CDDA /* View */,
 				A5E0B11120F19AC900F00F43 /* Controller */,
 				A5E0B11420F1A07B00F00F43 /* Data */,
-				A5E0B10E20F198A500F00F43 /* Model */,
+				A5E0B11B20F1AA2600F00F43 /* Helper */,
 				A5E0B0DD20F1856600F00F43 /* AppDelegate.swift */,
 				A5E0B0E720F1856600F00F43 /* Assets.xcassets */,
 				A5E0B0E920F1856600F00F43 /* LaunchScreen.storyboard */,
@@ -273,6 +336,7 @@
 		A5E0B10E20F198A500F00F43 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5AE3C832106B15A002EAD0B /* Login */,
 				A5E0B10F20F1995700F00F43 /* Podcast.swift */,
 				A5E0B13B20F83A4900F00F43 /* Episode.swift */,
 				A5E0B11220F19D7E00F00F43 /* TrackSubscriber.swift */,
@@ -286,6 +350,7 @@
 			children = (
 				A53A2AD120FADFA4002DEA45 /* DarwinStartViewController.swift */,
 				A53A2AD320FC1E69002DEA45 /* DarwinTabBarController.swift */,
+				A5AE3C882106B39B002EAD0B /* Network */,
 				A53A2AD020FA9513002DEA45 /* Discover */,
 				A553208A210298680035CDDA /* Collection */,
 				A553208B210298860035CDDA /* Settings */,
@@ -324,9 +389,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5E0B10520F1856600F00F43 /* Build configuration list for PBXNativeTarget "Darwin-iOS" */;
 			buildPhases = (
+				4959A5C202A477B7328E06C7 /* [CP] Check Pods Manifest.lock */,
 				A5E0B0D620F1856600F00F43 /* Sources */,
 				A5E0B0D720F1856600F00F43 /* Frameworks */,
 				A5E0B0D820F1856600F00F43 /* Resources */,
+				5319A52E30C7DC69F842D7AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,6 +408,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5E0B10820F1856600F00F43 /* Build configuration list for PBXNativeTarget "Darwin-iOSTests" */;
 			buildPhases = (
+				F1764A41FFE375F27100C05A /* [CP] Check Pods Manifest.lock */,
 				A5E0B0ED20F1856600F00F43 /* Sources */,
 				A5E0B0EE20F1856600F00F43 /* Frameworks */,
 				A5E0B0EF20F1856600F00F43 /* Resources */,
@@ -359,6 +427,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5E0B10B20F1856600F00F43 /* Build configuration list for PBXNativeTarget "Darwin-iOSUITests" */;
 			buildPhases = (
+				3854C6CA77321FE8B372DAE1 /* [CP] Check Pods Manifest.lock */,
 				A5E0B0F820F1856600F00F43 /* Sources */,
 				A5E0B0F920F1856600F00F43 /* Frameworks */,
 				A5E0B0FA20F1856600F00F43 /* Resources */,
@@ -443,6 +512,95 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3854C6CA77321FE8B372DAE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Darwin-iOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4959A5C202A477B7328E06C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Darwin-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5319A52E30C7DC69F842D7AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1764A41FFE375F27100C05A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Darwin-iOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A5E0B0D620F1856600F00F43 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -454,6 +612,7 @@
 				A53A2AD920FCA572002DEA45 /* HearThisPlayer.swift in Sources */,
 				A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */,
 				A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */,
+				A5AE3C872106B370002EAD0B /* FacebookUser.swift in Sources */,
 				A5AE3C7F21069C13002EAD0B /* LoginTextField.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
@@ -465,6 +624,7 @@
 				A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */,
 				A53A2AD620FC1EF0002DEA45 /* DiscoverNavigationController.swift in Sources */,
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
+				A5AE3C8A2106B3B2002EAD0B /* NetworkingManager.swift in Sources */,
 				A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */,
@@ -479,6 +639,7 @@
 				A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */,
 				A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */,
 				A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */,
+				A5AE3C852106B16F002EAD0B /* FacebookAPIManger.swift in Sources */,
 				A5E0B11320F19D7E00F00F43 /* TrackSubscriber.swift in Sources */,
 				A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */,
 				A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */,
@@ -652,6 +813,7 @@
 		};
 		A5E0B10620F1856600F00F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62141EAF783E40ED925E55B /* Pods-Darwin-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -670,6 +832,7 @@
 		};
 		A5E0B10720F1856600F00F43 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EB5FE86EB9D62F484CE80E9 /* Pods-Darwin-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -688,6 +851,7 @@
 		};
 		A5E0B10920F1856600F00F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 280DA5F845BD2971883D399C /* Pods-Darwin-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -709,6 +873,7 @@
 		};
 		A5E0B10A20F1856600F00F43 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C502B6B85D513F41CDE75C4 /* Pods-Darwin-iOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -730,6 +895,7 @@
 		};
 		A5E0B10C20F1856600F00F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1E003839D1851F904AFC107 /* Pods-Darwin-iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -750,6 +916,7 @@
 		};
 		A5E0B10D20F1856600F00F43 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 715375843DF7EE25076010E6 /* Pods-Darwin-iOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

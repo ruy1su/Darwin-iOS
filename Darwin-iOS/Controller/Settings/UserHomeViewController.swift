@@ -16,6 +16,11 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 	}
 	
 	@IBOutlet weak var loginButton: UIButton!
+	
+	@IBOutlet weak var userImage: UIImageView!
+	
+	@IBOutlet weak var userName: UILabel!
+	
 	@IBAction func loginTapped(_ sender: Any) {
 		let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC")
 		self.present(loginVC!, animated: true, completion: nil)
@@ -25,11 +30,20 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 		super.viewDidLoad()
 		configureLoginButton()
 	}
+	
+	// MARK - Handle Unwind Event without Login
 	@IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-		
+		print("Unwind without Login")
+	}
+	
+	// MARK - Handle Unwind Event for FB Login
+	@IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+		if let sourceViewController = sender.source as? LoginViewController {
+			userName.text = sourceViewController.userName
+			userImage.imageFromUrl(link: (sourceViewController.userImageURL)!)
+		}
 	}
 }
-
 extension UserHomeViewController{
 	func configureLoginButton() {
 		loginButton.layer.cornerRadius = 5

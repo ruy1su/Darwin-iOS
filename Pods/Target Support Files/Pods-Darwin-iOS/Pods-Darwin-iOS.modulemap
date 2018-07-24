@@ -1,0 +1,6 @@
+framework module Pods_Darwin_iOS {
+  umbrella header "Pods-Darwin-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

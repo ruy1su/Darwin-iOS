@@ -1,11 +1,10 @@
 //
 //  LoginButton.swift
-//  LoginScreen
+//  Darwin-iOS
 //
-//  Created by Florian Marcu on 1/15/17.
-//  Copyright © 2017 iOS App Templates. All rights reserved.
+//  Created by Zenos on 7/16/18.
+//  Copyright © 2018 Zixia. All rights reserved.
 //
-
 import UIKit
 
 let kLoginButtonBackgroundColor = UIColor(displayP3Red: 31/255, green: 75/255, blue: 164/255, alpha: 1)
