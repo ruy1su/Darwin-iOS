@@ -41,6 +41,7 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 		if let sourceViewController = sender.source as? LoginViewController {
 			userName.text = sourceViewController.userName
 			userImage.imageFromUrl(link: (sourceViewController.userImageURL)!)
+			loginButton.setTitle("Log Out", for: .normal) 
 		}
 	}
 }
