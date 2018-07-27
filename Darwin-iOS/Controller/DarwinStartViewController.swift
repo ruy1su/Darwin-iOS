@@ -52,8 +52,7 @@ extension DarwinStartViewController: HearThisPlayerObserver{
 
 //  MARK: - FloatingPlayerDelegate
 extension DarwinStartViewController: FloatingPlayerDelegate {
-
-	func expandEpisode(episode: Episode) {
+	func expandEpisode(episode: Episode, playOrPause: Bool) {
 		guard let expandingPlayer = storyboard?.instantiateViewController(withIdentifier: "ExpandingPlayerViewController") as? ExpandingPlayerViewController else {
 			assertionFailure("No view controller ID ExpandingPlayerViewController in storyboard")
 			return
@@ -62,6 +61,8 @@ extension DarwinStartViewController: FloatingPlayerDelegate {
 		expandingPlayer.backingImage = view.makeSnapshot()
 		expandingPlayer.currentEpisode = episode
 		expandingPlayer.sourceView = floatingPlayer
+		expandingPlayer.hearThisPlayer = hearThisPlayer
+		expandingPlayer.playOrPause = playOrPause
 		if let tabBar = tabBarController?.tabBar {
 			expandingPlayer.tabBarImage = tabBar.makeSnapshot()
 		}

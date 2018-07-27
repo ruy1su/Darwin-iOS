@@ -13,7 +13,14 @@ protocol ExpandingPlayerSourceProtocol: class {
 	var originatingCoverImageView: UIImageView { get }
 }
 
-class ExpandingPlayerViewController: UIViewController, TrackSubscriber {
+class ExpandingPlayerViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver {
+	
+	var hearThisPlayer: HearThisPlayerType? {
+		didSet{
+			hearThisPlayer?.registerObserver(observer: self)
+		}
+	}
+	var playOrPause: Bool?
 	
 	// MARK: - Properties
 	let primaryDuration = 0.28
@@ -103,6 +110,12 @@ class ExpandingPlayerViewController: UIViewController, TrackSubscriber {
 
 		if let destination = segue.destination as? TrackSubscriber {
 			destination.currentEpisode = currentEpisode
+		}
+		if let destination = segue.destination as? HearThisPlayerHolder {
+			destination.hearThisPlayer = hearThisPlayer
+		}
+		if let destination = segue.destination as? EpisodePlayViewController {
+			destination.playOrPause = playOrPause
 		}
 	}
 }

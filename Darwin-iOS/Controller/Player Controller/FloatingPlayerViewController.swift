@@ -9,13 +9,14 @@
 import UIKit
 
 protocol FloatingPlayerDelegate: class {
-	func expandEpisode(episode: Episode)
+	func expandEpisode(episode: Episode, playOrPause: Bool)
 }
 
 class FloatingPlayerViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder{
 	// MARK: - Properties
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
+	var playOrPause: Bool?
 	weak var delegate: FloatingPlayerDelegate?
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
@@ -32,7 +33,7 @@ class FloatingPlayerViewController: UIViewController, TrackSubscriber, HearThisP
 		}
 	}
 	@objc func playerButtonTapped(sender: Any) {
-		hearThisPlayer?.stop()
+		hearThisPlayer?.pause()
 	}
 	@IBOutlet weak var ffButton: UIButton!
 	
@@ -50,33 +51,26 @@ extension FloatingPlayerViewController: HearThisPlayerObserver {
 		track.loadEpisodeImage { [weak self] (image) -> (Void) in
 				self?.thumbImage.image = image
 		}
+		playOrPause = false
 	}
 	
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {
 		episodeTitle.text = track.title
 		currentEpisode = track
 		playButton.setImage(UIImage(named:"pause"), for: .normal)
-
+		playOrPause = true
 	}
 	
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode) {
 		playButton.setImage(UIImage(named:"play"), for: .normal)
-
+		playOrPause = false
 	}
 	
-	// Function for Standby
-	func configure(episode: Episode?, podcast: Podcast?) {
-		if let podcast = podcast, let episode = episode {
-			episodeTitle.text = episode.title
-			podcast.loadPodcastImage { [weak self] (image) -> (Void) in
-				self?.thumbImage.image = image
-			}
-		} else {
-			episodeTitle.text = nil
-			thumbImage.image = nil
-		}
-		currentEpisode = episode
-		currentPodcast = podcast
+	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode) {
+		episodeTitle.text = track.title
+		currentEpisode = track
+		playButton.setImage(UIImage(named:"play"), for: .normal)
+		playOrPause = false
 	}
 }
 
@@ -87,7 +81,7 @@ extension FloatingPlayerViewController {
 		guard let episode = currentEpisode else {
 			return
 		}
-		delegate?.expandEpisode(episode: episode)
+		delegate?.expandEpisode(episode: episode, playOrPause: playOrPause!)
 	}
 }
 
