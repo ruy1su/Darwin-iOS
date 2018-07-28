@@ -8,6 +8,7 @@
 import FacebookCore
 import UIKit
 import FacebookLogin
+import Alamofire
 
 class LoginViewController: UIViewController {
 	
@@ -71,6 +72,19 @@ class LoginViewController: UIViewController {
 					self.didLogin(method: "Facebook", info: info)
 					self.userName = facebookUser.firstName!+" "+facebookUser.lastName!
 					self.userImageURL = facebookUser.profilePicture
+					let parameters = ["fname": facebookUser.firstName!, "lname": facebookUser.lastName!, "email": facebookUser.email!]
+					Alamofire.request("http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/create_user", method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
+						.responseJSON {
+							response in switch response.result {
+							
+							case .success(let JSON):
+								print("Success with JSON: \(JSON)")
+								
+							case .failure(let error):
+								print("Request failed with error: \(error)")
+								
+							}
+					}
 				}
 			})
 		}

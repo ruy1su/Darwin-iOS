@@ -11,6 +11,8 @@ target 'Darwin-iOS' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
   pod 'AFNetworking'
+  pod 'Alamofire', '~> 4.7'
+  
   target 'Darwin-iOSTests' do
     inherit! :search_paths
     # Pods for testing
