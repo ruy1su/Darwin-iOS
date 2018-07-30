@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class EpisodeListViewController: UIViewController, HearThisPlayerHolder, EpisodeSelectionObserver, HearThisPlayerObserver {
 
@@ -22,7 +23,7 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 	@IBOutlet weak var episodeListHeaderView: EpisodeListHeaderView!
 	@IBOutlet weak var navBar: UINavigationBar!
 	@IBOutlet weak var episodeTableView: UITableView!
-
+	
 	@IBAction func dismiss(_ sender: Any) {
 		self.performSegue(withIdentifier: "unWind", sender: self)
 	}
@@ -44,5 +45,40 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
 		hearThisPlayer?.play(episodeStack.allEps[on.row])
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
+	}
+}
+
+extension EpisodeListViewController{
+	@IBAction func AddIntoCollection(_ sender: Any) {
+		if sharedDarwinUser.baseUid != 0{
+			if let pid = currentPodcast?.pid {
+				let parameters = ["uid": sharedDarwinUser.baseUid, "pid": pid]
+				Alamofire.request(APIKey.sharedInstance.getApi(key:"/create_collection"), method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
+					.responseString {
+						response in switch response.result {
+							
+						case .success(let JSON):
+							print("Success with JSON: \(JSON)")
+							if JSON != "Success"{
+								let alert = UIAlertController(title: "It's already in your collection", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+								alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+								self.present(alert, animated: true, completion: nil)
+							}
+							let alert = UIAlertController(title: "Add Into Collection Successfully", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+							alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+							self.present(alert, animated: true, completion: nil)
+							
+						case .failure(let error):
+							print("Request failed with error: \(error)")
+						}
+				}
+			}
+		}
+		else{
+			let message = "Please Log In First"
+			let alert = UIAlertController(title: "You Have Not Logged In", message: message, preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
 	}
 }

@@ -23,10 +23,9 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
 	var searchController = UISearchController(searchResultsController: SearchResultTableViewController())
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		print(sharedDarwinUser.baseUid,"uid----------------------------------------------------------------")
 		// Initialize Search Controller
 		searchController = UISearchController(searchResultsController: storyboard?.instantiateViewController(withIdentifier: "SearchResultTableVC"))
 		searchController.obscuresBackgroundDuringPresentation = true
@@ -74,7 +73,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) { //Ugly Search
 		let dataStack = DataStack()
 		if let search = searchBar.text{
-			guard let homeUrl = URL(string: "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/api_search/\(search)") else { return }
+			guard let homeUrl = URL(string: APIKey.sharedInstance.getApi(key: "/api_search/\(search)")) else { return }
 			URLSession.shared.dataTask(with: homeUrl) { (data, response
 				, error) in
 				guard let data = data else { return }

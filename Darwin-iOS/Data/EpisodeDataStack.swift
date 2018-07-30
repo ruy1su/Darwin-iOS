@@ -19,7 +19,6 @@ class EpisodeDataStack: NSObject {
 	private(set) var allEps: [Episode] = []
 	
 	func load(episodes: [Episode], completion: (Bool) -> Void){
-		//		if let podcasts = podcasts as? [Podcast] {
 		for episode in episodes {
 			let builder = EpisodeBuilder()
 				.with(title: episode.title)

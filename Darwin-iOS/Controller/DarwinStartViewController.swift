@@ -15,15 +15,13 @@ class DarwinStartViewController: UIViewController, HearThisPlayerHolder {
 		}
 	}
 	
+	// MARK: - Initializing Podcast Player and Network Manager
+	
 	var floatingPlayer: FloatingPlayerViewController?
+	let networkingManager = NetworkingManager()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Setting Cache
-		let memoryCapacity = 500 * 1024 * 1024
-		let diskCapacity = 500 * 1024 * 1024
-		let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
-		URLCache.shared = urlCache
 		
 		for childViewController in self.childViewControllers {
 			if let playerHolder = childViewController as? HearThisPlayerHolder {

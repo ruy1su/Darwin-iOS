@@ -73,12 +73,17 @@ class LoginViewController: UIViewController {
 					self.userName = facebookUser.firstName!+" "+facebookUser.lastName!
 					self.userImageURL = facebookUser.profilePicture
 					let parameters = ["fname": facebookUser.firstName!, "lname": facebookUser.lastName!, "email": facebookUser.email!]
-					Alamofire.request("http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com/create_user", method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
+					Alamofire.request(APIKey.sharedInstance.getApi(key:"/create_user"), method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
 						.responseJSON {
 							response in switch response.result {
 							
 							case .success(let JSON):
 								print("Success with JSON: \(JSON)")
+								Alamofire.request(APIKey.sharedInstance.getApi(key:"/login/\(facebookUser.email!)"), method : .get).responseJSON { response in
+									let data = response.result.value as! NSDictionary
+									print(data["uid"]!)
+									sharedDarwinUser.baseUid = data["uid"] as! Int
+								}
 								
 							case .failure(let error):
 								print("Request failed with error: \(error)")

@@ -42,7 +42,7 @@ class EpisodeTableViewDataSource: NSObject {
 	
 	func load() {
 		let pid = currentPodcast.pid
-		guard let homeUrl = URL(string: "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com:5000/api_episode/\(pid ?? 2)") else { return }
+		guard let homeUrl = URL(string: APIKey.sharedInstance.getApi(key:"/api_episode/\(pid ?? 2)")) else { return }
 		URLSession.shared.dataTask(with: homeUrl) { (data, response
 			, error) in
 			

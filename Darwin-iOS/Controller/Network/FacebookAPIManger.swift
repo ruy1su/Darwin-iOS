@@ -17,7 +17,6 @@ let kGraphPathMePageLikes = "me/likes"
 class FacebookAPIManager {
 	
 	let accessToken: AccessToken
-	let networkingManager = NetworkingManager()
 	
 	init(accessToken: AccessToken) {
 		self.accessToken = accessToken

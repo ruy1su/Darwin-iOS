@@ -14,9 +14,6 @@ protocol PodcastSelectionObserver: class {
 }
 
 class PodcastCollectionDatasource: NSObject {
-	
-	// Set up Cache
-	private var cache = NSCache<AnyObject, AnyObject>()
 	// Set up Data Stack
 	var dataStack: DataStack
 	var managedCollection: UICollectionView
@@ -43,25 +40,16 @@ class PodcastCollectionDatasource: NSObject {
 		guard let homeUrl = URL(string: api) else { return }
 		URLSession.shared.dataTask(with: homeUrl) { (data, response
 			, error) in
-			
 			guard let data = data else { return }
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
-				print(apiHomeData, "\n ++++++ This is api podcast data fetched in backend ++++++\n")
+				print(apiHomeData[0],"\n ++++++ Fetched podcast data from backend ++++++\n")
 				DispatchQueue.main.async {
 					self.dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
 					}
-					for pod in apiHomeData{
-						if let data =  NSData(contentsOf: pod.coverArtURL!){
-							if let image = UIImage(data: data as Data) {
-								self.cache.setObject(image, forKey: pod.coverArtURL! as AnyObject)
-							}
-						}
-					}
 				}
-				
 			} catch let err {
 				print("Error, Couldnt load api data", err)
 			}
@@ -97,13 +85,8 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 		cell.artistName.text = ipod.artist
 		
 		// Load image from cache if cached
-		let image = cache.object(forKey: ipod.coverArtURL as AnyObject) as? UIImage
+		let image = Cache.sharedInstance.update(imageURL: (ipod.coverArtURL)!)
 		cell.coverArt.image = image
-		if image == nil{
-			ipod.loadPodcastImage{ image in
-				cell.coverArt.image = image
-			}
-		}
 		return cell
 	}
 	
