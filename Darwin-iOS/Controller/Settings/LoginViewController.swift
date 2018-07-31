@@ -81,8 +81,9 @@ class LoginViewController: UIViewController {
 								print("Success with JSON: \(JSON)")
 								Alamofire.request(APIKey.sharedInstance.getApi(key:"/login/\(facebookUser.email!)"), method : .get).responseJSON { response in
 									let data = response.result.value as! NSDictionary
-									print(data["uid"]!)
+									print("Login Success:", data["uid"]!)
 									sharedDarwinUser.baseUid = data["uid"] as! Int
+									sharedDarwinUser.loginStatus = true
 								}
 								
 							case .failure(let error):

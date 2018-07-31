@@ -50,7 +50,7 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 
 extension EpisodeListViewController{
 	@IBAction func AddIntoCollection(_ sender: Any) {
-		if sharedDarwinUser.baseUid != 0{
+		if sharedDarwinUser.loginStatus{
 			if let pid = currentPodcast?.pid {
 				let parameters = ["uid": sharedDarwinUser.baseUid, "pid": pid]
 				Alamofire.request(APIKey.sharedInstance.getApi(key:"/create_collection"), method: .post, parameters: parameters, encoding: URLEncoding.httpBody)

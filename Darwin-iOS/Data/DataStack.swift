@@ -16,7 +16,8 @@ enum DataStackState {
 class DataStack: NSObject {
 	
 	// MARK: - Properties
-	private(set) var allPods: [Podcast] = []
+	//	private(set)
+	var allPods: [Podcast] = []
 	
 	func load(dictionary: [String: Any], completion: (Bool) -> Void) {
 		if let podcasts = dictionary["Podcasts"] as? [[String: Any]] {

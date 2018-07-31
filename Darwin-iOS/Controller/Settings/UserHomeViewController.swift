@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
 
 class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearThisPlayerObserver {
 	var hearThisPlayer: HearThisPlayerType? {
@@ -22,8 +24,17 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 	@IBOutlet weak var userName: UILabel!
 	
 	@IBAction func loginTapped(_ sender: Any) {
-		let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-		self.present(loginVC!, animated: true, completion: nil)
+		if sharedDarwinUser.loginStatus {
+			LoginManager().logOut()
+			sharedDarwinUser.loginStatus = false
+			loginButton.setTitle("Log In", for: .normal)
+			userImage.image = UIImage(named: "user")
+			userName.text = nil
+		}
+		else{
+			let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+			self.present(loginVC!, animated: true, completion: nil)
+		}
 	}
 	
 	override func viewDidLoad() {
@@ -41,7 +52,7 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 		if let sourceViewController = sender.source as? LoginViewController {
 			userName.text = sourceViewController.userName
 			userImage.imageFromUrl(link: (sourceViewController.userImageURL)!)
-			loginButton.setTitle("Log Out", for: .normal) 
+			loginButton.setTitle("Log Out", for: .normal)
 		}
 	}
 }

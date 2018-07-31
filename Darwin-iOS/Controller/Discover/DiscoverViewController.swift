@@ -25,7 +25,7 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var searchController = UISearchController(searchResultsController: SearchResultTableViewController())
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print(sharedDarwinUser.baseUid,"uid----------------------------------------------------------------")
+		
 		// Initialize Search Controller
 		searchController = UISearchController(searchResultsController: storyboard?.instantiateViewController(withIdentifier: "SearchResultTableVC"))
 		searchController.obscuresBackgroundDuringPresentation = true
@@ -72,6 +72,16 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) { //Ugly Search
 		let dataStack = DataStack()
+		self.search(dataStack: dataStack, searchBar: searchBar)
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		if let searchResultsController = self.searchController.searchResultsController as?SearchResultTableViewController {
+				searchResultsController.array = []
+				searchResultsController.tableView.reloadData()
+		}
+	}
+	func search(dataStack: DataStack, searchBar: UISearchBar) {
 		if let search = searchBar.text{
 			guard let homeUrl = URL(string: APIKey.sharedInstance.getApi(key: "/api_search/\(search)")) else { return }
 			URLSession.shared.dataTask(with: homeUrl) { (data, response
@@ -96,13 +106,6 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 				}.resume()
 		}
 	}
-	
-	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-		if let searchResultsController = self.searchController.searchResultsController as?SearchResultTableViewController {
-				searchResultsController.array = []
-				searchResultsController.tableView.reloadData()
-		}
-	}
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
@@ -119,6 +122,11 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
 			 cell.delegate = self
 			return cell
+//
+//		case 2:
+//			let cell = tableView.dequeueReusableCell(withIdentifier: "epi_cell", for: indexPath) as? EpisodeListTableViewCell
+//			cell.delegate = self
+			
 		default:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
 			return cell
