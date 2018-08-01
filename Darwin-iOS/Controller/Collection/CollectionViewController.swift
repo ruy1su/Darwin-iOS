@@ -70,9 +70,13 @@ class CollectionViewController: UIViewController, HearThisPlayerObserver,HearThi
 		if (editingStyle == UITableViewCellEditingStyle.delete) {
 			let pid = dataStack.allPods[indexPath.row].pid
 			let title = dataStack.allPods[indexPath.row].title
-			dataStack.allPods.remove(at: indexPath.row)
-			self.CollectionPageTable.reloadData()
-			self.deleteData(pid: pid!, title: title!)
+			if self.deleteData(pid: pid!, title: title!){
+				dataStack.allPods.remove(at: indexPath.row)
+				self.CollectionPageTable.reloadData()
+			}
+			else{
+				alert(message: "Failed to Delete Podcast:\(title!) From Your Collection. Please try again or check your internet.", title: "", action: "Will Do")
+			}
 		}
 	}
 	
@@ -97,41 +101,34 @@ class CollectionViewController: UIViewController, HearThisPlayerObserver,HearThi
 extension CollectionViewController{
 	// MARK: - Refresh User Collection Data
 	func refreshData(){
-		guard let Url = URL(string: APIKey.sharedInstance.getApi(key: "/load_user_coll/\(sharedDarwinUser.baseUid)")) else { return }
-		URLSession.shared.dataTask(with: Url) { (data, response
-			, error) in
-			guard let data = data else { return }
-			do {
-				let decoder = JSONDecoder()
-				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
-				DispatchQueue.main.async {
-					self.dataStack.loadPod(podcasts: apiHomeData) { success in
-						self.CollectionPageTable.reloadData()
-					}
-				}
-			} catch let err {
-				print("Error, Couldnt load api data", err)
+		let firstTodoEndpoint:String = APIKey.sharedInstance.getApi(key: "/load_user_coll/\(sharedDarwinUser.baseUid)")
+		Alamofire.request(firstTodoEndpoint).responseJSON { (response) in
+			do{
+				let apiHomeData = try JSONDecoder().decode(Array<Podcast>.self, from: (response.data)!)
+				self.dataStack.loadPod(podcasts: apiHomeData) { success in
+					self.CollectionPageTable.reloadData()}
+			} catch {
+				print("Unable to load data: \(error)")
 			}
-			}.resume()
+		}
 	}
 	
 	// MARK: - Delete User Collection Data
-	func deleteData(pid: Int, title: String){
+	func deleteData(pid: Int, title: String) -> Bool {
+		var success: Bool = false
 		let firstTodoEndpoint: String = APIKey.sharedInstance.getApi(key: "/delete_usr_collection/\(sharedDarwinUser.baseUid)/\(pid)")
 		Alamofire.request(firstTodoEndpoint, method: .delete)
 			.responseString { response in
 				guard response.result.error == nil else {
-					// got an error in getting the data, need to handle it
 					print("error calling DELETE on /delete_usr_collection/\(sharedDarwinUser.baseUid)/\(pid)")
 					if let error = response.result.error {
 						print("Error: \(error)")
 					}
 					return
 				}
-				let alert = UIAlertController(title: "Delete Podcast:\(title) From Your Collection Successfully!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-				alert.addAction(UIAlertAction(title: "Cool", style: UIAlertActionStyle.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
-				print("DELETE ok")
+				self.alert(message: "Delete Podcast:\(title) From Your Collection Successfully!", title: "", action: "Cool")
+				success = true
 		}
+		return success
 	}
 }

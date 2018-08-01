@@ -72,8 +72,7 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 		dataStack.setArtist(podcast: currentPodcast, on: indexPath)
 		// Configure Cells
 		let cell = tableView.dequeueReusableCell(withIdentifier: "epi_cell", for: indexPath) as? EpisodeListTableViewCell
-		let episode: Episode
-		episode = dataStack.allEps[indexPath.row]
+		let episode: Episode = dataStack.allEps[indexPath.row]
 		// Displaying values
 		cell?.titleLabel.text = episode.title
 		cell?.artistLabel.text = episode.artist

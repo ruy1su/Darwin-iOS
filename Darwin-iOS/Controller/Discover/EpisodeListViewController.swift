@@ -60,14 +60,11 @@ extension EpisodeListViewController{
 						case .success(let JSON):
 							print("Success with JSON: \(JSON)")
 							if JSON != "Success"{
-								let alert = UIAlertController(title: "It's already in your collection", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-								alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-								self.present(alert, animated: true, completion: nil)
+								self.alert(message: "", title: "It's already in your collection", action: "Done")
 							}
-							let alert = UIAlertController(title: "Add Into Collection Successfully", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-							alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)
-							
+							else{
+								self.alert(message: "", title: "Add Into Collection Successfully", action: "Done")
+							}
 						case .failure(let error):
 							print("Request failed with error: \(error)")
 						}
@@ -75,10 +72,7 @@ extension EpisodeListViewController{
 			}
 		}
 		else{
-			let message = "Please Log In First"
-			let alert = UIAlertController(title: "You Have Not Logged In", message: message, preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
+			self.alert(message: "Please Log In First", title: "You Have Not Logged In", action: "Done")
 		}
 	}
 }

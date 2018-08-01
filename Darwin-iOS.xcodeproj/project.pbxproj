@@ -15,6 +15,7 @@
 		A5345E82210E92D100D619D6 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5345E81210E92D100D619D6 /* APIKey.swift */; };
 		A5345E84210E985600D619D6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5345E83210E985600D619D6 /* CollectionViewController.swift */; };
 		A5345E86210EE6BA00D619D6 /* CollectionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5345E85210EE6BA00D619D6 /* CollectionNavigationController.swift */; };
+		A5345E88211128C200D619D6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5345E87211128C200D619D6 /* AlertView.swift */; };
 		A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */; };
 		A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */; };
 		A53A2ACF20F98006002DEA45 /* EpisodeTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */; };
@@ -89,6 +90,7 @@
 		A5345E81210E92D100D619D6 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		A5345E83210E985600D619D6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A5345E85210EE6BA00D619D6 /* CollectionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionNavigationController.swift; sourceTree = "<group>"; };
+		A5345E87211128C200D619D6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDataStack.swift; sourceTree = "<group>"; };
 		A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeBuilder.swift; sourceTree = "<group>"; };
 		A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				A5532091210312800035CDDA /* Constant.swift */,
 				A534383B210E81120037CED5 /* Cache.swift */,
 				A5345E81210E92D100D619D6 /* APIKey.swift */,
+				A5345E87211128C200D619D6 /* AlertView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				A5345E82210E92D100D619D6 /* APIKey.swift in Sources */,
 				A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */,
 				A5AE3C852106B16F002EAD0B /* FacebookAPIManger.swift in Sources */,
+				A5345E88211128C200D619D6 /* AlertView.swift in Sources */,
 				A5E0B11320F19D7E00F00F43 /* TrackSubscriber.swift in Sources */,
 				A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */,
 				A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */,
