@@ -28,6 +28,7 @@
 		A5532090210306B80035CDDA /* SearchResultTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553208F210306B80035CDDA /* SearchResultTableCell.swift */; };
 		A5532092210312800035CDDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532091210312800035CDDA /* Constant.swift */; };
 		A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532097210688D70035CDDA /* UserHomeViewController.swift */; };
+		A565FA61211BBCA300923DF3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA60211BBCA300923DF3 /* Helper.swift */; };
 		A5AE3C772106997A002EAD0B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C762106997A002EAD0B /* LoginViewController.swift */; };
 		A5AE3C7A21069C08002EAD0B /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */; };
 		A5AE3C7E21069C13002EAD0B /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7B21069C13002EAD0B /* LoginButton.swift */; };
@@ -51,7 +52,6 @@
 		A5E0B11A20F1A39F00F00F43 /* PodcastCollectionDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11920F1A39F00F00F43 /* PodcastCollectionDatasource.swift */; };
 		A5E0B11D20F1AA3F00F00F43 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B11C20F1AA3F00F00F43 /* LoadImage.swift */; };
 		A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */; };
-		A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13320F3FAE100F00F43 /* SnapShot.swift */; };
 		A5E0B13620F3FCD300F00F43 /* ExpandingPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */; };
 		A5E0B13820F42EF600F00F43 /* EpisodePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */; };
 		A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */; };
@@ -103,6 +103,7 @@
 		A553208F210306B80035CDDA /* SearchResultTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableCell.swift; sourceTree = "<group>"; };
 		A5532091210312800035CDDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A5532097210688D70035CDDA /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
+		A565FA60211BBCA300923DF3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A5AE3C762106997A002EAD0B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
 		A5AE3C7B21069C13002EAD0B /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		A5E0B11920F1A39F00F00F43 /* PodcastCollectionDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCollectionDatasource.swift; sourceTree = "<group>"; };
 		A5E0B11C20F1AA3F00F00F43 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		A5E0B12020F1B06100F00F43 /* FloatingPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerViewController.swift; sourceTree = "<group>"; };
-		A5E0B13320F3FAE100F00F43 /* SnapShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapShot.swift; sourceTree = "<group>"; };
 		A5E0B13520F3FCD300F00F43 /* ExpandingPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingPlayerViewController.swift; sourceTree = "<group>"; };
 		A5E0B13720F42EF600F00F43 /* EpisodePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePlayViewController.swift; sourceTree = "<group>"; };
 		A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewController.swift; sourceTree = "<group>"; };
@@ -391,11 +391,11 @@
 			isa = PBXGroup;
 			children = (
 				A5E0B11C20F1AA3F00F00F43 /* LoadImage.swift */,
-				A5E0B13320F3FAE100F00F43 /* SnapShot.swift */,
 				A5532091210312800035CDDA /* Constant.swift */,
 				A534383B210E81120037CED5 /* Cache.swift */,
 				A5345E81210E92D100D619D6 /* APIKey.swift */,
 				A5345E87211128C200D619D6 /* AlertView.swift */,
+				A565FA60211BBCA300923DF3 /* Helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -582,6 +582,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -594,6 +595,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +639,7 @@
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
 				A5532092210312800035CDDA /* Constant.swift in Sources */,
+				A565FA61211BBCA300923DF3 /* Helper.swift in Sources */,
 				A5E0B11620F1A0FB00F00F43 /* DataStack.swift in Sources */,
 				A53A2ACB20F96A96002DEA45 /* EpisodeDataStack.swift in Sources */,
 				A5E0B11A20F1A39F00F00F43 /* PodcastCollectionDatasource.swift in Sources */,
@@ -656,7 +659,6 @@
 				A53A2AD420FC1E69002DEA45 /* DarwinTabBarController.swift in Sources */,
 				A53A2ADE20FD69A7002DEA45 /* EpisodeListHeaderView.swift in Sources */,
 				A53A2ACD20F97616002DEA45 /* EpisodeBuilder.swift in Sources */,
-				A5E0B13420F3FAE100F00F43 /* SnapShot.swift in Sources */,
 				A5532090210306B80035CDDA /* SearchResultTableCell.swift in Sources */,
 				A5AE3C7A21069C08002EAD0B /* FacebookLoginButton.swift in Sources */,
 				A5AE3C8021069C13002EAD0B /* TwitterLoginButton.swift in Sources */,

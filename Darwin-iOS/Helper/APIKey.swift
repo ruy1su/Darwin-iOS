@@ -11,7 +11,7 @@ import Foundation
 class APIKey: NSObject {
 	static let sharedInstance = APIKey()
 	
-	private let API_URL = "http://ec2-18-219-52-58.us-east-2.compute.amazonaws.com"
+	private let API_URL = "http://ec2-13-58-58-235.us-east-2.compute.amazonaws.com:5000"
 	func getApi(key: String) -> String {
 		return API_URL+key
 	}

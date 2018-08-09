@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SWXMLHash
 
 @objc
 protocol EpisodeSelectionObserver: class {
@@ -54,12 +56,25 @@ class EpisodeTableViewDataSource: NSObject {
 				DispatchQueue.main.async {
 					self.dataStack.load(episodes: apiHomeData) { [weak self] success in
 						self?.managedTable.reloadData()
+						self?.setMediaForPlayer(datastack: (self?.dataStack)!, currentPodcastMedia: (self?.currentPodcast.mediaURL)!)
+						
 					}
 				}
 			} catch let err {
 				print("Error, Couldnt load api data", err)
 			}
 			}.resume()
+		
+	}
+	
+	func setMediaForPlayer(datastack: EpisodeDataStack, currentPodcastMedia: URL){
+		let currentPodcastMedia = currentPodcastMedia
+		Alamofire.request((currentPodcastMedia.absoluteString)).responseString { response in
+			let data = response.result.value!
+			let matched = Helper.matches(for: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:mp3)", in: String(data))
+			print(matched.unique(), matched.unique().count)
+			datastack.setMediaURL(mediaURLArr: matched.unique())
+		}
 	}
 }
 

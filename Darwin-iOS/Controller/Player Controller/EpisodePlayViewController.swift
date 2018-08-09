@@ -28,7 +28,6 @@ class EpisodePlayViewController: UIViewController, TrackSubscriber, HearThisPlay
 	// MARK: - IBOutlets
 	@IBOutlet weak var episodeTitle: UILabel!
 	@IBOutlet weak var episodeArtist: UILabel!
-	@IBOutlet weak var episodeDuration: UILabel!
 	@IBOutlet weak var slider: UISlider!
 	@IBOutlet weak var previousTrackButton: UIButton!
 	@IBOutlet weak var nextTrackButton: UIButton!
@@ -54,6 +53,12 @@ class EpisodePlayViewController: UIViewController, TrackSubscriber, HearThisPlay
 	
 	@IBAction func swipeSlider(_ sender: Any) {
 		hearThisPlayer?.seekTo(Double(self.slider.value))
+	}
+	@IBAction func previousTrack(_ sender: Any) {
+		hearThisPlayer?.previousTrack()
+	}
+	@IBAction func nextTrack(_ sender: Any) {
+		hearThisPlayer?.nextTrack()
 	}
 	
 	func player(_ player: HearThisPlayerType, willStartPlaying track: Episode) {
@@ -88,7 +93,6 @@ extension EpisodePlayViewController {
 		}
 		episodeTitle.text = currentEpisode?.title
 		episodeArtist.text = currentEpisode?.artist
-		episodeDuration.text = "Duration \(currentEpisode?.presentationTime ?? "")"
 		if playOrPause!{
 			playPauseButton.setImage(UIImage(named:"pause"), for: .normal)
 		}
@@ -113,6 +117,7 @@ extension EpisodePlayViewController {
 	
 	func updateTimeLabels() {
 		if let currentTime = self.hearThisPlayer?.currentTime(), let duration = self.hearThisPlayer?.duration() {
+//			print(currentTime, duration)
 			self.elapsedTimeLabel.text = self.humanReadableTimeInterval(currentTime)
 			self.remainingTimeLabel.text = "-" + self.humanReadableTimeInterval(duration - currentTime)
 		}
@@ -130,18 +135,5 @@ extension EpisodePlayViewController {
 		let ssString = (ss < 10 ? "0" : "") + String(ss)
 		
 		return (hhString != nil ? (hhString! + ":") : "") + mmString + ":" + ssString
-	}
-}
-
-
-// MARK: - Podcast Extension
-extension Episode {
-
-	var presentationTime: String {
-//		let formatter = DateFormatter()
-//		formatter.dateFormat = "mm:ss"
-//		let date = Date(timeIntervalSince1970: duration)
-//		return formatter.string(from: date)
-		return "0"
 	}
 }

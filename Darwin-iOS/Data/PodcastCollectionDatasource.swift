@@ -81,7 +81,8 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 	
 	func configured(_ cell: PodcastCell, at indexPath: IndexPath) -> PodcastCell {
 		let ipod = podcast(at: indexPath.row)
-		cell.podcastTitle.text = ipod.title
+		cell.podcastTitle.text = String(utf8String:(ipod.title?.cString(using: String.Encoding.utf8))!)
+//		print(ipod.title?.cString(using: String.Encoding.utf8))
 		cell.artistName.text = ipod.artist
 		
 		// Load image from cache if cached
@@ -96,3 +97,4 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 		}
 	}
 }
+

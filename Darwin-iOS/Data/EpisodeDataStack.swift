@@ -45,4 +45,16 @@ class EpisodeDataStack: NSObject {
 	func setArtist(podcast: Podcast, on: IndexPath)  {
 		self.allEps[on.row].artist = podcast.artist
 	}
+	
+	func setMediaURL(mediaURLArr: [String]){
+		var i: Int = 0
+		print(mediaURLArr.count)
+		print(self.allEps.count)
+		for url in mediaURLArr{
+			if i < allEps.count{
+				self.allEps[i].mediaURL? = URL(string: url)!
+				i+=1
+			}
+		}
+	}
 }

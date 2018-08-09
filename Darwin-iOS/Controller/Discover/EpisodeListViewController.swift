@@ -43,7 +43,7 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 	func selected(_ episodeStack: EpisodeDataStack, on: IndexPath) {
 		hearThisPlayer?.stop()
 		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
-		hearThisPlayer?.play(episodeStack.allEps[on.row])
+		hearThisPlayer?.playItems(episodeStack.allEps, firstItem: episodeStack.allEps[on.row])
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
 	}
 }

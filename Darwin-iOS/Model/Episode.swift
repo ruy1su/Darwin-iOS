@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Episode:Codable {
+struct Episode:Codable, Equatable {
 	
 	// MARK: - Properties
 	var pid: Int?

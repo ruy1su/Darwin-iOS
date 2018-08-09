@@ -115,19 +115,21 @@ extension CollectionViewController{
 	
 	// MARK: - Delete User Collection Data
 	func deleteData(pid: Int, title: String) -> Bool {
-		var success: Bool = false
+		var success: Bool = true
 		let firstTodoEndpoint: String = APIKey.sharedInstance.getApi(key: "/delete_usr_collection/\(sharedDarwinUser.baseUid)/\(pid)")
 		Alamofire.request(firstTodoEndpoint, method: .delete)
 			.responseString { response in
-				guard response.result.error == nil else {
+				if response.result.error == nil{
+					self.alert(message: "Delete Podcast:\(title) From Your Collection Successfully!", title: "", action: "Cool")
+					success = true
+				}
+				else{
 					print("error calling DELETE on /delete_usr_collection/\(sharedDarwinUser.baseUid)/\(pid)")
 					if let error = response.result.error {
 						print("Error: \(error)")
 					}
-					return
+					success = false
 				}
-				self.alert(message: "Delete Podcast:\(title) From Your Collection Successfully!", title: "", action: "Cool")
-				success = true
 		}
 		return success
 	}

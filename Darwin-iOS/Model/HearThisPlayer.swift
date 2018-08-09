@@ -10,9 +10,12 @@ import Foundation
 import AVFoundation
 
 protocol HearThisPlayerType {
+	func playItems(_ playbackItems: [Episode], firstItem: Episode?)
 	func play(_ track: Episode)
 	func stop()
 	func pause()
+	func previousTrack()
+	func nextTrack()
 	func seekTo(_ timeInterval: TimeInterval)
 	func currentTime() -> TimeInterval?
 	func duration() -> TimeInterval?
@@ -43,20 +46,42 @@ protocol HearThisPlayerHolder : class {
 	var hearThisPlayer: HearThisPlayerType? {set get }
 }
 
+//extension Episode: Equatable {}
+
 class HearThisPlayer: HearThisPlayerType {
 	private var player = AVPlayer()
-	var observers: NSHashTable<AnyObject>! = NSHashTable.weakObjects()
-	
-	fileprivate var currentEpisode: Episode?
-	fileprivate var currentPodcast: Podcast?
 	private let notificationCenter: NotificationCenter
 	private let audioSession: AVAudioSession
+	var observers: NSHashTable<AnyObject>! = NSHashTable.weakObjects()
 	
+	open var currentEpisode: Episode?
+	open var currentPodcast: Podcast?
+	open var playbackItems: [Episode]?
+	open var nextPlaybackItem: Episode? {
+		guard let playbackItems = self.playbackItems, let currentPlaybackItem = self.currentEpisode else { return nil }
+		
+		let nextItemIndex = playbackItems.index(of: currentPlaybackItem)! + 1
+		if nextItemIndex >= playbackItems.count { return nil }
+		
+		return playbackItems[nextItemIndex]
+	}
+	open var previousPlaybackItem: Episode? {
+		guard let playbackItems = self.playbackItems, let currentPlaybackItem = self.currentEpisode else { return nil }
+		
+		let previousItemIndex = playbackItems.index(of: currentPlaybackItem)! - 1
+		if previousItemIndex < 0 { return nil }
+		
+		return playbackItems[previousItemIndex]
+	}
 	open var currentTime_: TimeInterval? {
 		return CMTimeGetSeconds(self.player.currentTime())
 	}
 	
 	open var duration_: TimeInterval? {
+		let minute:TimeInterval = 60.0
+		if self.player.currentItem == nil{
+			return minute
+		}
 		return CMTimeGetSeconds((self.player.currentItem?.asset.duration)!)
 	}
 	
@@ -93,15 +118,46 @@ class HearThisPlayer: HearThisPlayerType {
 		self.player.seek(to: CMTime(seconds: timeInterval, preferredTimescale: 1000000))
 	}
 	
+	open func nextTrack() {
+		guard let nextPlaybackItem = self.nextPlaybackItem else { return }
+		self.play(nextPlaybackItem)
+	}
+	
+	open func previousTrack() {
+		guard let previousPlaybackItem = self.previousPlaybackItem else { return }
+		self.play(previousPlaybackItem)
+	}
+	
+	open func playItems(_ playbackItems: [Episode], firstItem: Episode? = nil) {
+		self.playbackItems = playbackItems
+		
+		if playbackItems.count == 0 {
+			self.stop()
+			return
+		}
+		
+		let playbackItem = firstItem ?? self.playbackItems!.first!
+		self.play(playbackItem)
+	}
+	
 	func play(_ track: Episode) {
 		self.resetPlayer()
 		self.trackWillStartPlaying(track)
 		DispatchQueue.global(qos: .background).async {
 			[weak self] in
 			guard let `self` = self else { return }
-			let item = AVPlayerItem(url: URL(string: "http://www.archive.org/download/abirdingbronco_1103_librivox/abirdingonabronco_01_merriam_64kb.mp3")!)
-			self.currentEpisode = track
-			self.playItem(item)
+			print(track.mediaURL!,"...........")
+			if track.mediaURL == nil{
+				self.stop()
+				
+//				let item = AVPlayerItem(url: URL(string: "http://traffic.libsyn.com/atrain/EscapeBloodWaters6-17-54.mp3?dest-id=3441")!)
+//				self.currentEpisode = track
+//				self.playItem(item)
+			}else{
+				let item = AVPlayerItem(url: track.mediaURL!)
+				self.currentEpisode = track
+				self.playItem(item)
+			}
 		}
 	}
 	

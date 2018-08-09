@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SWXMLHash
 
 class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver{
 	// MARK: - Properties
@@ -24,6 +25,7 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var dataStack = EpisodeDataStack()
 	var currentPodcast: Podcast?
 	var currentEpisode: Episode?
+	var currentPodcastMedia: URL?
 	var searchController = UISearchController(searchResultsController: SearchResultTableViewController())
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -58,11 +60,18 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
+	
 	func loadTrendingEpisode() {
-		let firstTodoEndpoint:String = APIKey.sharedInstance.getApi(key: "/api_episode_trending/")
+		let firstTodoEndpoint:String = APIKey.sharedInstance.getApi(key: "/api_trending/")
 		Alamofire.request(firstTodoEndpoint).responseJSON { (response) in
 			do{
 				let apiHomeData = try JSONDecoder().decode(Array<Episode>.self, from: (response.data)!)
+				print(apiHomeData)
+				Alamofire.request((apiHomeData[0].mediaURL?.absoluteString)!).responseString { response in
+					let data = response.result.value!
+					let matched = Helper.matches(for: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:mp3)", in: String(data))
+					self.dataStack.setMediaURL(mediaURLArr: matched.unique())
+				}
 				self.dataStack.load(episodes: apiHomeData) { success in
 					self.DiscoverTableView.reloadData()
 				}
@@ -76,6 +85,7 @@ extension DiscoverViewController:SelectedCollectionItemDelegate{
 	// MARK: - Implement Delegate for Collection Cell Seletion
 	func selectedCollectionItem(podcast: DataStack, index: IndexPath) {
 		currentPodcast = podcast.allPods[index.row]
+		currentPodcastMedia = currentPodcast?.mediaURL
 		performSegue(withIdentifier: "collection_to_table", sender: self)
 		currentPodcast = nil
 	}
@@ -93,7 +103,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-		if let searchResultsController = self.searchController.searchResultsController as?SearchResultTableViewController {
+		if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController {
 				searchResultsController.array = []
 				searchResultsController.tableView.reloadData()
 		}
@@ -121,7 +131,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3+self.dataStack.allEps.count+1
+		return 3+self.dataStack.allEps.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,15 +146,13 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		case 2:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
 			return cell
-		case 3+self.dataStack.allEps.count:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
-			return cell
 		default:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "home_epi_cell", for: indexPath) as? EpisodeListTableViewCell
+			print(indexPath.row-3)
 			let episode: Episode = self.dataStack.allEps[indexPath.row-3]
 			// Displaying values
 			cell?.titleLabel.text = episode.title
-			cell?.artistLabel.text = episode.artist
+			cell?.artistLabel.text = "By:  "+episode.artist!
 			cell?.desLabel.text = episode.info
 			cell?.desLabel.numberOfLines = 0
 			cell?.desLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -154,7 +162,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		hearThisPlayer?.stop()
-		hearThisPlayer?.play(self.dataStack.allEps[indexPath.row - 3])
+		hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 3])
 		print("Print Selected Image for info ======->", dataStack.allEps[indexPath.row - 3].coverArtURL ?? "ok")
 	}
 	
@@ -165,8 +173,6 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		case 1:
 			return 300
 		case 2:
-			return 150
-		case -1:
 			return 150
 		default:
 			return 200
