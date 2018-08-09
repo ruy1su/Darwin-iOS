@@ -41,9 +41,14 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 	}
 
 	func selected(_ episodeStack: EpisodeDataStack, on: IndexPath) {
-		hearThisPlayer?.stop()
-		episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
-		hearThisPlayer?.playItems(episodeStack.allEps, firstItem: episodeStack.allEps[on.row])
+		hearThisPlayer?.alwaysPause()
+		if episodeStack.allEps.count == 0{
+			alert(message: "", title: "Sorry We Cannot Load this Episode", action: "Done")
+		}
+		else{
+			episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
+			hearThisPlayer?.playItems(episodeStack.allEps, firstItem: episodeStack.allEps[on.row])
+		}
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
 	}
 }

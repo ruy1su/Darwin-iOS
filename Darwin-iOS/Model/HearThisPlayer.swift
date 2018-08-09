@@ -14,6 +14,7 @@ protocol HearThisPlayerType {
 	func play(_ track: Episode)
 	func stop()
 	func pause()
+	func alwaysPause()
 	func previousTrack()
 	func nextTrack()
 	func seekTo(_ timeInterval: TimeInterval)
@@ -33,6 +34,7 @@ protocol HearThisPlayerObserver: class {
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode)
+	func player(_ player: HearThisPlayerType, willShutDown track: Episode)
 }
 
 extension HearThisPlayerObserver {
@@ -40,6 +42,7 @@ extension HearThisPlayerObserver {
 	func player(_ player: HearThisPlayerType, didStartPlaying track: Episode) {}
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)  {}
 	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode) {}
+	func player(_ player: HearThisPlayerType, willShutDown track: Episode) {}
 }
 
 protocol HearThisPlayerHolder : class {
@@ -141,24 +144,27 @@ class HearThisPlayer: HearThisPlayerType {
 	}
 	
 	func play(_ track: Episode) {
-		self.resetPlayer()
-		self.trackWillStartPlaying(track)
-		DispatchQueue.global(qos: .background).async {
-			[weak self] in
-			guard let `self` = self else { return }
-			print(track.mediaURL!,"...........")
-			if track.mediaURL == nil{
-				self.stop()
-				
-//				let item = AVPlayerItem(url: URL(string: "http://traffic.libsyn.com/atrain/EscapeBloodWaters6-17-54.mp3?dest-id=3441")!)
-//				self.currentEpisode = track
-//				self.playItem(item)
-			}else{
+//		print(track.mediaURL?.absoluteString, "]]]]]]]]]]]]]]]]]]]]]]]]]]]")
+		if ((track.mediaURL?.absoluteString) == "http://"){
+			self.willShutDown(track: track)
+		}
+		else{
+			self.stop()
+			self.resetPlayer()
+			self.trackWillStartPlaying(track)
+			DispatchQueue.global(qos: .background).async {
+				[weak self] in
+				guard let `self` = self else { return }
+				print(track.mediaURL!,"...........")
 				let item = AVPlayerItem(url: track.mediaURL!)
 				self.currentEpisode = track
 				self.playItem(item)
 			}
 		}
+	}
+	
+	func alwaysPause(){
+		player.pause()
 	}
 	
 	func pause(){
@@ -267,6 +273,20 @@ extension HearThisPlayer {
 			for observer in self.observers.allObjects {
 				if let observer = observer as? HearThisPlayerObserver {
 					observer.player(self, didStopPlaying: track)
+				}
+			}
+		}
+	}
+	
+	fileprivate
+	func willShutDown(track: Episode) {
+		DispatchQueue.main.async {
+			[weak self] in
+			guard let `self` = self else { return }
+			
+			for observer in self.observers.allObjects {
+				if let observer = observer as? HearThisPlayerObserver {
+					observer.player(self, willShutDown: track)
 				}
 			}
 		}

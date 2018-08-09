@@ -29,6 +29,7 @@
 		A5532092210312800035CDDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532091210312800035CDDA /* Constant.swift */; };
 		A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532097210688D70035CDDA /* UserHomeViewController.swift */; };
 		A565FA61211BBCA300923DF3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA60211BBCA300923DF3 /* Helper.swift */; };
+		A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA62211C348300923DF3 /* SettingViewController.swift */; };
 		A5AE3C772106997A002EAD0B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C762106997A002EAD0B /* LoginViewController.swift */; };
 		A5AE3C7A21069C08002EAD0B /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */; };
 		A5AE3C7E21069C13002EAD0B /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7B21069C13002EAD0B /* LoginButton.swift */; };
@@ -104,6 +105,7 @@
 		A5532091210312800035CDDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A5532097210688D70035CDDA /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		A565FA60211BBCA300923DF3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A565FA62211C348300923DF3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A5AE3C762106997A002EAD0B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
 		A5AE3C7B21069C13002EAD0B /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				A5532097210688D70035CDDA /* UserHomeViewController.swift */,
 				A5AE3C762106997A002EAD0B /* LoginViewController.swift */,
+				A565FA62211C348300923DF3 /* SettingViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				A5AE3C8A2106B3B2002EAD0B /* NetworkingManager.swift in Sources */,
 				A534383C210E81120037CED5 /* Cache.swift in Sources */,
 				A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */,
+				A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A5345E86210EE6BA00D619D6 /* CollectionNavigationController.swift in Sources */,
 				A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */,

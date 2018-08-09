@@ -72,10 +72,18 @@ class EpisodeTableViewDataSource: NSObject {
 		Alamofire.request((currentPodcastMedia.absoluteString)).responseString { response in
 			let data = response.result.value!
 			let matched = Helper.matches(for: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:mp3)", in: String(data))
-			print(matched.unique(), matched.unique().count)
-			datastack.setMediaURL(mediaURLArr: matched.unique())
+			var unique = [String]()
+			for s in matched{
+				if !unique.contains(s){
+					unique.append(s)
+				}
+			}
+			print(unique, unique.count)
+			datastack.setMediaURL(mediaURLArr: unique)
 		}
 	}
+	
+	
 }
 
 extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate{

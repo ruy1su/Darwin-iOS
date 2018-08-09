@@ -48,8 +48,8 @@ class EpisodeDataStack: NSObject {
 	
 	func setMediaURL(mediaURLArr: [String]){
 		var i: Int = 0
-		print(mediaURLArr.count)
-		print(self.allEps.count)
+//		print(mediaURLArr.count)
+//		print(self.allEps.count)
 		for url in mediaURLArr{
 			if i < allEps.count{
 				self.allEps[i].mediaURL? = URL(string: url)!

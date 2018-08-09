@@ -72,6 +72,12 @@ extension FloatingPlayerViewController: HearThisPlayerObserver {
 		playButton.setImage(UIImage(named:"play"), for: .normal)
 		playOrPause = false
 	}
+	
+	func player(_ player: HearThisPlayerType, willShutDown track: Episode) {
+		alert(message: "", title: "Sorry We Cannot Load this Episode", action: "Done")
+		playButton.setImage(UIImage(named:"play"), for: .normal)
+		playOrPause = false
+	}
 }
 
 // MARK: - IBActions
