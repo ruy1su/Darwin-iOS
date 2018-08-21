@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		guard let rvc = self.window?.rootViewController as? HearThisPlayerHolder else {fatalError()}
 		rvc.hearThisPlayer = HearThisPlayer()
+		let memoryCapacity = 500 * 1024 * 1024
+		let diskCapacity = 500 * 1024 * 1024
+		let cache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "darwin")
+		URLCache.shared = cache
 		return true
 	}
 	

@@ -30,6 +30,7 @@
 		A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532097210688D70035CDDA /* UserHomeViewController.swift */; };
 		A565FA61211BBCA300923DF3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA60211BBCA300923DF3 /* Helper.swift */; };
 		A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA62211C348300923DF3 /* SettingViewController.swift */; };
+		A565FA65211D2A5200923DF3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A565FA64211D2A5200923DF3 /* StoreKit.framework */; };
 		A5AE3C772106997A002EAD0B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C762106997A002EAD0B /* LoginViewController.swift */; };
 		A5AE3C7A21069C08002EAD0B /* FacebookLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */; };
 		A5AE3C7E21069C13002EAD0B /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE3C7B21069C13002EAD0B /* LoginButton.swift */; };
@@ -106,6 +107,7 @@
 		A5532097210688D70035CDDA /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		A565FA60211BBCA300923DF3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A565FA62211C348300923DF3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		A565FA64211D2A5200923DF3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A5AE3C762106997A002EAD0B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5AE3C7921069C08002EAD0B /* FacebookLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginButton.swift; sourceTree = "<group>"; };
 		A5AE3C7B21069C13002EAD0B /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				372D8083745B58E900A6EA1E /* Pods_Darwin_iOS.framework in Frameworks */,
+				A565FA65211D2A5200923DF3 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +179,7 @@
 		126E72F65473FFFBB8337FF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A565FA64211D2A5200923DF3 /* StoreKit.framework */,
 				5BBB4153343409CC60EDFE00 /* Pods_Darwin_iOS.framework */,
 				82F926444BA534993981757C /* Pods_Darwin_iOSTests.framework */,
 				1D572C08BD0054ECCD5D6B06 /* Pods_Darwin_iOSUITests.framework */,
@@ -475,6 +479,11 @@
 				TargetAttributes = {
 					A5E0B0D920F1856600F00F43 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					A5E0B0F020F1856600F00F43 = {
 						CreatedOnToolsVersion = 9.4.1;

@@ -114,7 +114,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOv-yZ-1Ja">
-                                    <rect key="frame" x="23" y="11" width="68" height="67.5"/>
+                                    <rect key="frame" x="23" y="11" width="68" height="67"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="68" id="bYL-Pj-7Jc"/>
                                     </constraints>
@@ -244,7 +244,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a2-Fv-5dN">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
-                                                    <state key="normal" title="Log In"/>
+                                                    <state key="normal" title="Start Your Journey"/>
                                                     <connections>
                                                         <action selector="loginTapped:" destination="Bls-wM-f3c" eventType="touchUpInside" id="W1g-2w-xxD"/>
                                                     </connections>
@@ -375,8 +375,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download When Add Collection " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Put-dR-qRm">
-                                                    <rect key="frame" x="16" y="11" width="246" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download When Add into Collection " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Put-dR-qRm">
+                                                    <rect key="frame" x="16" y="11" width="279" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -404,6 +404,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="cacheSize" destination="4ZQ-zh-5ve" id="gRM-Ko-4Oq"/>
                         <outlet property="removeCache" destination="r3t-HP-rnq" id="3D7-f6-F85"/>
                     </connections>
                 </tableViewController>
@@ -1175,6 +1176,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9S-F9-4dr">
                                             <rect key="frame" x="334" y="15.5" width="33" height="33"/>
                                             <state key="normal" image="fast-forward"/>
+                                            <connections>
+                                                <action selector="nextTrack:" destination="2dh-0d-7o2" eventType="touchUpInside" id="exI-gS-wA2"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jss-5C-DSg">
                                             <rect key="frame" x="293" y="15.5" width="33" height="33"/>
@@ -1547,14 +1551,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="night-stars-wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="7dn-FZ-mhV">
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-1" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dn-FZ-mhV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="una-8t-O0p" userLabel="LoginFormContainerView">
-                                <rect key="frame" x="36" y="150" width="304" height="137"/>
+                                <rect key="frame" x="36" y="150" width="303" height="137"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wZl-p4-IR6" userLabel="Username Text Field" customClass="LoginTextField" customModule="Darwin_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="264" height="30"/>
+                                        <rect key="frame" x="20" y="20" width="263" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="s9j-95-KX5"/>
@@ -1569,7 +1573,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIg-5d-ZCL" userLabel="Password Text Field" customClass="LoginTextField" customModule="Darwin_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="57" width="264" height="30"/>
+                                        <rect key="frame" x="20" y="57" width="263" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Zda-sa-q4X"/>
@@ -1584,7 +1588,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opE-EN-EJQ" customClass="LoginButton" customModule="Darwin_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="101" width="264" height="33"/>
+                                        <rect key="frame" x="20" y="101" width="263" height="33"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
@@ -1707,6 +1711,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background-1" width="1041" height="1824"/>
         <image name="chevron" width="36" height="12"/>
         <image name="collect" width="15" height="15"/>
         <image name="cora" width="2409" height="2502"/>
@@ -1716,7 +1721,6 @@
         <image name="friends" width="15" height="15"/>
         <image name="himank" width="562" height="559"/>
         <image name="music-playlist" width="28" height="28"/>
-        <image name="night-stars-wallpaper" width="320" height="568"/>
         <image name="play" width="33" height="33"/>
         <image name="rewind" width="33" height="33"/>
         <image name="setting" width="15" height="15"/>

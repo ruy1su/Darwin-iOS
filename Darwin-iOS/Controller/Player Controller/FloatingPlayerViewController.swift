@@ -36,7 +36,9 @@ class FloatingPlayerViewController: UIViewController, TrackSubscriber, HearThisP
 		hearThisPlayer?.pause()
 	}
 	@IBOutlet weak var ffButton: UIButton!
-	
+	@IBAction func nextTrack(_ sender: Any) {
+		hearThisPlayer?.nextTrack()
+	}
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()

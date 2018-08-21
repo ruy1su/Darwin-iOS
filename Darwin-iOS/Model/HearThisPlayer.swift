@@ -15,11 +15,13 @@ protocol HearThisPlayerType {
 	func stop()
 	func pause()
 	func alwaysPause()
+	func currentPlayItem()  -> Episode?
 	func previousTrack()
 	func nextTrack()
 	func seekTo(_ timeInterval: TimeInterval)
 	func currentTime() -> TimeInterval?
 	func duration() -> TimeInterval?
+	func isPlayingOrNot() -> Bool?
 	mutating func registerObserver(observer: HearThisPlayerObserver)
 	var observers: NSHashTable<AnyObject>! { set get }
 }
@@ -35,6 +37,7 @@ protocol HearThisPlayerObserver: class {
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)
 	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode)
 	func player(_ player: HearThisPlayerType, willShutDown track: Episode)
+	func player(_ player: HearThisPlayerType, willChangeTrack track: Episode)
 }
 
 extension HearThisPlayerObserver {
@@ -43,6 +46,7 @@ extension HearThisPlayerObserver {
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode)  {}
 	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode) {}
 	func player(_ player: HearThisPlayerType, willShutDown track: Episode) {}
+	func player(_ player: HearThisPlayerType, willChangeTrack track: Episode) {}
 }
 
 protocol HearThisPlayerHolder : class {
@@ -52,6 +56,8 @@ protocol HearThisPlayerHolder : class {
 //extension Episode: Equatable {}
 
 class HearThisPlayer: HearThisPlayerType {
+
+
 	private var player = AVPlayer()
 	private let notificationCenter: NotificationCenter
 	private let audioSession: AVAudioSession
@@ -97,6 +103,10 @@ class HearThisPlayer: HearThisPlayerType {
 		}
 	}
 	
+	func isPlayingOrNot() -> Bool? {
+		return isPlaying
+	}
+	
 	init(notificationCenter: NotificationCenter = NotificationCenter.default, audioSession:AVAudioSession = AVAudioSession.sharedInstance()) {
 		self.notificationCenter = notificationCenter
 		self.audioSession = audioSession
@@ -109,6 +119,10 @@ class HearThisPlayer: HearThisPlayerType {
 		notificationCenter.addObserver(self, selector: #selector(HearThisPlayer.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 	}
 
+	func currentPlayItem() -> Episode?{
+		return currentEpisode
+	}
+	
 	func currentTime() -> TimeInterval? {
 		return currentTime_
 	}
@@ -123,11 +137,13 @@ class HearThisPlayer: HearThisPlayerType {
 	
 	open func nextTrack() {
 		guard let nextPlaybackItem = self.nextPlaybackItem else { return }
+		self.willChangeTrack(track: nextPlaybackItem)
 		self.play(nextPlaybackItem)
 	}
 	
 	open func previousTrack() {
 		guard let previousPlaybackItem = self.previousPlaybackItem else { return }
+		self.willChangeTrack(track: nextPlaybackItem!)
 		self.play(previousPlaybackItem)
 	}
 	
@@ -140,11 +156,11 @@ class HearThisPlayer: HearThisPlayerType {
 		}
 		
 		let playbackItem = firstItem ?? self.playbackItems!.first!
+		self.currentEpisode = playbackItem
 		self.play(playbackItem)
 	}
 	
 	func play(_ track: Episode) {
-//		print(track.mediaURL?.absoluteString, "]]]]]]]]]]]]]]]]]]]]]]]]]]]")
 		if ((track.mediaURL?.absoluteString) == "http://"){
 			self.willShutDown(track: track)
 		}
@@ -287,6 +303,19 @@ extension HearThisPlayer {
 			for observer in self.observers.allObjects {
 				if let observer = observer as? HearThisPlayerObserver {
 					observer.player(self, willShutDown: track)
+				}
+			}
+		}
+	}
+	fileprivate
+	func willChangeTrack(track: Episode) {
+		DispatchQueue.main.async {
+			[weak self] in
+			guard let `self` = self else { return }
+			
+			for observer in self.observers.allObjects {
+				if let observer = observer as? HearThisPlayerObserver {
+					observer.player(self, willChangeTrack: track)
 				}
 			}
 		}

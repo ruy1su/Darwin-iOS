@@ -147,16 +147,16 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
 			return cell
 		default:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "home_epi_cell", for: indexPath) as? EpisodeListTableViewCell
-			print(indexPath.row-3)
-			let episode: Episode = self.dataStack.allEps[indexPath.row-3]
-			// Displaying values
-			cell?.titleLabel.text = episode.title
-			cell?.artistLabel.text = "By:  "+episode.artist!
-			cell?.desLabel.text = episode.info
-			cell?.desLabel.numberOfLines = 0
-			cell?.desLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-			return cell!
+			let episode: Episode = dataStack.allEps[indexPath.row-3]
+			let cell = EpisodeListTableViewCell(player: hearThisPlayer!, listItem: episode)
+			
+			UIGraphicsBeginImageContextWithOptions(CGSize(width: 50, height: 50), false, UIScreen.main.scale)
+			cell.imageView!.imageFromUrlWithChangedSize(url: (episode.coverArtURL)!)
+			cell.imageView!.clipsToBounds = true
+			cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext()
+			UIGraphicsEndImageContext()
+			
+			return cell
 		}
 	}
 	
@@ -164,6 +164,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		hearThisPlayer?.stop()
 		hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 3])
 		print("Print Selected Image for info ======->", dataStack.allEps[indexPath.row - 3].coverArtURL ?? "ok")
+		self.DiscoverTableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -175,7 +176,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		case 2:
 			return 150
 		default:
-			return 200
+			return 100
 		}
 	}
 }

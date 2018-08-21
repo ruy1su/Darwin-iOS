@@ -34,7 +34,7 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 			height.constant = 0
 		}
 		print(currentPodcast as Any,"\n ++++++ This is selected podcast ++++++ \n")
-		datasource = EpisodeTableViewDataSource(tableView: episodeTableView, podcast: currentPodcast!)
+		datasource = EpisodeTableViewDataSource(tableView: episodeTableView, podcast: currentPodcast!, player: hearThisPlayer!)
 		datasource.load()
 		datasource.registerSelectionObserver(observer: self)
 		episodeListHeaderView.podcast = currentPodcast
@@ -47,7 +47,7 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 		}
 		else{
 			episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
-			hearThisPlayer?.playItems(episodeStack.allEps, firstItem: episodeStack.allEps[on.row])
+//			hearThisPlayer?.playItems(episodeStack.allEps, firstItem: episodeStack.allEps[on.row])
 		}
 		print("Print Selected Image for info ======->", episodeStack.allEps[on.row].coverArtURL ?? "ok")
 	}

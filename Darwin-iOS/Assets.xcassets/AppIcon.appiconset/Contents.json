@@ -7,8 +7,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "icons8-microphone-60.png",
       "scale" : "3x"
     },
     {
@@ -18,8 +19,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "icons8-microphone-87.png",
       "scale" : "3x"
     },
     {
@@ -29,8 +31,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "icons8-microphone-120.png",
       "scale" : "3x"
     },
     {
@@ -40,8 +43,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "icons8-microphone-180.png",
       "scale" : "3x"
     },
     {
@@ -51,8 +55,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "icons8-microphone-40.png",
       "scale" : "2x"
     },
     {
@@ -62,13 +67,15 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "icons8-microphone-81副本.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "icons8-microphone-41.png",
       "scale" : "1x"
     },
     {
@@ -80,18 +87,19 @@
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "icons8-microphone-96副本-4.png",
+      "filename" : "icons8-microphone-76.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "icons8-microphone-152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "icons_1024副本.png",
+      "filename" : "icons8-microphone-167.png",
       "scale" : "2x"
     },
     {

@@ -5,8 +5,8 @@
 //  Created by Zenos on 7/23/18.
 //  Copyright © 2018 Zixia. All rights reserved.
 //
-import FacebookCore
 import UIKit
+import FacebookCore
 import FacebookLogin
 import Alamofire
 
@@ -32,10 +32,30 @@ class LoginViewController: UIViewController {
 	@IBAction func didTapLoginButton(_ sender: LoginButton) {
 		// Regular login attempt. Add the code to handle the login by email and password.
 		guard let email = usernameTextField.text, let pass = passwordTextField.text else {
-			// It should never get here
 			return
 		}
-		didLogin(method: "email and password", info: "Email: \(email) \n Password: \(pass)")
+		if email == "" {
+			alert(message: "Please Enter Your User Name", title: "Login Failed", action: "Done")
+		}
+		else if pass == ""{
+			alert(message: "Please Enter Your Password", title: "Login Failed", action: "Done")
+		}
+		else{
+			let user: String = email
+			Alamofire.request(APIKey.sharedInstance.getApi(key:"/login_request/\(user)/\(pass)")).responseJSON { response in
+				guard let dataDic = response.result.value else{
+					self.alert(message: "Please Check Your Email and Password Again", title: "Login Failed", action: "Done")
+					return
+				}
+				let data = dataDic as! NSDictionary
+//				print(data["uid"] as Any)
+				print("Login Success:", data["uid"]!)
+				self.userName = user
+				sharedDarwinUser.baseUid = data["uid"] as! Int
+				sharedDarwinUser.loginStatus = true
+				self.didLogin(method: "user and password", info: "User: \(user) \n Password: \(pass)")
+			}
+		}
 	}
 	
 	@IBAction func didTapFacebookLoginButton(_ sender: FacebookLoginButton) {

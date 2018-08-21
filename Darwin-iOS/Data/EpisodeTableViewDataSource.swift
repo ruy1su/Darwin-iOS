@@ -16,16 +16,22 @@ protocol EpisodeSelectionObserver: class {
 }
 
 
-class EpisodeTableViewDataSource: NSObject {
+class EpisodeTableViewDataSource: NSObject, HearThisPlayerHolder, HearThisPlayerObserver {
+	var hearThisPlayer: HearThisPlayerType? {
+		didSet {
+			hearThisPlayer?.registerObserver(observer: self)
+		}
+	}
 	
 	var dataStack: EpisodeDataStack
 	var managedTable: UITableView
 	var currentPodcast: Podcast
 	
-	init(tableView: UITableView, podcast: Podcast) {
+	init(tableView: UITableView, podcast: Podcast, player: HearThisPlayerType) {
 		dataStack = EpisodeDataStack()
 		managedTable = tableView
 		currentPodcast = podcast
+		hearThisPlayer = player
 		super.init()
 		managedTable.dataSource = self
 		managedTable.delegate = self
@@ -93,23 +99,30 @@ extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		// Setting Artist for Episode
 		dataStack.setArtist(podcast: currentPodcast, on: indexPath)
-		// Configure Cells
-		let cell = tableView.dequeueReusableCell(withIdentifier: "epi_cell", for: indexPath) as? EpisodeListTableViewCell
+		dataStack.setCoverArt(podcast: currentPodcast, on: indexPath)
 		let episode: Episode = dataStack.allEps[indexPath.row]
-		// Displaying values
-		cell?.titleLabel.text = episode.title
-		cell?.artistLabel.text = episode.artist
-		cell?.desLabel.text = episode.info
+		let cell = EpisodeListTableViewCell(player: hearThisPlayer!, listItem: episode)
+		cell.hearThisPlayer = self.hearThisPlayer
 		
-		cell?.desLabel.numberOfLines = 0
-		cell?.desLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-		
-		return cell!
+		UIGraphicsBeginImageContextWithOptions(CGSize(width: 50, height: 50), false, UIScreen.main.scale)
+		cell.imageView!.imageFromUrlWithChangedSize(url: (episode.coverArtURL)!)
+		cell.imageView!.clipsToBounds = true
+		cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return cell
 	}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		for observer:EpisodeSelectionObserver in self.selectionObservers.allObjects {
 			observer.selected(dataStack, on: indexPath)
 		}
+		self.hearThisPlayer?.playItems(dataStack.allEps, firstItem: dataStack.allEps[indexPath.row])
+		let cell = tableView.cellForRow(at: indexPath) as! EpisodeListTableViewCell
+		cell.hearThisPlayer = self.hearThisPlayer
+		cell.updateAccessoryView()
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
+	}
 }

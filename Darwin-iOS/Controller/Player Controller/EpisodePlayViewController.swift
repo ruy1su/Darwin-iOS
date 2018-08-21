@@ -74,7 +74,7 @@ class EpisodePlayViewController: UIViewController, TrackSubscriber, HearThisPlay
 	}
 	
 	func player(_ player: HearThisPlayerType, didStopPlaying track: Episode) {
-		self.dismiss(animated: false, completion: nil)
+
 	}
 	
 	func player(_ player: HearThisPlayerType, didPausePlaying track: Episode) {

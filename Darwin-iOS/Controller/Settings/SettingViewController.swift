@@ -9,14 +9,21 @@
 import UIKit
 
 class SettingViewController: UITableViewController {
+	@IBOutlet weak var removeCache: UITableViewCell!
+	
+	@IBOutlet weak var cacheSize: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		cacheSize.text = String(Float(URLCache.shared.currentDiskUsage) / Float(1000000)) + " MB"
 	}
-	@IBOutlet weak var removeCache: UITableViewCell!
+
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0{
+			URLCache.shared.removeAllCachedResponses()
+			cacheSize.text = String(Float(URLCache.shared.currentDiskUsage) / Float(1000000)) + " MB"
 			alert(message: "Removed Cache Successflly", title: "Clear Cache", action: "Done")
 		}
 	}

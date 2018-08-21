@@ -51,7 +51,9 @@ class UserHomeViewController: UITableViewController, HearThisPlayerHolder, HearT
 	@IBAction func unwindToThisView(sender: UIStoryboardSegue) {
 		if let sourceViewController = sender.source as? LoginViewController {
 			userName.text = sourceViewController.userName
-			userImage.imageFromUrl(link: (sourceViewController.userImageURL)!)
+			if sourceViewController.userImageURL != nil{
+				userImage.imageFromUrl(link: (sourceViewController.userImageURL)!)
+			}
 			loginButton.setTitle("Log Out", for: .normal)
 		}
 	}
