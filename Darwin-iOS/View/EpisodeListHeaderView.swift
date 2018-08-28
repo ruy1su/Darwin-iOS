@@ -9,12 +9,16 @@
 import UIKit
 
 class EpisodeListHeaderView: UIView {
+
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var avatarView: UIImageView!
+	@IBOutlet weak var category: UIButton!
 	
 	var podcast: Podcast? {
 		didSet{
 			titleLabel.text = podcast?.title
+			category.layer.cornerRadius = 5
+			category.setTitle(podcast?.category, for: .normal)
 			if let podcast = self.podcast {
 				avatarView.imageFromUrl(link: (podcast.coverArtURL?.absoluteString)!)
 				avatarView.clipsToBounds = true

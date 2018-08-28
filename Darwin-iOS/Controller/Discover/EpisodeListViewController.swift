@@ -9,8 +9,7 @@
 import UIKit
 import Alamofire
 
-class EpisodeListViewController: UIViewController, HearThisPlayerHolder, EpisodeSelectionObserver, HearThisPlayerObserver {
-
+class EpisodeListViewController: UIViewController, HearThisPlayerHolder, EpisodeSelectionObserver, HearThisPlayerObserver{
 	var currentPodcast: Podcast?
 	var datasource: EpisodeTableViewDataSource!
 	var hearThisPlayer: HearThisPlayerType? {
@@ -23,6 +22,9 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 	@IBOutlet weak var episodeListHeaderView: EpisodeListHeaderView!
 	@IBOutlet weak var navBar: UINavigationBar!
 	@IBOutlet weak var episodeTableView: UITableView!
+	@IBAction func presentPodsForCat(_ sender: Any) {
+		self.performSegue(withIdentifier: "cat_to_collection", sender: self)
+	}
 	
 	@IBAction func dismiss(_ sender: Any) {
 		self.performSegue(withIdentifier: "unWind", sender: self)
@@ -39,7 +41,17 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 		datasource.registerSelectionObserver(observer: self)
 		episodeListHeaderView.podcast = currentPodcast
 	}
-
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destiantion =  segue.destination as? HearThisPlayerHolder {
+			destiantion.hearThisPlayer = hearThisPlayer
+		}
+		if let destiantion =  segue.destination as? CategoryCollectionViewController {
+			destiantion.currentCat = (currentPodcast?.category)!
+			destiantion.API = APIKey.sharedInstance.getApi(key:"/api_pod_cat/\(currentPodcast?.category ?? "Arts")")
+		}
+	}
+	
 	func selected(_ episodeStack: EpisodeDataStack, on: IndexPath) {
 		hearThisPlayer?.alwaysPause()
 		if episodeStack.allEps.count == 0{

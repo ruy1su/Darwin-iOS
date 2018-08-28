@@ -28,6 +28,7 @@ class DataStack: NSObject {
 					.with(pid: podcastDictionary["pid"] as? Int)
 					.with(mediaURL: podcastDictionary["mediaURL"] as? String)
 					.with(coverArtURL: podcastDictionary["coverArtURL"] as? String)
+					.with(category: podcastDictionary["category"] as? String)
 				if let podcast = builder.build() {
 					allPods.append(podcast)
 				}
@@ -47,10 +48,26 @@ class DataStack: NSObject {
 				.with(pid: podcast.pid)
 				.with(mediaURL: podcast.mediaURL?.absoluteString)
 				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
+				.with(category: podcast.category)
 			if let podcast = builder.build() {
 				allPods.append(podcast)
 			}
 			completion(true)
+		}
+	}
+	func loadPod(podcasts: [Podcast]){
+		allPods = []
+		for podcast in podcasts {
+			let builder = PodcastBuilder()
+				.with(title: podcast.title)
+				.with(artist: podcast.artist)
+				.with(pid: podcast.pid)
+				.with(mediaURL: podcast.mediaURL?.absoluteString)
+				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
+				.with(category: podcast.category)
+			if let podcast = builder.build() {
+				allPods.append(podcast)
+			}
 		}
 	}
 }

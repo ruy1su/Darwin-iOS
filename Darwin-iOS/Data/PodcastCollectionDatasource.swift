@@ -13,7 +13,15 @@ protocol PodcastSelectionObserver: class {
 	func selected(_ podcast: DataStack, on: IndexPath)
 }
 
+@objc
+protocol CollectionItemLoadCompleteDelegate:class  {
+	func loadComplete()
+}
+
 class PodcastCollectionDatasource: NSObject {
+	// Configure Loading Delegate
+	var delegate: CollectionItemLoadCompleteDelegate?
+	
 	// Set up Data Stack
 	var dataStack: DataStack
 	var managedCollection: UICollectionView
@@ -25,29 +33,36 @@ class PodcastCollectionDatasource: NSObject {
 		managedCollection.dataSource = self
 		managedCollection.delegate = self
 	}
-	
+	private var loadingObservers = NSHashTable<CollectionItemLoadCompleteDelegate>.weakObjects()
 	private var selectionObservers = NSHashTable<PodcastSelectionObserver>.weakObjects()
 	func registerSelectionObserver(observer: PodcastSelectionObserver) {
 		selectionObservers.add(observer)
 	}
-	
+	func registerLoadingObserver(observer: CollectionItemLoadCompleteDelegate) {
+		loadingObservers.add(observer)
+	}
 	func podcast(at index: Int) -> Podcast {
 		let realindex = index % dataStack.allPods.count
 		return dataStack.allPods[realindex]
 	}
 	
 	func load(api: String) {
-		guard let homeUrl = URL(string: api) else { return }
-		URLSession.shared.dataTask(with: homeUrl) { (data, response
+		let urlString = api.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+		let homeUrl = URL(string: urlString!)
+		
+		URLSession.shared.dataTask(with: homeUrl!) { (data, response
 			, error) in
 			guard let data = data else { return }
 			do {
 				let decoder = JSONDecoder()
 				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
 				print(apiHomeData[0],"\n ++++++ Fetched podcast data from backend ++++++\n")
-				DispatchQueue.main.async {
+				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(20)) {
 					self.dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
 						self?.managedCollection.reloadData()
+						for observer:CollectionItemLoadCompleteDelegate in (self?.loadingObservers.allObjects)! {
+							observer.loadComplete()
+						}
 					}
 				}
 			} catch let err {
@@ -82,7 +97,6 @@ extension PodcastCollectionDatasource: UICollectionViewDataSource,UICollectionVi
 	func configured(_ cell: PodcastCell, at indexPath: IndexPath) -> PodcastCell {
 		let ipod = podcast(at: indexPath.row)
 		cell.podcastTitle.text = String(utf8String:(ipod.title?.cString(using: String.Encoding.utf8))!)
-//		print(ipod.title?.cString(using: String.Encoding.utf8))
 		cell.artistName.text = ipod.artist
 		
 		// Load image from cache if cached

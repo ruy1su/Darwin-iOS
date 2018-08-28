@@ -265,7 +265,7 @@ extension ExpandingPlayerViewController {
 	func configureCoverImageInStartPosition() {
 		let originatingImageFrame = sourceView.originatingCoverImageView.frame
 		coverImageHeight.constant = originatingImageFrame.height
-		coverImageLeading.constant = originatingImageFrame.minX
+		coverImageLeading.constant = originatingImageFrame.minX 
 		coverImageTop.constant = originatingImageFrame.minY
 		coverImageBottom.constant = originatingImageFrame.minY
 	}

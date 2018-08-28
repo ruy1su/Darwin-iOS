@@ -16,6 +16,7 @@ class PodcastBuilder: NSObject {
 	private var artist: String?
 	private var mediaURL: URL?
 	private var coverArtURL: URL?
+	private var category: String?
 	
 	func build() -> Podcast? {
 		guard let title = title,
@@ -23,7 +24,7 @@ class PodcastBuilder: NSObject {
 				return nil
 		}
 		
-		return Podcast(title: title, pid: pid, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
+		return Podcast(title: title, pid: pid, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL, category: category)
 	}
 	
 	func with(title: String?) -> Self {
@@ -56,6 +57,11 @@ class PodcastBuilder: NSObject {
 		}
 		
 		self.coverArtURL = URL(string: urlstring)
+		return self
+	}
+	
+	func with(category: String?) -> Self {
+		self.category = category
 		return self
 	}
 }

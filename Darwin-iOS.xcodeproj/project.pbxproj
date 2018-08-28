@@ -28,6 +28,7 @@
 		A5532090210306B80035CDDA /* SearchResultTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553208F210306B80035CDDA /* SearchResultTableCell.swift */; };
 		A5532092210312800035CDDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532091210312800035CDDA /* Constant.swift */; };
 		A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5532097210688D70035CDDA /* UserHomeViewController.swift */; };
+		A55803C82135044D0073B073 /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55803C72135044D0073B073 /* CategoryCollectionViewController.swift */; };
 		A565FA61211BBCA300923DF3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA60211BBCA300923DF3 /* Helper.swift */; };
 		A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565FA62211C348300923DF3 /* SettingViewController.swift */; };
 		A565FA65211D2A5200923DF3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A565FA64211D2A5200923DF3 /* StoreKit.framework */; };
@@ -105,6 +106,7 @@
 		A553208F210306B80035CDDA /* SearchResultTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableCell.swift; sourceTree = "<group>"; };
 		A5532091210312800035CDDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A5532097210688D70035CDDA /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
+		A55803C72135044D0073B073 /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		A565FA60211BBCA300923DF3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A565FA62211C348300923DF3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A565FA64211D2A5200923DF3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -207,6 +209,7 @@
 				A53A2AD520FC1EF0002DEA45 /* DiscoverNavigationController.swift */,
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
+				A55803C72135044D0073B073 /* CategoryCollectionViewController.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				A5AE3C7F21069C13002EAD0B /* LoginTextField.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
+				A55803C82135044D0073B073 /* CategoryCollectionViewController.swift in Sources */,
 				A5532092210312800035CDDA /* Constant.swift in Sources */,
 				A565FA61211BBCA300923DF3 /* Helper.swift in Sources */,
 				A5E0B11620F1A0FB00F00F43 /* DataStack.swift in Sources */,

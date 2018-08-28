@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//		UINavigationBar.appearance().barTintColor = UIColor(rgb: 0x37474F)
+//		UINavigationBar.appearance().tintColor = UIColor.white
+//		UINavigationBar.appearance().titleTextAttributes = [kCTForegroundColorAttributeName:UIColor.white] as [NSAttributedStringKey : Any]
+		
 		guard let rvc = self.window?.rootViewController as? HearThisPlayerHolder else {fatalError()}
 		rvc.hearThisPlayer = HearThisPlayer()
 		let memoryCapacity = 500 * 1024 * 1024

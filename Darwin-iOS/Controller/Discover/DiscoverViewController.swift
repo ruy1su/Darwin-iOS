@@ -13,13 +13,17 @@ import SWXMLHash
 class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerHolder, HearThisPlayerObserver{
 	// MARK: - Properties
 	@IBOutlet weak var DiscoverTableView: UITableView!
-	
+	@IBAction func reload(_ sender: Any) {
+		flag = true
+		self.DiscoverTableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
+	}
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
 	
+	var flag: Bool = false
 	var collectionView: UICollectionView?
 	var episodeListViewController: EpisodeListViewController?
 	var dataStack = EpisodeDataStack()
@@ -29,7 +33,7 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	var searchController = UISearchController(searchResultsController: SearchResultTableViewController())
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		// Initialize Search Controller
 		searchController = UISearchController(searchResultsController: storyboard?.instantiateViewController(withIdentifier: "SearchResultTableVC"))
 		searchController.obscuresBackgroundDuringPresentation = true
@@ -45,7 +49,6 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 		// Configure Datasource
 		DiscoverTableView.dataSource = self
 		DiscoverTableView.delegate = self
-		
 		loadTrendingEpisode()
 	}
 	
@@ -116,7 +119,9 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 					let apiHomeData = try JSONDecoder().decode(Array<Podcast>.self, from: (response.data)!)
 					dataStack.loadPod(podcasts: apiHomeData) { success in
 						if let searchResultsController = self.searchController.searchResultsController as? SearchResultTableViewController {
-							searchResultsController.array = dataStack.allPods
+							searchResultsController.allArray = dataStack.allPods
+							searchResultsController.array = Array(dataStack.allPods.prefix(5))
+							searchResultsController.loadingData = false
 							searchResultsController.hearThisPlayer = self.hearThisPlayer
 							searchResultsController.tableView.reloadData()
 						}
@@ -131,23 +136,36 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3+self.dataStack.allEps.count
+		return 5+self.dataStack.allEps.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		switch indexPath.row {
 		case 0:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell", for: indexPath)
 			return cell
 		case 1:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
-			 cell.delegate = self
+			let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendationCell", for: indexPath) as! PodcsatCollectionCell
+			cell.delegate = self
+			if sharedDarwinUser.loginStatus && flag{
+				cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation/\(sharedDarwinUser.baseUid)")
+				cell.awakeFromNib()
+				flag = false
+			}
 			return cell
 		case 2:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			return cell
+		case 3:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
+			cell.delegate = self
+			cell.API = APIKey.sharedInstance.getApi(key:"/api_home")
+			return cell
+		case 4:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
 			return cell
 		default:
-			let episode: Episode = dataStack.allEps[indexPath.row-3]
+			let episode: Episode = dataStack.allEps[indexPath.row-5]
 			let cell = EpisodeListTableViewCell(player: hearThisPlayer!, listItem: episode)
 			
 			UIGraphicsBeginImageContextWithOptions(CGSize(width: 50, height: 50), false, UIScreen.main.scale)
@@ -160,11 +178,42 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		}
 	}
 	
+	func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+		if editActionsForRowAt.row >= 5{
+			let boring = UITableViewRowAction(style: .normal, title: "Boring") { action, index in
+				print("Boring button tapped")
+			}
+			boring.backgroundColor = UIColor(rgb: 0xCFD8DC)
+			let see = UITableViewRowAction(style: .normal, title: "Detail") { action, index in
+				print("favorite button tapped")
+				let episode: Episode = self.dataStack.allEps[editActionsForRowAt.row-5]
+				let api: String = APIKey.sharedInstance.getApi(key: "/api_pod/\(episode.pid ?? 100)")
+				self.loadPodFromEpisode(episode: episode, api: api)
+			}
+			see.backgroundColor = UIColor(rgb: 0x90CAF9)
+			
+			let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
+				print("share button tapped")
+			}
+			share.backgroundColor = UIColor(rgb: 0xA5D6A7)
+			return [boring, share, see]
+
+		}
+		else{
+			return []
+		}
+	}
+	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		hearThisPlayer?.stop()
-		hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 3])
-		print("Print Selected Image for info ======->", dataStack.allEps[indexPath.row - 3].coverArtURL ?? "ok")
-		self.DiscoverTableView.deselectRow(at: indexPath, animated: true)
+		if (indexPath.row != 0 && indexPath.row != 1 && indexPath.row != 2 && indexPath.row != 4){
+			hearThisPlayer?.stop()
+			hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 5])
+			self.DiscoverTableView.deselectRow(at: indexPath, animated: true)
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cell.backgroundColor = UIColor(rgb: 0xECEFF1)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -172,12 +221,39 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 		case 0:
 			return 150
 		case 1:
-			return 300
+			return 150
 		case 2:
+			return 150
+		case 3:
+			return 300
+		case 4:
 			return 150
 		default:
 			return 100
 		}
 	}
+	
+	func loadPodFromEpisode(episode: Episode, api: String) {
+		let dataStack: DataStack = DataStack()
+		guard let homeUrl = URL(string: api) else { return }
+		URLSession.shared.dataTask(with: homeUrl) { (data, response
+			, error) in
+			guard let data = data else { return }
+			do {
+				let decoder = JSONDecoder()
+				let apiHomeData = try decoder.decode(Array<Podcast>.self, from: data)
+				print(apiHomeData[0],"\n ++++++ Fetched podcast data from backend ++++++\n")
+				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(20)) {
+					dataStack.loadPod(podcasts: apiHomeData) { [weak self] success in
+						self?.currentPodcast = dataStack.allPods[0]
+						self?.alert(message: episode.info!, title: episode.title!, action1: "Done", action2: "More", podcast: dataStack.allPods[0], controller: self!)
+					}
+				}
+			} catch let err {
+				print("Error, Couldnt load api data", err)
+			}
+			}.resume()
+	}
+	
 }
 

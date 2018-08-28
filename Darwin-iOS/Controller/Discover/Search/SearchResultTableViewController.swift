@@ -15,16 +15,17 @@ class SearchResultTableViewController: UITableViewController, HearThisPlayerObse
 			hearThisPlayer?.registerObserver(observer: self)
 		}
 	}
-	
+	var allArray = [Podcast]()
 	var array = [Podcast]()
 	var isLoading = false
 	var arrayFilter = [String]()
 	var currentPodcast: Podcast?
-	
+	var loadingData = false
+	let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
-	
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		let transition = CATransition()
 		transition.duration = 0.3
@@ -96,6 +97,54 @@ class SearchResultTableViewController: UITableViewController, HearThisPlayerObse
 		currentPodcast = array[indexPath.row]
 		performSegue(withIdentifier: "search_to_table", sender: self)
 	}
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		print("=========")
+		if indexPath.row == self.allArray.count-1{
+			self.alert(message: "You have loaded all the data")
+		}
+//		if !loadingData && indexPath.row == self.array.count - 1 {
+//			print(">>>>>>>>>>>")
+//			spinner.activityIndicatorViewStyle = .gray
+//			spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//			spinner.startAnimating()
+//			// Add it to the view where you want it to appear
+//			self.view.addSubview(spinner)
+//			loadingData = true
+//			loadMoreData()
+//			spinner.stopAnimating()
+//
+//		}
+		
+		if !loadingData && indexPath.row == self.array.count - 1 {
+			// print("this is the last cell")
+			spinner.startAnimating()
+			spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(64))
+
+			self.tableView.tableFooterView = spinner
+			self.tableView.tableFooterView?.isHidden = false
+			loadingData = true
+			loadMoreData()
+		}
+	}
+	
+	func loadMoreData() {
+		print(allArray.count)
+		if array.count+5 > allArray.count{
+			self.array = self.allArray
+			self.tableView.reloadData()
+			loadingData = true
+		}
+		else{
+			self.array.append(contentsOf:Array(allArray[array.count ... array.count+5]))
+			self.tableView.reloadData()
+			loadingData = false
+		}
+	}
 }
 
 extension SearchResultTableViewController{
@@ -126,3 +175,5 @@ extension SearchResultTableViewController{
 	}
 	
 }
+
+
