@@ -61,6 +61,12 @@
 		A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13B20F83A4900F00F43 /* Episode.swift */; };
 		A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */; };
 		A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E957DA210D53E3003203F8 /* DarwinUser.swift */; };
+		A5EF3EF6213CBECF005288D8 /* SubscribedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */; };
+		A5EF3EF8213CC1B6005288D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF7213CC1B6005288D8 /* User.swift */; };
+		A5EF3EFA213CC2AB005288D8 /* UserDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */; };
+		A5EF3EFC213CC350005288D8 /* UserBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFB213CC350005288D8 /* UserBuilder.swift */; };
+		A5EF3EFE213CC486005288D8 /* UserTableListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFD213CC486005288D8 /* UserTableListDataSource.swift */; };
+		A5EF3F00213CC9C9005288D8 /* SubscribeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +151,12 @@
 		A5E0B13B20F83A4900F00F43 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewCell.swift; sourceTree = "<group>"; };
 		A5E957DA210D53E3003203F8 /* DarwinUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinUser.swift; sourceTree = "<group>"; };
+		A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedUsersListViewController.swift; sourceTree = "<group>"; };
+		A5EF3EF7213CC1B6005288D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStack.swift; sourceTree = "<group>"; };
+		A5EF3EFB213CC350005288D8 /* UserBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBuilder.swift; sourceTree = "<group>"; };
+		A5EF3EFD213CC486005288D8 /* UserTableListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableListDataSource.swift; sourceTree = "<group>"; };
+		A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeUserCell.swift; sourceTree = "<group>"; };
 		D1E003839D1851F904AFC107 /* Pods-Darwin-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSUITests/Pods-Darwin-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E62141EAF783E40ED925E55B /* Pods-Darwin-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +222,7 @@
 				A5E0B0DF20F1856600F00F43 /* DiscoverViewController.swift */,
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A55803C72135044D0073B073 /* CategoryCollectionViewController.swift */,
+				A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -258,6 +271,7 @@
 				A553208F210306B80035CDDA /* SearchResultTableCell.swift */,
 				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
 				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
+				A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */,
 				A55320962106874E0035CDDA /* Player View */,
 				A5AE3C7821069BCC002EAD0B /* Login View */,
 			);
@@ -364,6 +378,7 @@
 				A5AE3C832106B15A002EAD0B /* Login */,
 				A5E0B10F20F1995700F00F43 /* Podcast.swift */,
 				A5E0B13B20F83A4900F00F43 /* Episode.swift */,
+				A5EF3EF7213CC1B6005288D8 /* User.swift */,
 				A5E0B11220F19D7E00F00F43 /* TrackSubscriber.swift */,
 				A53A2AD820FCA572002DEA45 /* HearThisPlayer.swift */,
 			);
@@ -393,6 +408,9 @@
 				A53A2ACA20F96A96002DEA45 /* EpisodeDataStack.swift */,
 				A53A2ACC20F97616002DEA45 /* EpisodeBuilder.swift */,
 				A53A2ACE20F98006002DEA45 /* EpisodeTableViewDataSource.swift */,
+				A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */,
+				A5EF3EFB213CC350005288D8 /* UserBuilder.swift */,
+				A5EF3EFD213CC486005288D8 /* UserTableListDataSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -645,6 +663,7 @@
 			files = (
 				A53A2AD220FADFA4002DEA45 /* DarwinStartViewController.swift in Sources */,
 				A5AE3C7E21069C13002EAD0B /* LoginButton.swift in Sources */,
+				A5EF3EF8213CC1B6005288D8 /* User.swift in Sources */,
 				A503C59621013AB80056460B /* DiscoverPodcastCollectionCell.swift in Sources */,
 				A53A2AD920FCA572002DEA45 /* HearThisPlayer.swift in Sources */,
 				A5E0B0E020F1856600F00F43 /* DiscoverViewController.swift in Sources */,
@@ -664,10 +683,13 @@
 				A5E0B11020F1995700F00F43 /* Podcast.swift in Sources */,
 				A53A2AD620FC1EF0002DEA45 /* DiscoverNavigationController.swift in Sources */,
 				A5E0B11820F1A12500F00F43 /* PodcastBuilder.swift in Sources */,
+				A5EF3EFE213CC486005288D8 /* UserTableListDataSource.swift in Sources */,
 				A5AE3C8A2106B3B2002EAD0B /* NetworkingManager.swift in Sources */,
 				A534383C210E81120037CED5 /* Cache.swift in Sources */,
 				A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */,
 				A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */,
+				A5EF3F00213CC9C9005288D8 /* SubscribeUserCell.swift in Sources */,
+				A5EF3EF6213CBECF005288D8 /* SubscribedUsersListViewController.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
 				A5345E86210EE6BA00D619D6 /* CollectionNavigationController.swift in Sources */,
 				A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */,
@@ -686,6 +708,8 @@
 				A5AE3C852106B16F002EAD0B /* FacebookAPIManger.swift in Sources */,
 				A5345E88211128C200D619D6 /* AlertView.swift in Sources */,
 				A5E0B11320F19D7E00F00F43 /* TrackSubscriber.swift in Sources */,
+				A5EF3EFC213CC350005288D8 /* UserBuilder.swift in Sources */,
+				A5EF3EFA213CC2AB005288D8 /* UserDataStack.swift in Sources */,
 				A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */,
 				A5E0B0DE20F1856600F00F43 /* AppDelegate.swift in Sources */,
 			);

@@ -38,7 +38,11 @@ extension UIImageView {
 			}.resume()
 	}
 	func imageFromUrl(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-		guard let url = URL(string: link) else { return }
+		guard let url = URL(string: link) else {
+			let image = UIImage(named: "user")
+			self.image = image
+			return
+		}
 		imageFromUrl(url: url, contentMode: mode)
 	}
 }

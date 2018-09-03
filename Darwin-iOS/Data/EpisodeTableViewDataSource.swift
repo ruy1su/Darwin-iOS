@@ -84,7 +84,7 @@ class EpisodeTableViewDataSource: NSObject, HearThisPlayerHolder, HearThisPlayer
 					unique.append(s)
 				}
 			}
-			print(unique, unique.count)
+//			print(unique, unique.count)
 			datastack.setMediaURL(mediaURLArr: unique)
 		}
 	}

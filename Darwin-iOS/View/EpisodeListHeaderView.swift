@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class EpisodeListHeaderView: UIView {
 
@@ -19,6 +20,7 @@ class EpisodeListHeaderView: UIView {
 			titleLabel.text = podcast?.title
 			category.layer.cornerRadius = 5
 			category.setTitle(podcast?.category, for: .normal)
+			
 			if let podcast = self.podcast {
 				avatarView.imageFromUrl(link: (podcast.coverArtURL?.absoluteString)!)
 				avatarView.clipsToBounds = true
