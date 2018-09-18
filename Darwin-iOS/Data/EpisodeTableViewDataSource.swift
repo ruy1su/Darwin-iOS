@@ -15,7 +15,6 @@ protocol EpisodeSelectionObserver: class {
 	func selected(_ episode: EpisodeDataStack, on: IndexPath)
 }
 
-
 class EpisodeTableViewDataSource: NSObject, HearThisPlayerHolder, HearThisPlayerObserver {
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet {
@@ -49,73 +48,48 @@ class EpisodeTableViewDataSource: NSObject, HearThisPlayerHolder, HearThisPlayer
 	}
 	
 	func load() {
-//		let pid = currentPodcast.pid
 		let feedURL = URL(string: (self.currentPodcast.mediaURL?.absoluteString)!)!
 		let parser = FeedParser(URL: feedURL)
 		parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
-			// Do your thing, then back to the Main thread
+			// Load Data then back to Main Thread
 			guard let feed = result.rssFeed, result.isSuccess else {
 				print(result.error as Any)
 				return
 			}
-			
 			DispatchQueue.main.async {
-				// ..and update the UI
+				// update the UI
 				self.dataStack.loadFeed(episodes: feed) { [weak self] success in
 					self?.managedTable.reloadData()
+					self?.setMediaForPlayer(datastack: (self?.dataStack)!, currentPodcastMedia: (self?.currentPodcast.mediaURL)!)
 				}
 			}
 		}
-		
-		
-//		guard let homeUrl = URL(string: APIKey.sharedInstance.getApi(key:"/api_episode/\(pid ?? 2)")) else { return }
-//		URLSession.shared.dataTask(with: homeUrl) { (data, response
-//			, error) in
-//
-//			guard let data = data else { return }
-//			do {
-//				let decoder = JSONDecoder()
-//				let apiHomeData = try decoder.decode(Array<Episode>.self, from: data)
-//				print(apiHomeData.count, "\n++++++ This is api episode data number for selected podcast ++++++\n")
-//				DispatchQueue.main.async {
-//					self.dataStack.load(episodes: apiHomeData) { [weak self] success in
-//						self?.managedTable.reloadData()
-//						self?.setMediaForPlayer(datastack: (self?.dataStack)!, currentPodcastMedia: (self?.currentPodcast.mediaURL)!)
-//
-//					}
-//				}
-//			} catch let err {
-//				print("Error, Couldnt load api data", err)
-//			}
-//			}.resume()
-		
 	}
 	
-//	func setMediaForPlayer(datastack: EpisodeDataStack, currentPodcastMedia: URL){
-//		let currentPodcastMedia = currentPodcastMedia
-//		Alamofire.request((currentPodcastMedia.absoluteString)).responseString { response in
-//			let data = response.result.value!
-//			let matched = Helper.matches(for: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:mp3)", in: String(data))
-//			var unique = [String]()
-//			for s in matched{
-//				if !unique.contains(s){
-//					unique.append(s)
-//				}
-//			}
-//			datastack.setMediaURL(mediaURLArr: unique)
-//		}
-//	}
-//
+	func setMediaForPlayer(datastack: EpisodeDataStack, currentPodcastMedia: URL){
+		let currentPodcastMedia = currentPodcastMedia
+		Alamofire.request((currentPodcastMedia.absoluteString)).responseString { response in
+			let data = response.result.value!
+			let matched = Helper.matches(for: "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:mp3)", in: String(data))
+			var unique = [String]()
+			for s in matched{
+				if !unique.contains(s){
+					unique.append(s)
+				}
+			}
+			datastack.setMediaURL(mediaURLArr: unique)
+		}
+	}
 	
 }
+
+
 
 extension EpisodeTableViewDataSource: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return dataStack.allEps.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		// Setting Artist for Episode
-//		dataStack.setArtist(podcast: currentPodcast, on: indexPath)
 		dataStack.setCoverArt(podcast: currentPodcast, on: indexPath)
 		let episode: Episode = dataStack.allEps[indexPath.row]
 		let cell = EpisodeListTableViewCell(player: hearThisPlayer!, listItem: episode)

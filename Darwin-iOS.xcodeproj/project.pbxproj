@@ -63,6 +63,7 @@
 		A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E957DA210D53E3003203F8 /* DarwinUser.swift */; };
 		A5EEC5472147A15A0070BE47 /* FollowingUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEC5462147A15A0070BE47 /* FollowingUsersViewController.swift */; };
 		A5EEC5492147B3340070BE47 /* FollowingUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */; };
+		A5EEC54B2151007A0070BE47 /* NotifyLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEC54A2151007A0070BE47 /* NotifyLoginCell.swift */; };
 		A5EF3EF6213CBECF005288D8 /* SubscribedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */; };
 		A5EF3EF8213CC1B6005288D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF7213CC1B6005288D8 /* User.swift */; };
 		A5EF3EFA213CC2AB005288D8 /* UserDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */; };
@@ -156,6 +157,7 @@
 		A5E957DA210D53E3003203F8 /* DarwinUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinUser.swift; sourceTree = "<group>"; };
 		A5EEC5462147A15A0070BE47 /* FollowingUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUsersViewController.swift; sourceTree = "<group>"; };
 		A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserTableCell.swift; sourceTree = "<group>"; };
+		A5EEC54A2151007A0070BE47 /* NotifyLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyLoginCell.swift; sourceTree = "<group>"; };
 		A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedUsersListViewController.swift; sourceTree = "<group>"; };
 		A5EF3EF7213CC1B6005288D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStack.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
 				A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */,
 				A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */,
+				A5EEC54A2151007A0070BE47 /* NotifyLoginCell.swift */,
 				A55320962106874E0035CDDA /* Player View */,
 				A5AE3C7821069BCC002EAD0B /* Login View */,
 			);
@@ -691,6 +694,7 @@
 				A5AE3C7F21069C13002EAD0B /* LoginTextField.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
+				A5EEC54B2151007A0070BE47 /* NotifyLoginCell.swift in Sources */,
 				A5EEC5492147B3340070BE47 /* FollowingUserTableCell.swift in Sources */,
 				A55803C82135044D0073B073 /* CategoryCollectionViewController.swift in Sources */,
 				A5532092210312800035CDDA /* Constant.swift in Sources */,

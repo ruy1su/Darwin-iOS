@@ -101,7 +101,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 		print("Press Keyboard")
 	}
 
-	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) { //Ugly Search
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		let dataStack = DataStack()
 		self.search(dataStack: dataStack, searchBar: searchBar)
 	}
@@ -146,25 +146,39 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell", for: indexPath)
 			return cell
 		case 1:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendationCell", for: indexPath) as! PodcsatCollectionCell
-			cell.delegate = self
-			if sharedDarwinUser.loginStatus && flag{
-				cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation/\(sharedDarwinUser.baseUid)")
-				cell.awakeFromNib()
-				flag = false
+			if !sharedDarwinUser.loginStatus{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell", for: indexPath) as! NotifyLoginCell
+				cell.title.text = "Login to Explore More"
+				cell.title.textColor = UIColor.blue
+				return cell
+			}else{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendationCell", for: indexPath) as! PodcsatCollectionCell
+				cell.delegate = self
+				if sharedDarwinUser.loginStatus && flag{
+					cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation/\(sharedDarwinUser.baseUid)")
+					cell.awakeFromNib()
+					flag = false
+				}
+				return cell
 			}
-			return cell
 		case 2:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell2", for: indexPath)
 			return cell
 		case 3:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingRecommendationCell", for: indexPath) as! PodcsatCollectionCell
-			cell.delegate = self
-			if sharedDarwinUser.loginStatus{
-				cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation_following/\(sharedDarwinUser.baseUid)")
-				cell.awakeFromNib()
+			if !sharedDarwinUser.loginStatus{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell", for: indexPath) as! NotifyLoginCell
+				cell.title.text = "Login to Explore More"
+				cell.title.textColor = UIColor.blue
+				return cell
+			}else{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingRecommendationCell", for: indexPath) as! PodcsatCollectionCell
+				cell.delegate = self
+				if sharedDarwinUser.loginStatus{
+					cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation_following/\(sharedDarwinUser.baseUid)")
+					cell.awakeFromNib()
+				}
+				return cell
 			}
-			return cell
 		case 4:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
 			return cell
