@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import FeedKit
 
 enum EpisodeDataStackState {
 	case unloaded
@@ -18,6 +19,25 @@ class EpisodeDataStack: NSObject {
 	// MARK: - Properties
 	private(set) var allEps: [Episode] = []
 	
+	func loadFeed(episodes: RSSFeed, completion: (Bool) -> Void){
+		for episode in episodes.items! {
+			let builder = EpisodeBuilder()
+				.with(title: episode.title)
+				.with(artist: episode.author)
+				.with(pid: 0)
+				.with(mediaURL: episode.link)
+				.with(info: episode.description)
+				.with(releaseDate: episode.pubDate?.description)
+				.with(coverArtURL: episodes.image?.link)
+
+			if let episode = builder.build() {
+				allEps.append(episode)
+			}
+			completion(true)
+
+		}
+	}
+	
 	func load(episodes: [Episode], completion: (Bool) -> Void){
 		for episode in episodes {
 			let builder = EpisodeBuilder()
@@ -27,7 +47,6 @@ class EpisodeDataStack: NSObject {
 				.with(mediaURL: episode.mediaURL?.absoluteString)
 				.with(info: episode.info)
 				.with(releaseDate: episode.releaseDate)
-				.with(info: episode.info)
 				.with(coverArtURL: episode.coverArtURL?.absoluteString)
 			
 			
@@ -48,8 +67,6 @@ class EpisodeDataStack: NSObject {
 	
 	func setMediaURL(mediaURLArr: [String]){
 		var i: Int = 0
-//		print(mediaURLArr.count)
-//		print(self.allEps.count)
 		for url in mediaURLArr{
 			if i < allEps.count{
 				self.allEps[i].mediaURL? = URL(string: url)!

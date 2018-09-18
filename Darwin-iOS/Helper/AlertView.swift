@@ -28,5 +28,15 @@ extension UIViewController {
 		alertController.addAction(MoreAction)
 		self.present(alertController, animated: true, completion: nil)
 	}
-	
+	func alert(message: String, title: String = "", action1: String = "OK", action2: String = "More", podcast: Podcast, controller: EpisodeListViewController) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let OKAction = UIAlertAction(title: action1, style: .default, handler: nil)
+		let MoreAction = UIAlertAction(title: action2, style: UIAlertActionStyle.cancel) {
+			UIAlertAction in
+			controller.performSegue(withIdentifier: "goto_webview", sender: controller)
+		}
+		alertController.addAction(OKAction)
+		alertController.addAction(MoreAction)
+		self.present(alertController, animated: true, completion: nil)
+	}
 }

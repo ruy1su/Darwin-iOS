@@ -53,7 +53,6 @@ class UserTableListDataSource: NSObject{
 				print(apiHomeData)
 				DispatchQueue.main.async {
 					self.dataStack.load(users: apiHomeData) { [weak self] success in
-						
 						self?.managedTable.reloadData()
 					}
 				}
@@ -70,9 +69,25 @@ extension UserTableListDataSource: UITableViewDataSource, UITableViewDelegate{
 		return dataStack.allUsers.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		// Setting Artist for Episode
 		let user: User = dataStack.allUsers[indexPath.row]
 		let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? SubscribeUserCell
+		let rowUid = user.uid
+		let currentUserUid = sharedDarwinUser.baseUid
+		if rowUid == currentUserUid{
+			cell?.followButton.setTitle("It's me!", for: .normal)
+			cell?.followButton.isEnabled = false
+		}
+		else{
+			Alamofire.request(APIKey.sharedInstance.getApi(key: "/user_followers/\(rowUid ?? 25)")).responseJSON { (response) in
+				let data = response.result.value as! [NSDictionary]
+				for i in data{
+					if (i["fid"] as! Int) == currentUserUid{
+						cell?.followButton.setTitle("Followed", for: .normal)
+					}
+				}
+			}
+		}
+		cell?.user = user
 		cell?.userImage.imageFromUrl(link: (user.imageURL)!)
 		cell?.userName.text = user.fname! + " " + user.lname!
 		return cell!
@@ -87,3 +102,4 @@ extension UserTableListDataSource: UITableViewDataSource, UITableViewDelegate{
 		return 60
 	}
 }
+

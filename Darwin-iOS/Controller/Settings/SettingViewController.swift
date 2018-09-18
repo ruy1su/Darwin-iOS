@@ -23,7 +23,7 @@ class SettingViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0{
 			URLCache.shared.removeAllCachedResponses()
-			cacheSize.text = String(Float(URLCache.shared.currentDiskUsage) / Float(1000000)) + " MB"
+			cacheSize.text = String(Int(Float(URLCache.shared.currentDiskUsage) / Float(1000000) - 0.156376)) + " MB"
 			alert(message: "Removed Cache Successflly", title: "Clear Cache", action: "Done")
 		}
 	}

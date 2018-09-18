@@ -22,8 +22,7 @@ class EpisodeBuilder: NSObject {
 	private var coverArtURL: URL?
 	
 	func build() -> Episode? {
-		guard let title = title,
-			let artist = artist, let info = info else {
+		guard let mediaURL = mediaURL else {
 				return nil
 		}
 		

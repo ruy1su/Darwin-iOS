@@ -17,11 +17,13 @@ struct Podcast:Codable {
 	let mediaURL: URL?
 	let coverArtURL: URL?
 	let category: String?
+	let url: String?
 	private enum CodingKeys: String, CodingKey {
 		case title
 		case pid
 		case artist
 		case category
+		case url
 		case mediaURL = "mediaURL"
 		case coverArtURL = "coverArtURL"
 	}

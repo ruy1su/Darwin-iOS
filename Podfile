@@ -13,6 +13,7 @@ target 'Darwin-iOS' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SWXMLHash', '~> 4.0.0'
+  pod 'FeedKit', '~> 8.0'
   
   target 'Darwin-iOSTests' do
     inherit! :search_paths

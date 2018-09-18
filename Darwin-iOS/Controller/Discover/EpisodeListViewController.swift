@@ -25,6 +25,9 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 	@IBOutlet weak var episodeListHeaderView: EpisodeListHeaderView!
 	@IBOutlet weak var navBar: UINavigationBar!
 	@IBOutlet weak var episodeTableView: UITableView!
+	@IBAction func presentWebView(_ sender: Any) {
+		self.performSegue(withIdentifier: "goto_webview", sender: self)
+	}
 	@IBAction func presentPodsForCat(_ sender: Any) {
 		self.performSegue(withIdentifier: "cat_to_collection", sender: self)
 	}
@@ -61,12 +64,16 @@ class EpisodeListViewController: UIViewController, HearThisPlayerHolder, Episode
 			destination.currentPodcast = currentPodcast
 			destination.hearThisPlayer = hearThisPlayer
 		}
+		if let destination = segue.destination as? PodcastWebViewController{
+			destination.urlString = (currentPodcast?.url)!
+			destination.hearThisPlayer = hearThisPlayer
+		}
 	}
 	
 	func selected(_ episodeStack: EpisodeDataStack, on: IndexPath) {
 		hearThisPlayer?.alwaysPause()
 		if episodeStack.allEps.count == 0{
-			alert(message: "", title: "Sorry We Cannot Load this Episode", action: "Done")
+			alert(message: "", title: "Sorry We Cannot Load this Episode", action1: "Done", action2: "Go to the Website", podcast: currentPodcast!, controller: self)
 		}
 		else{
 			episodeStack.setCoverArt(podcast: currentPodcast!, on: on)
@@ -112,4 +119,5 @@ extension EpisodeListViewController{
 			self.alert(message: "Please Log In First", title: "You Have Not Logged In", action: "Done")
 		}
 	}
+	
 }

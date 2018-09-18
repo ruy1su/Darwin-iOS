@@ -61,12 +61,15 @@
 		A5E0B13C20F83A4900F00F43 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13B20F83A4900F00F43 /* Episode.swift */; };
 		A5E0B13E20F962FC00F00F43 /* EpisodeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */; };
 		A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E957DA210D53E3003203F8 /* DarwinUser.swift */; };
+		A5EEC5472147A15A0070BE47 /* FollowingUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEC5462147A15A0070BE47 /* FollowingUsersViewController.swift */; };
+		A5EEC5492147B3340070BE47 /* FollowingUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */; };
 		A5EF3EF6213CBECF005288D8 /* SubscribedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */; };
 		A5EF3EF8213CC1B6005288D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF7213CC1B6005288D8 /* User.swift */; };
 		A5EF3EFA213CC2AB005288D8 /* UserDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */; };
 		A5EF3EFC213CC350005288D8 /* UserBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFB213CC350005288D8 /* UserBuilder.swift */; };
 		A5EF3EFE213CC486005288D8 /* UserTableListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFD213CC486005288D8 /* UserTableListDataSource.swift */; };
 		A5EF3F00213CC9C9005288D8 /* SubscribeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */; };
+		A5EF3F02213E0A7A005288D8 /* PodcastWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF3F01213E0A7A005288D8 /* PodcastWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,12 +154,15 @@
 		A5E0B13B20F83A4900F00F43 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewCell.swift; sourceTree = "<group>"; };
 		A5E957DA210D53E3003203F8 /* DarwinUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinUser.swift; sourceTree = "<group>"; };
+		A5EEC5462147A15A0070BE47 /* FollowingUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUsersViewController.swift; sourceTree = "<group>"; };
+		A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserTableCell.swift; sourceTree = "<group>"; };
 		A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedUsersListViewController.swift; sourceTree = "<group>"; };
 		A5EF3EF7213CC1B6005288D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5EF3EF9213CC2AB005288D8 /* UserDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStack.swift; sourceTree = "<group>"; };
 		A5EF3EFB213CC350005288D8 /* UserBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBuilder.swift; sourceTree = "<group>"; };
 		A5EF3EFD213CC486005288D8 /* UserTableListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableListDataSource.swift; sourceTree = "<group>"; };
 		A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeUserCell.swift; sourceTree = "<group>"; };
+		A5EF3F01213E0A7A005288D8 /* PodcastWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastWebViewController.swift; sourceTree = "<group>"; };
 		D1E003839D1851F904AFC107 /* Pods-Darwin-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOSUITests/Pods-Darwin-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E62141EAF783E40ED925E55B /* Pods-Darwin-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Darwin-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Darwin-iOS/Pods-Darwin-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +229,7 @@
 				A5E0B13920F8037100F00F43 /* EpisodeListViewController.swift */,
 				A55803C72135044D0073B073 /* CategoryCollectionViewController.swift */,
 				A5EF3EF5213CBECF005288D8 /* SubscribedUsersListViewController.swift */,
+				A5EF3F01213E0A7A005288D8 /* PodcastWebViewController.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -272,6 +279,7 @@
 				A5E0B13D20F962FC00F00F43 /* EpisodeListTableViewCell.swift */,
 				A53A2ADD20FD69A7002DEA45 /* EpisodeListHeaderView.swift */,
 				A5EF3EFF213CC9C9005288D8 /* SubscribeUserCell.swift */,
+				A5EEC5482147B3340070BE47 /* FollowingUserTableCell.swift */,
 				A55320962106874E0035CDDA /* Player View */,
 				A5AE3C7821069BCC002EAD0B /* Login View */,
 			);
@@ -394,6 +402,7 @@
 				A53A2AD020FA9513002DEA45 /* Discover */,
 				A553208A210298680035CDDA /* Collection */,
 				A553208B210298860035CDDA /* Settings */,
+				A5EEC5452147A0EF0070BE47 /* Following */,
 				A53A2ADA20FD5D34002DEA45 /* Player Controller */,
 			);
 			path = Controller;
@@ -426,6 +435,14 @@
 				A565FA60211BBCA300923DF3 /* Helper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		A5EEC5452147A0EF0070BE47 /* Following */ = {
+			isa = PBXGroup;
+			children = (
+				A5EEC5462147A15A0070BE47 /* FollowingUsersViewController.swift */,
+			);
+			path = Following;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,6 +632,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -628,6 +646,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -672,6 +691,7 @@
 				A5AE3C7F21069C13002EAD0B /* LoginTextField.swift in Sources */,
 				A5E0B12120F1B06100F00F43 /* FloatingPlayerViewController.swift in Sources */,
 				A5E0B0E620F1856600F00F43 /* Darwin_iOS.xcdatamodeld in Sources */,
+				A5EEC5492147B3340070BE47 /* FollowingUserTableCell.swift in Sources */,
 				A55803C82135044D0073B073 /* CategoryCollectionViewController.swift in Sources */,
 				A5532092210312800035CDDA /* Constant.swift in Sources */,
 				A565FA61211BBCA300923DF3 /* Helper.swift in Sources */,
@@ -689,8 +709,10 @@
 				A553208D2102B1530035CDDA /* SearchResultTableViewController.swift in Sources */,
 				A565FA63211C348300923DF3 /* SettingViewController.swift in Sources */,
 				A5EF3F00213CC9C9005288D8 /* SubscribeUserCell.swift in Sources */,
+				A5EF3F02213E0A7A005288D8 /* PodcastWebViewController.swift in Sources */,
 				A5EF3EF6213CBECF005288D8 /* SubscribedUsersListViewController.swift in Sources */,
 				A5E0B13A20F8037100F00F43 /* EpisodeListViewController.swift in Sources */,
+				A5EEC5472147A15A0070BE47 /* FollowingUsersViewController.swift in Sources */,
 				A5345E86210EE6BA00D619D6 /* CollectionNavigationController.swift in Sources */,
 				A5E957DB210D53E3003203F8 /* DarwinUser.swift in Sources */,
 				A5532098210688D70035CDDA /* UserHomeViewController.swift in Sources */,

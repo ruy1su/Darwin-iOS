@@ -29,6 +29,7 @@ class DataStack: NSObject {
 					.with(mediaURL: podcastDictionary["mediaURL"] as? String)
 					.with(coverArtURL: podcastDictionary["coverArtURL"] as? String)
 					.with(category: podcastDictionary["category"] as? String)
+					.with(url: podcastDictionary["url"] as? String)
 				if let podcast = builder.build() {
 					allPods.append(podcast)
 				}
@@ -49,6 +50,7 @@ class DataStack: NSObject {
 				.with(mediaURL: podcast.mediaURL?.absoluteString)
 				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
 				.with(category: podcast.category)
+				.with(url: podcast.url)
 			if let podcast = builder.build() {
 				allPods.append(podcast)
 			}
@@ -65,6 +67,7 @@ class DataStack: NSObject {
 				.with(mediaURL: podcast.mediaURL?.absoluteString)
 				.with(coverArtURL: podcast.coverArtURL?.absoluteString)
 				.with(category: podcast.category)
+				.with(url: podcast.url)
 			if let podcast = builder.build() {
 				allPods.append(podcast)
 			}

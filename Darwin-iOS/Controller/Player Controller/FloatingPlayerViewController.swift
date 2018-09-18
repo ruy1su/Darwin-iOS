@@ -76,7 +76,7 @@ extension FloatingPlayerViewController: HearThisPlayerObserver {
 	}
 	
 	func player(_ player: HearThisPlayerType, willShutDown track: Episode) {
-		alert(message: "", title: "Sorry We Cannot Load this Episode", action: "Done")
+		alert(message: "Sorry We Cannot Load this Episode. You can check the web page for the whole podcast by clicking 'WEB' on the right top ", title: "WOOPS", action: "Done")
 		playButton.setImage(UIImage(named:"play"), for: .normal)
 		playOrPause = false
 	}

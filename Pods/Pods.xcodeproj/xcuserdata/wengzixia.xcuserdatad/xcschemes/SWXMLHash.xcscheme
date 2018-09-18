@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8EAEEEB44B79DE2A2F2122F74393A6FB"
+               BlueprintIdentifier = "86DAFAE68ECF4B78DA5ED8D413447836"
                BuildableName = "SWXMLHash.framework"
                BlueprintName = "SWXMLHash"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8EAEEEB44B79DE2A2F2122F74393A6FB"
+            BlueprintIdentifier = "86DAFAE68ECF4B78DA5ED8D413447836"
             BuildableName = "SWXMLHash.framework"
             BlueprintName = "SWXMLHash"
             ReferencedContainer = "container:Pods.xcodeproj">

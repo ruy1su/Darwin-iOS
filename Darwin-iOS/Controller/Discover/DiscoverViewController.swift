@@ -16,6 +16,7 @@ class DiscoverViewController: UIViewController, TrackSubscriber, HearThisPlayerH
 	@IBAction func reload(_ sender: Any) {
 		flag = true
 		self.DiscoverTableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
+		self.DiscoverTableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
 	}
 	var hearThisPlayer: HearThisPlayerType? {
 		didSet{
@@ -136,7 +137,7 @@ extension DiscoverViewController: UISearchResultsUpdating, UISearchBarDelegate{
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5+self.dataStack.allEps.count
+		return 6+self.dataStack.allEps.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,18 +155,26 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 			}
 			return cell
 		case 2:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: "TopCell2", for: indexPath)
 			return cell
 		case 3:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingRecommendationCell", for: indexPath) as! PodcsatCollectionCell
+			cell.delegate = self
+			if sharedDarwinUser.loginStatus{
+				cell.API = APIKey.sharedInstance.getApi(key:"/refresh_recommendation_following/\(sharedDarwinUser.baseUid)")
+				cell.awakeFromNib()
+			}
+			return cell
+		case 4:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+			return cell
+		case 5:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! PodcsatCollectionCell
 			cell.delegate = self
 			cell.API = APIKey.sharedInstance.getApi(key:"/api_home")
 			return cell
-		case 4:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "footcell", for: indexPath)
-			return cell
 		default:
-			let episode: Episode = dataStack.allEps[indexPath.row-5]
+			let episode: Episode = dataStack.allEps[indexPath.row-6]
 			let cell = EpisodeListTableViewCell(player: hearThisPlayer!, listItem: episode)
 			
 			UIGraphicsBeginImageContextWithOptions(CGSize(width: 50, height: 50), false, UIScreen.main.scale)
@@ -205,9 +214,9 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if (indexPath.row != 0 && indexPath.row != 1 && indexPath.row != 2 && indexPath.row != 4){
+		if (indexPath.row > 5){
 			hearThisPlayer?.stop()
-			hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 5])
+			hearThisPlayer?.playItems(self.dataStack.allEps, firstItem: self.dataStack.allEps[indexPath.row - 6])
 			self.DiscoverTableView.deselectRow(at: indexPath, animated: true)
 		}
 	}
@@ -219,17 +228,19 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		switch indexPath.row {
 		case 0:
-			return 150
+			return 100
 		case 1:
 			return 150
 		case 2:
-			return 150
+			return 100
 		case 3:
-			return 300
+			return 150
 		case 4:
 			return 150
+		case 5:
+			return 300
 		default:
-			return 100
+			return 80
 		}
 	}
 	
